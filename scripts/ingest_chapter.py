@@ -1,0 +1,104 @@
+"""Phase 2 ingestion (extraction stage) for one chapter.
+
+Parse → build relation edges → LLM-extract obligations → write a REVIEW bundle.
+Stops before DB load: a human reviews/edits the bundle first (ADR-009). The reviewed
+bundle is then loaded + embedded by scripts/ingest_load.py.
+
+Usage:  python scripts/ingest_chapter.py
+"""
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "backend"))
+from app.ingest.parse import parse_chapter        # noqa: E402
+from app.ingest.relations import build_edges       # noqa: E402
+from app.ingest.extract import extract_obligations  # noqa: E402
+
+# --- Locked corpus config (data/obligations/seed_manifest.md) ---
+MASTER = {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf",
+}
+PRIOR_MASTER_REF = "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53"  # May 22, 2024
+CHAPTER_NO = 47
+PAGE_START, PAGE_END = 121, 123  # 0-based PDF indices, inclusive
+
+OUT_DIR = ROOT / "data" / "obligations" / "review"
+
+
+def main() -> int:
+    chapter = parse_chapter(ROOT / MASTER["pdf"], CHAPTER_NO, PAGE_START, PAGE_END)
+    print(f"Parsed chapter {chapter.chapter_no}: {chapter.heading}")
+    print(f"  {len(chapter.clauses)} clauses, {len(chapter.source_refs)} source circulars")
+
+    edges = build_edges(chapter, MASTER["circular_ref"], PRIOR_MASTER_REF)
+    print(f"  {len(edges)} relation edges")
+
+    print("  calling Claude for obligation extraction (Sonnet)...")
+    obligations = extract_obligations(chapter)
+    for o in obligations:
+        o["_approved"] = False  # human sets true during review
+    print(f"  extracted {len(obligations)} candidate obligations")
+
+    bundle = {
+        "master": MASTER,
+        "prior_master_ref": PRIOR_MASTER_REF,
+        "chapter": {
+            "chapter_no": chapter.chapter_no,
+            "heading": chapter.heading,
+            "page_span": [PAGE_START, PAGE_END],
+            "source_refs": [{"circular_ref": r.circular_ref, "dated": r.dated} for r in chapter.source_refs],
+        },
+        "parent_section": {
+            "section_id": f"SB-CH{chapter.chapter_no}",
+            "circular_ref": MASTER["circular_ref"],
+            "heading": chapter.heading,
+            "full_text": chapter.full_text,
+        },
+        "obligations": obligations,
+        "relations": edges,
+    }
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    (OUT_DIR / f"chapter_{CHAPTER_NO}_bundle.json").write_text(
+        json.dumps(bundle, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    _write_review_md(bundle)
+    print(f"\nReview bundle written to {OUT_DIR}")
+    print("Edit chapter_47_bundle.json (set _approved=true on good obligations), then run ingest_load.py")
+    return 0
+
+
+def _write_review_md(bundle: dict) -> None:
+    ch = bundle["chapter"]
+    lines = [
+        f"# Review — Chapter {ch['chapter_no']}: {ch['heading']}",
+        "",
+        f"Source (current): `{bundle['master']['circular_ref']}` ({bundle['master']['issue_date']})  ",
+        f"Supersedes: `{bundle['prior_master_ref']}`  ",
+        f"Consolidates: " + ", ".join(f"`{r['circular_ref']}` ({r['dated']})" for r in ch["source_refs"]),
+        "",
+        "> Not legal advice. Approve/correct each obligation, then set `_approved: true` in the JSON.",
+        "",
+        f"## Candidate obligations ({len(bundle['obligations'])})",
+    ]
+    for o in bundle["obligations"]:
+        lines += [
+            f"\n### {o['suggested_id']} — {o['title']}",
+            f"- **Clauses:** {', '.join(o['clause_refs'])}",
+            f"- **Category:** {o['category']} · **Intermediary:** {o['intermediary_type']}",
+            f"- **Obligation:** {o['obligation_text']}",
+            f"- **Expected controls:** {'; '.join(o['expected_controls'])}",
+        ]
+    lines += ["", f"## Relation edges ({len(bundle['relations'])})", ""]
+    for e in bundle["relations"]:
+        lines.append(f"- `{e['from_ref']}` --{e['relation_type']}--> `{e['to_ref']}`  ({e['source_note']})")
+    (OUT_DIR / f"chapter_{ch['chapter_no']}_REVIEW.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
