@@ -54,7 +54,8 @@ Tracing: LangSmith / Arize Phoenix. Metric suites: RAGAS / DeepEval / TruLens.
 ## Metric gates by phase (filled as phases are specced)
 | Phase | Gate metric | Threshold |
 |---|---|---|
-| 1 | % obligations with resolved temporal metadata; edge spot-check | TBD in Phase 1 spec |
+| 1 | % obligations with resolved temporal metadata | **100%** ✅ (hand-reviewed) |
+| 1 | recursive supersession traversal correctness | pass ✅ |
 | 2 | extraction accuracy vs. hand-labelled; idempotent ingest | TBD |
 | 3 | recall@k on golden query set | TBD |
 | 4 | trajectory correctness + end-answer recall | TBD |

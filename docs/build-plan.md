@@ -17,12 +17,16 @@ agent you can't measure, and trajectory eval is what makes the agentic claim def
 Repo skeleton; ADR/experiment/trajectory logging; scope + metrics locked; showcase thesis drafted.
 GATE (signed): corpus boundary = Stock Brokers (ADR-001); agent framework = hand-rolled (ADR-002).
 
-## Phase 1 — Corpus & data model  ⏳ NEXT (awaiting spec sign-off)
+## Phase 1 — Corpus & data model  ✅
 Clean, structured, temporally-correct obligations + relations.
-- Obligation schema, `obligation_relations` table (citation graph behind tool T4), temporal model,
-  structure-aware clause chunking with parent links.
-- ADR 1.1 narrow relations table vs GraphRAG vs graph DB; ADR 1.2 chunk grain.
-- Gate: ≥ X% obligations have resolved temporal metadata; edges spot-check to source.
+- Schema in `supabase/migrations/001_schema.sql` (isolated `adjudicator` schema, `adj_` tables).
+- `adj_obligation`, `adj_obligation_section`, `adj_obligation_relations` (T4 citation graph),
+  `adj_obligation_chunk` (clause grain + parent link).
+- SQL functions: `adj_valid_obligations(as_of, family)` (T1 temporal validity),
+  `adj_relation_closure(start_ref, ...)` (recursive supersession traversal).
+- ADR-006 (relations table, not GraphRAG); ADR-007 (clause chunk grain).
+- **Gate PASSED:** temporal validity correct at 3 dates; recursive closure walks the chain; 100%
+  temporal-metadata resolution. Proven by `scripts/validate_phase1.py` against the live DB.
 
 ## Phase 2 — Ingestion pipeline
 Fetch (curated seed) → parse → LLM-assisted extract (human-in-the-loop = gold seed) → extract

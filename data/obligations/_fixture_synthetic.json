@@ -1,0 +1,57 @@
+{
+  "_comment": "SYNTHETIC Phase-1 structural fixture. NOT real SEBI text. Exists only to validate the temporal-validity function and recursive citation-graph traversal end-to-end against the DB. Real Stock Brokers obligations are ingested in Phase 2. All rows have is_synthetic=true.",
+  "sections": [
+    {
+      "section_id": "ADJ-SYN-SEC-1",
+      "circular_ref": "SYN/SB/2024/MASTER",
+      "heading": "Running-account settlement of client funds (synthetic)",
+      "full_text": "Synthetic parent section used to validate parent-document linkage."
+    }
+  ],
+  "obligations": [
+    {
+      "obligation_id": "ADJ-SYN-001",
+      "obligation_text": "Synthetic base: settle running-account client funds quarterly.",
+      "source_circular_ref": "SYN/SB/2018/01",
+      "source_url": "https://example.invalid/syn/2018/01",
+      "issue_date": "2017-12-01",
+      "effective_date": "2018-01-01",
+      "superseded_by": "ADJ-SYN-002",
+      "category": "client_funds",
+      "intermediary_type": "stock_broker",
+      "parent_section_id": "ADJ-SYN-SEC-1",
+      "is_synthetic": true
+    },
+    {
+      "obligation_id": "ADJ-SYN-002",
+      "obligation_text": "Synthetic amendment: settlement cadence narrowed; running-account preference re-confirmed.",
+      "source_circular_ref": "SYN/SB/2021/22",
+      "source_url": "https://example.invalid/syn/2021/22",
+      "issue_date": "2021-05-01",
+      "effective_date": "2021-06-01",
+      "superseded_by": "ADJ-SYN-003",
+      "category": "client_funds",
+      "intermediary_type": "stock_broker",
+      "parent_section_id": "ADJ-SYN-SEC-1",
+      "is_synthetic": true
+    },
+    {
+      "obligation_id": "ADJ-SYN-003",
+      "obligation_text": "Synthetic master circular: consolidated running-account settlement position.",
+      "source_circular_ref": "SYN/SB/2024/MASTER",
+      "source_url": "https://example.invalid/syn/2024/master",
+      "issue_date": "2023-12-01",
+      "effective_date": "2024-01-01",
+      "superseded_by": null,
+      "category": "client_funds",
+      "intermediary_type": "stock_broker",
+      "parent_section_id": "ADJ-SYN-SEC-1",
+      "is_synthetic": true
+    }
+  ],
+  "relations": [
+    { "from_ref": "ADJ-SYN-002", "to_ref": "ADJ-SYN-001", "relation_type": "supersedes", "source_note": "synthetic" },
+    { "from_ref": "ADJ-SYN-003", "to_ref": "ADJ-SYN-002", "relation_type": "consolidated_by", "source_note": "synthetic master-circular appendix" },
+    { "from_ref": "ADJ-SYN-003", "to_ref": "ADJ-SYN-001", "relation_type": "consolidated_by", "source_note": "synthetic master-circular appendix" }
+  ]
+}
