@@ -28,10 +28,14 @@ Clean, structured, temporally-correct obligations + relations.
 - **Gate PASSED:** temporal validity correct at 3 dates; recursive closure walks the chain; 100%
   temporal-metadata resolution. Proven by `scripts/validate_phase1.py` against the live DB.
 
-## Phase 2 — Ingestion pipeline
+## Phase 2 — Ingestion pipeline  ⏳ corpus locked; ingestion run blocked on API keys
 Fetch (curated seed) → parse → LLM-assisted extract (human-in-the-loop = gold seed) → extract
 relations from appendix rescinded-lists → contextual enrichment → embed + index (pgvector + tsvector).
+- Decisions locked: ADR-008 (curated seed), ADR-009 (hybrid extraction), ADR-010 (contextual = Phase 3 experiment).
+- Seed corpus locked: `data/obligations/seed_manifest.md` (Stock Brokers master circular 2024/110 +
+  running-account-settlement chapter + rescinded chain).
 - Gate: extraction accuracy ≥ threshold; idempotent (re-run ≠ duplicates).
+- **Blocked on:** `ANTHROPIC_API_KEY` + `OPENAI_API_KEY` in `backend/.env`.
 
 ## Phase 3 — Retrieval substrate (the agent's tools)
 T1 temporal_filter · T2 hybrid_search (dense⊕BM25, RRF) · T3 expand_to_parent · T4 graph_lookup ·
