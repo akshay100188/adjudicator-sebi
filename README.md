@@ -65,15 +65,17 @@ See [`docs/build-plan.md`](docs/build-plan.md) for the phased plan.
 
 | Phase | What | Status |
 |---|---|---|
-| 0 | Foundations & framing | ✅ in progress |
-| 1 | Corpus & data model (schema + relations + temporal) | ⏳ next (awaiting gate sign-off) |
-| 2 | Ingestion pipeline | ⏳ |
-| 3 | Retrieval substrate (the agent's tools) | ⏳ |
-| 6 | Eval harness (built early) | ⏳ |
-| 4 | The agent | ⏳ |
-| 5 | Gap-detection / grounded synthesis | ⏳ |
-| 7 | Interface & showcase | ⏳ |
-| 8 | Code-analysis module (stretch) | ⏳ |
+| 0 | Foundations & framing | ✅ |
+| 1 | Corpus & data model (schema + relations + temporal) | ✅ |
+| 2 | Ingestion pipeline (54 obligations, 5 chapters) | ✅ |
+| 3 | Retrieval substrate (the agent's tools) — recall@5 1.00 | ✅ |
+| 6 | Eval harness + regression gate (built early) | ✅ |
+| 4 | The agent (ReAct; route/key-tool/grounding 4/4) | ✅ |
+| 5 | Gap-detection / grounded synthesis (recall 1.00, precision 0.76) | ✅ |
+| 7 | Interface & showcase (FastAPI + Next.js) | ✅ |
+| 8 | Code-analysis module (stretch) | ⏳ out of v1 |
+
+See [`docs/showcase.md`](docs/showcase.md) for the results table and run instructions.
 
 ## Stack
 
