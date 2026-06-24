@@ -9,7 +9,6 @@ anthropic>=0.40
 openai>=1.30
 pypdf>=4.2
 
-# Phase 3+ (commented until used)
-# fastapi>=0.110
-# uvicorn[standard]>=0.29
-# httpx>=0.27
+# Phase 7 — API
+fastapi>=0.110
+uvicorn[standard]>=0.29

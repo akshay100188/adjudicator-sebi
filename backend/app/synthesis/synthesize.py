@@ -111,9 +111,17 @@ def analyze_scenario(scenario: str, as_of: date | None = None) -> dict:
     findings = synthesize(scenario, obligations)
     return {
         "route": agent.route,
-        "obligations_considered": list(obligations.keys()),
+        "reasoning": agent.reasoning,
+        "obligations_considered": [
+            {"obligation_id": oid, "title": o["title"]} for oid, o in obligations.items()
+        ],
         "findings": [asdict(f) for f in findings],
+        "trajectory": [
+            {"step": i + 1, "tool": s.tool, "args": s.args, "observation": s.observation}
+            for i, s in enumerate(agent.trajectory)
+        ],
         "trajectory_tools": agent.tool_sequence(),
         "grounding_dropped": agent.grounding_dropped,
+        "steps_used": agent.steps_used,
         "disclaimer": DISCLAIMER,
     }

@@ -75,9 +75,13 @@ citation attached in code from the obligation's real source. Pipeline: `analyze_
 - EXP-005: contradiction-contract prompt lifted precision 0.34→0.65 and fixed the compliant control
   (10→0 findings) while holding recall. Remaining FPs are debatable-gold (Phase 6 refinement).
 
-## Phase 7 — Interface & showcase
-Next.js: obligation browser, scenario runner, findings w/ citations, review queue, **agent-trajectory
-viewer**. Showcase writeup (why-not-production thesis, architecture decisions, eval table).
+## Phase 7 — Interface & showcase  ✅
+- **FastAPI** (`backend/app/main.py` + `app/api/`): GET /obligations, GET /obligations/{id}
+  (+ citation graph), POST /analyze (full agent→synthesis pipeline + trajectory). CORS for the UI.
+- **Next.js 14 UI** (`frontend/`, builds clean): scenario runner (findings + **agent-trajectory
+  viewer** colour-coded by tool), obligation browser (validity, source, citation graph), dark theme,
+  non-removable disclaimer throughout.
+- **Showcase writeup** (`docs/showcase.md`): why-not-production thesis + results table + run steps.
 
 ## Phase 8 — Code-analysis module (stretch)
 Semgrep + AST + tree-sitter → Haiku consolidation (metadata only) → agent maps to obligations.
