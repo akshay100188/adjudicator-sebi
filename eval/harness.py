@@ -33,6 +33,42 @@ def load_golden() -> list[Query]:
     return out
 
 
+def _load_jsonl(path: Path) -> list[dict]:
+    return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+def load_scenarios() -> list[dict]:
+    """Gold scenarios: scenario text + declared controls -> expected gap obligation IDs (Phase 5)."""
+    return _load_jsonl(ROOT / "eval" / "golden" / "scenarios.jsonl")
+
+
+def load_trajectories() -> list[dict]:
+    """Gold trajectories: query -> expected tool sequence (Phase 4 agent eval, §7)."""
+    return _load_jsonl(ROOT / "eval" / "golden" / "trajectories.jsonl")
+
+
+# --- trajectory / process metrics (§7) — used by the Phase 4 agent eval ------
+def tool_set_overlap(gold: list[str], actual: list[str]) -> float:
+    """Order-agnostic Jaccard of tool sets."""
+    g, a = set(gold), set(actual)
+    return len(g & a) / len(g | a) if (g | a) else 1.0
+
+
+def trajectory_order_match(gold: list[str], actual: list[str]) -> bool:
+    """Exact tool sequence match after collapsing consecutive duplicates."""
+    def collapse(xs):
+        out = []
+        for x in xs:
+            if not out or out[-1] != x:
+                out.append(x)
+        return out
+    return collapse(gold) == collapse(actual)
+
+
+def key_tool_hit(key_tool: str, actual: list[str]) -> bool:
+    return key_tool in actual
+
+
 # --- metrics (binary relevance) ----------------------------------------------
 def recall_at_k(relevant: set[str], ranked: list[str], k: int) -> float:
     if not relevant:

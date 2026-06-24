@@ -47,9 +47,14 @@ T5 rerank — all built in `backend/app/tools/`.
 - **Gate PASSED:** recall@5 = 1.00, MRR 0.97 (hybrid+rerank) on the golden set; every knob logged.
 - Remaining: EXP for contextual enrichment on/off (ADR-010); embedding-model benchmark (ADR-004).
 
-## Phase 6 — Eval harness (built early, formalised here)
+## Phase 6 — Eval harness (built early, formalised here)  ◑ harness + gate done; finding/trajectory eval wired
 Golden dataset (gold queries → expected obligations; gold scenarios → expected findings; gold
 trajectories → expected tool sequence); automated runner; regression gate.
+- `eval/harness.py` (retrieval + trajectory metrics), `eval/golden/{queries,scenarios,trajectories}.jsonl`
+  (35 queries · 6 scenarios incl. a compliant no-gap control · 4 trajectories), `eval/regression_gate.py`.
+- ADR-015 eval methodology (offline-first, LLM-judge for finding quality only, custom JSON tracer,
+  recall regression gate). **Gate PASSES** at 54-obligation scale (recall@5 0.99).
+- Finding eval (Phase 5) + trajectory eval (Phase 4) populate when those phases land.
 
 ## Phase 4 — The agent
 Hand-rolled ReAct loop; tool schemas; system prompt; loop governance. Behaviours: routing/adaptive,
