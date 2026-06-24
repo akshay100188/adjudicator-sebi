@@ -50,7 +50,7 @@
         "EOD fund obligation aggregation process across all Exchanges before initiating settlement",
         "Pre-settlement checklist confirming dates match Exchange-published calendar"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-002",
@@ -65,7 +65,7 @@
         "Annual retrieval and storage of the Exchange-issued settlement calendar at the start of each financial year",
         "System configuration to flag and schedule settlement runs as per the published calendar"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-003",
@@ -81,7 +81,7 @@
         "Automated reconciliation to verify that post-settlement receipts are not applied to other clients' obligations",
         "Daily monitoring report flagging any commingling of post-settlement funds"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-004",
@@ -97,7 +97,7 @@
         "System capability to compute and capture EOD pay-in obligations for T and T-1 days per client across all Exchanges on the settlement date",
         "Automated retention calculation that limits retention to the computed T and T-1 pay-in obligation amounts"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-005",
@@ -114,7 +114,7 @@
         "Automated cap enforcement ensuring additional margin retention does not exceed 125% of total margin liability (total retention ≤ 225%)",
         "Retention computation audit trail available for Exchange monitoring and internal review"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-006",
@@ -130,7 +130,7 @@
         "Workflow requiring an actual bank transfer record (transaction reference) before marking an account as settled",
         "Periodic audit to confirm no settlement has been recorded through journal entries other than charge levy/reversal"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-007",
@@ -146,7 +146,7 @@
         "Automated or workflow-triggered payment initiation to return credit balance within three working days of the 30-day inactivity threshold being met",
         "Exception report for any credit balances not returned within the three-working-day window"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-008",
@@ -162,7 +162,7 @@
         "System update to reflect settlement completion only upon confirmed realisation, not instrument issuance date",
         "Reconciliation process to monitor outstanding physical instruments and follow up on realisation"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-009",
@@ -177,7 +177,7 @@
         "Policy and procedural control explicitly prohibiting retention of active client funds for administrative/operational reasons",
         "Periodic internal audit to confirm no such retention is occurring for active client accounts"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-010",
@@ -185,35 +185,63 @@
       "clause_refs": [
         "47.7"
       ],
-      "obligation_text": "Authorized Persons are not permitted to accept client funds or securities. The TM must maintain a proper check to enforce this prohibition. Proprietary trading by an Authorized Person is permitted only using the Authorized Person's own funds and securities, and not using any client funds.",
+      "obligation_text": "An Authorized Person is not permitted to accept client funds or securities. The Trading Member must keep a proper check to enforce this prohibition.",
       "category": "authorized_person_conduct",
       "intermediary_type": "trading_member",
       "expected_controls": [
         "Written policy and contractual prohibition on Authorized Persons accepting client funds or securities",
-        "Periodic supervisory checks and reconciliation to detect any instance of an Authorized Person handling client funds",
-        "Controls to ensure Authorized Person proprietary trading accounts are funded solely from own funds, with system segregation from client fund flows"
+        "Periodic supervisory checks and reconciliation to detect any instance of an Authorized Person handling client funds or securities"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-011",
-      "title": "Send SMS and Email Intimation to Client Upon Running Account Settlement with Transfer Details",
+      "title": "Restrict Authorized Person Proprietary Trading to Own Funds and Securities",
       "clause_refs": [
-        "47.8"
+        "47.7"
       ],
-      "obligation_text": "Upon settling a client's running account, the TM must send an intimation to the client via SMS to the client's registered mobile number and by email. The intimation must include details of the fund transfer: for electronic transfers, the transaction number and date; for physical payment instruments, the instrument number and date. The TM must also send the retention statement along with the statement of running accounts to the client within 5 working days of settlement, as per existing provisions.",
-      "category": "client_communication",
+      "obligation_text": "Proprietary trading by an Authorized Person is permitted only using the Authorized Person's own funds and securities, and must not use any client funds or securities.",
+      "category": "authorized_person_conduct",
       "intermediary_type": "trading_member",
       "expected_controls": [
-        "Automated SMS and email dispatch system triggered at the time of running account settlement, containing transfer details (transaction/instrument number and date)",
-        "Template-based intimation capturing electronic transfer or physical instrument details as applicable",
-        "System to generate and dispatch retention statement along with running account statement within 5 working days of settlement date",
-        "Delivery confirmation tracking and exception reporting for failed SMS/email intimations"
+        "Controls ensuring Authorized Person proprietary trading accounts are funded solely from the Authorized Person's own funds and securities",
+        "System segregation separating Authorized Person proprietary flows from client fund and securities flows"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
       "suggested_id": "SB-RUNACCT-012",
+      "title": "Send SMS and Email Settlement Intimation with Transfer Details",
+      "clause_refs": [
+        "47.8"
+      ],
+      "obligation_text": "Once the Trading Member settles a client's running account, it must send an intimation to the client by SMS to the registered mobile number and by email. The intimation must include the fund transfer details: for electronic transfers, the transaction number and date; for physical payment instruments, the instrument number and date.",
+      "category": "client_communication",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Automated SMS and email dispatch triggered at the time of running account settlement, containing the transfer details",
+        "Template capturing electronic-transfer or physical-instrument details as applicable",
+        "Delivery-confirmation tracking and exception reporting for failed SMS/email intimations"
+      ],
+      "_approved": true
+    },
+    {
+      "suggested_id": "SB-RUNACCT-013",
+      "title": "Send Retention Statement with Running Account Statement Within 5 Working Days",
+      "clause_refs": [
+        "47.8"
+      ],
+      "obligation_text": "The Trading Member must send the retention statement along with the statement of running accounts to the client, as per existing provisions, within 5 working days of settling the running account.",
+      "category": "client_communication",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "System to generate and dispatch the retention statement together with the running account statement within 5 working days of settlement",
+        "Timeliness tracking and exception report for any statement not dispatched within the 5-working-day window"
+      ],
+      "_approved": true
+    },
+    {
+      "suggested_id": "SB-RUNACCT-014",
       "title": "Allow Client 30 Working Days to Raise Disputes on Running Account Statement",
       "clause_refs": [
         "47.9"
@@ -226,23 +254,38 @@
         "Log or ticketing system to record date of receipt and track resolution of client disputes",
         "Communication to clients informing them of the 30-working-day dispute window in the statement or accompanying communication"
       ],
-      "_approved": false
+      "_approved": true
     },
     {
-      "suggested_id": "SB-RUNACCT-013",
-      "title": "Cooperate with Stock Exchange Online Monitoring System for Running Account Settlement Compliance",
+      "suggested_id": "SB-RUNACCT-015",
+      "title": "Stock Exchange Online Monitoring System for Running Account Settlement",
       "clause_refs": [
         "47.10"
       ],
-      "obligation_text": "Stock Exchanges shall develop an online monitoring system to verify timely settlement of clients' running accounts and to confirm that excess client funds are not retained by the TM as on the settlement date. The TM must ensure its records, data, and processes support and are compatible with this Exchange-operated monitoring mechanism, and must not retain excess client funds across all Exchanges after the settlement date.",
-      "category": "regulatory_reporting_and_monitoring",
+      "obligation_text": "Stock Exchanges shall develop an online system for effective monitoring of the timely settlement of clients' running accounts and to verify that excess client funds are not retained by the Trading Member as on the date of settlement. The intent of the system is to discourage Trading Members from retaining excess client funds after settlement, considering all client obligations across exchanges; the responsibility for this monitoring may be shared among Stock Exchanges.",
+      "category": "market_infrastructure_monitoring",
+      "intermediary_type": "stock_exchange",
+      "expected_controls": [
+        "Exchange-operated online system monitoring settlement timeliness and excess-fund retention across all exchanges",
+        "Shared monitoring arrangement among Stock Exchanges for running account settlement compliance"
+      ],
+      "_approved": true
+    },
+    {
+      "suggested_id": "SB-RUNACCT-016",
+      "title": "Do Not Retain Excess Client Funds After Settlement",
+      "clause_refs": [
+        "47.10"
+      ],
+      "obligation_text": "The Trading Member must not retain excess client funds as on the date of settlement of the running account, considering all client obligations across exchanges.",
+      "category": "client_funds_settlement",
       "intermediary_type": "trading_member",
       "expected_controls": [
-        "Systems capable of providing accurate, timely settlement and retention data to Stock Exchange online monitoring platforms",
-        "Internal compliance review on each settlement date to confirm no excess client funds are retained across all Exchanges",
-        "Escalation process for identifying and remediating any excess retention flagged by Exchange monitoring"
+        "Internal compliance review on each settlement date confirming no excess client funds are retained across all exchanges",
+        "Provision of accurate, timely settlement and retention data to the Stock Exchange online monitoring system",
+        "Escalation and remediation process for any excess retention flagged by exchange monitoring"
       ],
-      "_approved": false
+      "_approved": true
     }
   ],
   "relations": [

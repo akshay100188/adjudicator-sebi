@@ -38,6 +38,8 @@ Master Circular 2024-08-09 (SEBI/.../CIR/2024/110)  ← current valid position
 5. Contextual-enrichment hook (`context_blurb`) — on/off decided in Phase 3 (ADR-010).
 6. Embed (`text-embedding-3-small` @512) + index; populate `tsv`. Idempotent.
 
-## Status
-Corpus + scope **locked and signed off**. Ingestion run blocked only on `ANTHROPIC_API_KEY` +
-`OPENAI_API_KEY` in `backend/.env`.
+## Status — INGESTED ✅
+Chapter 47 ingested and human-reviewed → **16 obligations** (SB-RUNACCT-001..016), **6 relation
+edges**, 16 embedded chunks, live in the `adjudicator` schema. Human review: 9 accepted verbatim;
+010/011 split (AP duties), 011 intimation split (012/013), 013 split into the exchange monitoring
+duty (015) + the TM no-excess-retention duty (016). Review bundle: `review/chapter_47_bundle.json`.

@@ -56,7 +56,8 @@ Tracing: LangSmith / Arize Phoenix. Metric suites: RAGAS / DeepEval / TruLens.
 |---|---|---|
 | 1 | % obligations with resolved temporal metadata | **100%** ✅ (hand-reviewed) |
 | 1 | recursive supersession traversal correctness | pass ✅ |
-| 2 | extraction accuracy vs. hand-labelled; idempotent ingest | TBD |
+| 2 | extraction faithfulness vs. human review | **high** ✅ (9/13 accepted verbatim; 4 split/reframed, content faithful) |
+| 2 | idempotent ingest (re-run ≠ duplicates) | **PASS** ✅ (16/9/16 stable on re-run) |
 | 3 | recall@k on golden query set | TBD |
 | 4 | trajectory correctness + end-answer recall | TBD |
 | 5 | finding P/R; citation faithfulness; cost/run | TBD |
