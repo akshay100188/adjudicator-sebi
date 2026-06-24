@@ -1,0 +1,270 @@
+{
+  "master": {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf"
+  },
+  "prior_master_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+  "chapter": {
+    "chapter_no": 93,
+    "heading": "Upstreaming of clients' funds by Stock Brokers (SBs) / Clea ring Members",
+    "page_span": [
+      230,
+      233
+    ],
+    "source_refs": [
+      {
+        "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/187",
+        "dated": "December 12, 2023"
+      }
+    ]
+  },
+  "parent_section": {
+    "section_id": "SB-CH93",
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "heading": "Upstreaming of clients' funds by Stock Brokers (SBs) / Clea ring Members",
+    "full_text": "93. Upstreaming of clients' funds by Stock Brokers (SBs) / Clea ring Members \n(CMs) to Clearing Corporations (CCs)113 \n \n93.1. Principle: SBs/CMs shall upstream all the clients' clear credit balances to CCs \non End of Day (EOD) basis. Such upstreaming shall be done only in the form \nof either cash, lien on Fixed Deposit Receipts (FDRs) created out of clients' \nfunds, or pledge of units of Mutual Fund Overnight Schemes (MFOS) created \nout of clients' funds.  \n \nReceipt/payment of funds by SBs and CMs from/to their clients: \n \n93.2. Stock brokers shall maintain the following designated bank account (s) to \nreceive/pay funds from/to their clients:  \na. Up Streaming Client Nodal Bank Account (USCNBA): SB/CM shall receive \nclients' funds in USCNBA. The nomenclature for such accounts shall be \n“Name of the SB/CM – USCNB account”.  \nb. Down Streaming Client Nodal Bank Account (DSCNBA): Payment to clients \nshall be done only from DSCNBA account. The nomenclature for such \naccounts shall be “Name of the SB/CM – DSCNB account”. \n93.3. In addition, CMs, who clear trades for other SBs, shall only use the designated \nbank account(s) maintained with the nomenclature “Name of the CM –TM prop \naccount” to receive/pay proprietary funds from/to stock brokers. \n \n93.4. Payment to Clients: The clients may request SBs/CMs to release funds at any \ntime during the day. The processing of such release requests shall be as per \nrespective risk management practices of SB/CMs. All payment requests of the \nclient received on a day shall be processed on or before the next settlement \nday. In cases, where the payment request is not processed on the same day, \nSB/CMs need to ensure that the funds of the client are placed with CC in terms \nof this circular. \n \n \n \n \n                                                           \n113 Reference: SEBI Circular SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/187 dated December 12, 2023 \n \n \n232  \n \n \nUpstreaming via FDRs created out of clients' funds: \n \n93.5. FDRs created out of clients' funds by SBs/CMs shall satisfy the following \nconditions:  \na. The FDR shall be created only with banks which satisfy the CC's exposure \nnorms as specified by CCs/SEBI from time to time.  \nb. FDRs shall be created only from ‘Up Streaming Client Nodal Bank Account \n(USCNBA)'.  \nc. Such FDRs shall necessarily be lien-marked to one of the CCs at all times, \nand CCs shall have explicit precedence on the FDR funds over every other \nstakeholder, including over the bank providing the FDR. \nd. The tenor of such FDRs shall not be more than one year and one day; and \nthe FDRs should be pre-terminable on demand. \ne. The principal amount of the FDR shall rema in protected throughout the \ntenure, even after accounting for all possible pre-termination costs. \nf. SBs/CMs shall not avail any funded or non-funded banking facilities based \non FDRs created out of clients' funds. \n \n93.6. It is clarified that existing FDRs (created out of clients' funds and having tenor \nof more than one -year) created prior to June 30, 2023 shall be allowed to be \ngrandfathered till maturity. Such FDRs at the time of renewal shall meet the \nconditions specified at para 92.5 above. \n \nUpstreaming via pledge of units of Mutual Fund Overnight Schemes (MFOS): \n \n93.7. Units of Mutual Fund Overnight Schemes (MFOS) is a new avenue being \nmade available to SBs/ CMs to deploy client funds into. MFOS ensures \nminimal risk transformation of client funds (that are withdrawable on demand) \navailable with SBs/ CMs because of overnight tenure and exposure to only \nrisk-free government securities.  \n \n93.8. SBs/CMs shall ensure that client funds are invested only in such MFOS that \ndeploy funds into risk -free government bond overnight repo markets and \novernight Tri-party Repo Dealing and Settlement (TREPS). Such MFOS units \nshould be in dematerialized (demat) f orm, and must necessarily be pledged \nwith a CC at all times.  \n \n93.9. SBs/CMs shall maintain a dedicated demat account (hereinafter referred to as \n“Client Nodal MFOS Account”) for subscription/ redemption of MFOS units. \n \n \n233  \n \n \nThe depositories shall allow subscription/r edemption transactions only in the \nsaid account.   \n \n93.10. From “Client Nodal MFOS Account”, SBs/CMs shall provide MFOS units as \ncollateral to the CC. While providing the units as collateral, SBs/CMs shall \nidentify the end clients. In order to implement the same,  a pledge shall be \ncreated from the Client Nodal MFOS account to SB/CM margin pledge account \nof the SB/CM. The SB/CM shall further repledge the same to CC using the \nexisting pledge re-pledge mechanism.  \n \n93.11. To improve operational efficiency and reduce transaction costs, CCs shall build \na mechanism for utilization of surplus unutilized collateral (i.e. collateral in \nexcess of margin blocked) lying with CC in cash form, towards fund pay -in \nrequirements across segments.  \n \n93.12. Further, to improve operational efficiency and to reduce costs, CCs shall also \nfacilitate a mechanism to adjust the margin blocked in the form of cash, \ntowards client fund pay -in obligations. As CCs are in the process of evolving \nsuch a mechanism since issuance of June Circulars, the same shall be made \navailable by January 01, 2024. \n \nEligibility of bank instruments as collateral:  \n \n93.13. The bank instruments provided by clients as collateral (i.e. client FDRs and \nBGs) cannot be upstreamed to CCs, and they shall be ineligible to be accepted \nas collateral in any segment of securities market.  \n \n93.14. However, in the interest of encouraging and development of hedging in the \ncommodity derivatives market, it has been decided to allow Bank guarantees \nprovided only by non-individual clients, based on certain terms and conditions. \nSuch clients shall provide a declaration and underwriting that they shall have \nno recourse to SEBI or exchanges in case of wrongful invocation of such BGs \nby SB/CM. These BGs shall bear a con dition that on invocation, the moneys \nshall be credited only to the (USCNBA) account and thereafter upstreamed to \nthe CC. The other terms and conditions are mentioned in the Annexure 44. \nThe CCs are at liberty to apply stri cter conditions other than those specified \nbased on their risk assessment. \n \n93.15. The cut -off times for upstreaming of clear credit balance of clients shall be \ndetermined by the CCs in consultation with ISF. Any clear credit balance that \n \n \n234  \n \n \ncould not be upstreamed to CCs due to receipt of funds from clients beyond \ncut-off time shall necessarily remain in UNSCBA until it is upstreamed to CC \non the next day.    \n \n93.16. The provisions of this framework shall not be applicable to bank -CMs \n(including Custodians that are banks), and for proprietary funds of SBs/CMs in \nany segment and SB's proprietary funds deposited with CM in the capacity of \na client."
+  },
+  "obligations": [
+    {
+      "suggested_id": "SB-UPSTREAM-001",
+      "title": "Upstream All Client Clear Credit Balances to CCs on EOD Basis",
+      "clause_refs": [
+        "93.1"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must upstream all clients' clear credit balances to Clearing Corporations (CCs) on an End of Day (EOD) basis. Such upstreaming shall be done only in the form of: (a) cash, (b) lien on Fixed Deposit Receipts (FDRs) created out of clients' funds, or (c) pledge of units of Mutual Fund Overnight Schemes (MFOS) created out of clients' funds.",
+      "category": "client_funds_upstreaming",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Daily EOD process to calculate and upstream all client clear credit balances to CCs",
+        "Controls restricting upstreaming instruments to only cash, FDR liens, or MFOS pledge",
+        "Reconciliation report confirming full upstreaming completion each EOD",
+        "Exception reporting for any balances not upstreamed by EOD"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-002",
+      "title": "Maintain Designated USCNBA for Receipt of Client Funds",
+      "clause_refs": [
+        "93.2"
+      ],
+      "obligation_text": "Stock Brokers/CMs must maintain a designated Up Streaming Client Nodal Bank Account (USCNBA) specifically for receiving funds from clients. This account must be named 'Name of the SB/CM – USCNB account'. No client funds shall be received in any account other than the USCNBA.",
+      "category": "client_funds_accounts",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Dedicated USCNBA bank account opened and named per prescribed nomenclature",
+        "System controls ensuring all incoming client fund transfers are routed only to USCNBA",
+        "Periodic audit to confirm no client funds are received in non-designated accounts"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-003",
+      "title": "Maintain Designated DSCNBA for Payment of Funds to Clients",
+      "clause_refs": [
+        "93.2"
+      ],
+      "obligation_text": "Stock Brokers/CMs must maintain a designated Down Streaming Client Nodal Bank Account (DSCNBA) and ensure that all payments to clients are made only from this account. This account must be named 'Name of the SB/CM – DSCNB account'.",
+      "category": "client_funds_accounts",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Dedicated DSCNBA bank account opened and named per prescribed nomenclature",
+        "System controls ensuring all outgoing client fund payments are routed only from DSCNBA",
+        "Periodic audit to confirm no client payments are made from non-designated accounts"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-004",
+      "title": "CMs to Use Designated Proprietary Account for Funds Received from/Paid to SBs",
+      "clause_refs": [
+        "93.3"
+      ],
+      "obligation_text": "Clearing Members who clear trades for other Stock Brokers must use only designated bank accounts with the nomenclature 'Name of the CM – TM prop account' to receive and pay proprietary funds from/to those stock brokers.",
+      "category": "client_funds_accounts",
+      "intermediary_type": "clearing_member",
+      "expected_controls": [
+        "Dedicated TM prop account maintained with correct nomenclature",
+        "System controls restricting proprietary fund flows with SBs to the designated TM prop account only",
+        "Periodic audit confirming no proprietary SB/CM fund flows occur through other accounts"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-005",
+      "title": "Process Client Fund Release Requests by Next Settlement Day",
+      "clause_refs": [
+        "93.4"
+      ],
+      "obligation_text": "SBs/CMs must allow clients to request release of funds at any time during the day. Processing of such requests must follow the SB/CM's risk management practices. All client payment requests received on a given day must be processed on or before the next settlement day. Where a payment request is not processed on the same day, the SB/CM must ensure that the client's funds are placed with a CC in accordance with the upstreaming framework.",
+      "category": "client_funds_settlement",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Documented risk management policy governing processing of client fund release requests",
+        "System tracking of all client payment requests with timestamps and processing status",
+        "Automated escalation if any payment request is not processed by next settlement day",
+        "Controls ensuring unprocessed same-day requests result in placement of client funds with CC"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-006",
+      "title": "Ensure FDRs Created from Client Funds Meet Prescribed Conditions",
+      "clause_refs": [
+        "93.5"
+      ],
+      "obligation_text": "FDRs created by SBs/CMs out of clients' funds must satisfy all of the following conditions: (a) created only with banks meeting CC exposure norms as specified by CCs/SEBI; (b) created only from the USCNBA; (c) lien-marked to a CC at all times, with the CC having explicit precedence over all other stakeholders including the FDR-issuing bank; (d) tenor not exceeding one year and one day, and must be pre-terminable on demand; (e) principal amount fully protected throughout tenure including after all pre-termination costs; (f) SBs/CMs must not avail any funded or non-funded banking facilities based on these FDRs.",
+      "category": "client_funds_fdrs",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Pre-approved list of banks meeting CC exposure norms maintained and reviewed regularly",
+        "Process controls ensuring FDRs are created only from USCNBA and lien-marked to CC at creation",
+        "FDR register tracking tenor, pre-terminability, principal protection, and lien status for each FDR",
+        "Policy and system controls prohibiting use of client-fund FDRs as collateral for any banking facility"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-007",
+      "title": "Grandfather Existing Long-Tenor FDRs and Ensure Renewal Compliance",
+      "clause_refs": [
+        "93.6"
+      ],
+      "obligation_text": "Existing FDRs created out of clients' funds with a tenor of more than one year that were created prior to June 30, 2023 are permitted to continue (grandfathered) until their maturity. Upon renewal, such FDRs must meet all conditions specified in clause 93.5.",
+      "category": "client_funds_fdrs",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Register identifying all grandfathered FDRs with creation date, maturity date, and tenor",
+        "Automated alerts prior to maturity of grandfathered FDRs to trigger compliance review before renewal",
+        "Renewal checklist ensuring all conditions in clause 93.5 are satisfied before FDR renewal"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-008",
+      "title": "Invest Client Funds in Eligible MFOS Only (Government Securities/TREPS)",
+      "clause_refs": [
+        "93.8"
+      ],
+      "obligation_text": "SBs/CMs must ensure that client funds invested in Mutual Fund Overnight Schemes (MFOS) are placed only in schemes that deploy funds exclusively into risk-free government bond overnight repo markets and overnight Tri-party Repo Dealing and Settlement (TREPS). MFOS units must be held in dematerialized (demat) form and must be pledged with a CC at all times.",
+      "category": "client_funds_mfos",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Approved list of eligible MFOS schemes verified to invest only in government overnight repo/TREPS",
+        "Controls ensuring MFOS units are subscribed and held only in demat form",
+        "Automated process to pledge MFOS units with CC immediately upon subscription",
+        "Regular monitoring to confirm MFOS units remain pledged with CC at all times"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-009",
+      "title": "Maintain Dedicated Demat Account (Client Nodal MFOS Account) for MFOS Transactions",
+      "clause_refs": [
+        "93.9"
+      ],
+      "obligation_text": "SBs/CMs must maintain a dedicated demat account referred to as the 'Client Nodal MFOS Account' exclusively for subscription and redemption of MFOS units. Depositories are required to allow subscription/redemption transactions only in this designated account.",
+      "category": "client_funds_mfos",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Dedicated 'Client Nodal MFOS Account' demat account established and registered with depositories",
+        "Confirmation from depository that subscription/redemption transactions are restricted to this account",
+        "Periodic reconciliation of MFOS unit transactions against this account"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-010",
+      "title": "Pledge MFOS Units to CC via Pledge Re-Pledge Mechanism with Client Identification",
+      "clause_refs": [
+        "93.10"
+      ],
+      "obligation_text": "From the 'Client Nodal MFOS Account', SBs/CMs must provide MFOS units as collateral to the CC and must identify the end clients at the time of providing collateral. To implement this, a pledge must be created from the Client Nodal MFOS account to the SB/CM's margin pledge account, and the SB/CM must further re-pledge those units to the CC using the existing pledge re-pledge mechanism.",
+      "category": "client_funds_mfos",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Process for creating pledge from Client Nodal MFOS Account to SB/CM margin pledge account",
+        "Process for re-pledging MFOS units from SB/CM margin pledge account to CC",
+        "System to record and report end-client identification for each pledged MFOS unit",
+        "Reconciliation of pledged units at CC level against client-level records"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-011",
+      "title": "Prohibit Upstreaming of Client-Provided Bank Instruments (FDRs/BGs) to CCs",
+      "clause_refs": [
+        "93.13"
+      ],
+      "obligation_text": "Bank instruments provided by clients as collateral (i.e., client FDRs and Bank Guarantees) must not be upstreamed to CCs and are ineligible to be accepted as collateral in any segment of the securities market.",
+      "category": "client_collateral_eligibility",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "System controls blocking submission of client-provided FDRs or BGs as collateral to CCs",
+        "Policy documentation clearly prohibiting upstreaming of client bank instruments",
+        "Regular audit to confirm no client FDRs or BGs have been upstreamed or submitted as collateral"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-012",
+      "title": "Comply with Conditions for Acceptance of Bank Guarantees from Non-Individual Clients in Commodity Derivatives",
+      "clause_refs": [
+        "93.14"
+      ],
+      "obligation_text": "By exception, Bank Guarantees (BGs) provided only by non-individual clients may be accepted as collateral in the commodity derivatives market, subject to all of the following conditions: (a) the client provides a declaration and undertaking that they shall have no recourse to SEBI or exchanges in case of wrongful invocation of the BG by the SB/CM; (b) the BG must contain a condition that upon invocation, proceeds are credited only to the USCNBA and thereafter upstreamed to the CC; and (c) any additional conditions specified in Annexure 44 and any stricter conditions imposed by CCs based on their risk assessment must be met.",
+      "category": "client_collateral_eligibility",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Client onboarding checklist to obtain signed declaration from non-individual clients before accepting BGs",
+        "Template BG vetted to include mandatory condition directing invocation proceeds to USCNBA",
+        "Process to upstream BG invocation proceeds from USCNBA to CC immediately upon receipt",
+        "Compliance review against Annexure 44 conditions and any CC-specific stricter requirements"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-013",
+      "title": "Retain Unupstreamed Client Balances in USCNBA Until Next-Day Upstreaming",
+      "clause_refs": [
+        "93.15"
+      ],
+      "obligation_text": "The cut-off times for upstreaming of clients' clear credit balances shall be as determined by CCs in consultation with ISF. Any client clear credit balance that could not be upstreamed to CCs due to client funds being received after the applicable cut-off time must remain in the USCNBA until it is upstreamed to the CC on the next day.",
+      "category": "client_funds_upstreaming",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "System awareness of CC-determined cut-off times for upstreaming, updated as CCs revise them",
+        "Controls ensuring any post-cut-off client funds received remain in USCNBA and are not transferred elsewhere",
+        "Next-day upstreaming process triggered automatically for all balances held in USCNBA overnight",
+        "Daily reconciliation confirming no client funds remain in USCNBA beyond the next upstreaming cycle"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-UPSTREAM-014",
+      "title": "Scope Exclusion: Framework Not Applicable to Bank-CMs and Proprietary Funds",
+      "clause_refs": [
+        "93.16"
+      ],
+      "obligation_text": "The upstreaming framework does not apply to: (a) bank-CMs (including Custodians that are banks); (b) proprietary funds of SBs/CMs in any segment; and (c) SB proprietary funds deposited with a CM in the capacity of a client. SBs/CMs must ensure that controls and processes implementing the upstreaming framework are scoped correctly to exclude these categories.",
+      "category": "client_funds_upstreaming",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Documented scope definition clearly excluding bank-CMs, proprietary funds, and SB funds held as client by CM",
+        "System segregation ensuring proprietary fund accounts are not subjected to client upstreaming workflows",
+        "Periodic review confirming excluded categories remain correctly carved out from the framework"
+      ],
+      "_approved": false
+    }
+  ],
+  "relations": [
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/187",
+      "relation_type": "consolidated_by",
+      "source_note": "chapter 93 footnote: dated December 12, 2023"
+    }
+  ]
+}

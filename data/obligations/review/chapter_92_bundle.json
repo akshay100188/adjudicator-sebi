@@ -1,0 +1,137 @@
+{
+  "master": {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf"
+  },
+  "prior_master_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+  "chapter": {
+    "chapter_no": 92,
+    "heading": "Bank Guarantees (BGs) created out of clients' funds",
+    "page_span": [
+      229,
+      230
+    ],
+    "source_refs": [
+      {
+        "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/061",
+        "dated": "April 25, 2023"
+      }
+    ]
+  },
+  "parent_section": {
+    "section_id": "SB-CH92",
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "heading": "Bank Guarantees (BGs) created out of clients' funds",
+    "full_text": "92. Bank Guarantees (BGs) created out of clients' funds112 \n \n92.1. It has been decided to implement the following measures in order to safeguard \nthe interests of the investors: - \n \n92.1.1. No new BGs shall be created out of clients' funds by SBs/CMs.   \n \n92.1.2. Existing BGs created out of clients' funds shall be wound down by \nSeptember 30, 2023. \n \n92.2. The provisions of this framework shall not be applicable for proprietary funds \nof SBs/CMs in any segment a nd SB's proprietary funds deposited with CM in \nthe capacity of a client.  \n \n92.3. The stock exchanges and clearing corporations shall take stock of the current \nposition of the BGs issued out of clients' funds by SBs/CMs and monitor the \nwind down to ensure implementation of the circular without any disruption of \nservices to clients. For the purpose, stock exchanges and clearing \ncorporations shall put in place periodic reporting mechanisms for SBs/CMs.  \n \n92.4. SBs/CMs shall be required to provide a certificate, by its statutory auditor \nconfirming the implementation of provisions at para 91 of this circular. Such a \ncertificate shall be submitted to stock exchanges/clearing corporations by \nOctober 16, 2023.  \n \n92.5. Stock exchanges and clearing corporations shall verify the compliance of the \nprovisions of the circular in their periodic inspections/reporting. They shall also \n                                                           \n112 Reference: SEBI circular SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/061 dated April 25, 2023 \n \n \n231  \n \n \nevolve adequate mechanisms to address cases of SBs/CMs who do not \ncomply with the provisions of the circular by the stipulated dates."
+  },
+  "obligations": [
+    {
+      "suggested_id": "SB-BGCF-001",
+      "title": "Prohibition on Creation of New BGs from Client Funds",
+      "clause_refs": [
+        "92.1.1"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must not create any new Bank Guarantees (BGs) out of clients' funds.",
+      "category": "client_funds_protection",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Policy and internal controls prohibiting creation of new BGs from client funds",
+        "System-level restrictions preventing routing of client funds toward BG creation",
+        "Periodic internal audit checks confirming no new BGs have been created from client funds"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-BGCF-002",
+      "title": "Wind Down of Existing BGs Created from Client Funds by September 30, 2023",
+      "clause_refs": [
+        "92.1.2"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must wind down all existing Bank Guarantees (BGs) that were created out of clients' funds by September 30, 2023.",
+      "category": "client_funds_protection",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Inventory/register of all existing BGs created from client funds with maturity dates",
+        "Documented wind-down plan with milestones tracked against the September 30, 2023 deadline",
+        "Escalation process to senior management if wind-down targets are at risk of being missed",
+        "Confirmation records evidencing each BG has been wound down by the deadline"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-BGCF-003",
+      "title": "Exemption of Proprietary Funds from BG Restrictions",
+      "clause_refs": [
+        "92.2"
+      ],
+      "obligation_text": "The restrictions on Bank Guarantees (BGs) under this framework do not apply to proprietary funds of SBs/CMs in any segment, nor to an SB's proprietary funds deposited with a Clearing Member (CM) in the capacity of a client. SBs/CMs must ensure clear segregation between client funds and proprietary funds when managing BGs.",
+      "category": "client_funds_protection",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Clear accounting segregation between client funds and proprietary funds",
+        "Documentation identifying each BG as proprietary-funded or client-funded",
+        "Internal controls ensuring proprietary fund BG activities are not commingled with client funds"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-BGCF-004",
+      "title": "Participation in Stock Exchange/Clearing Corporation Reporting Mechanisms for BG Wind-Down",
+      "clause_refs": [
+        "92.3"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must participate in and comply with the periodic reporting mechanisms established by stock exchanges and clearing corporations to monitor the wind-down of Bank Guarantees (BGs) created out of clients' funds, providing accurate and timely data as required.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Designated compliance owner responsible for submitting BG wind-down reports to exchanges/clearing corporations",
+        "Internal data collection process to accurately capture BG positions for periodic reporting",
+        "Tracking system to record submission dates and confirm receipt of reports by exchanges/clearing corporations"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-BGCF-005",
+      "title": "Statutory Auditor Certificate Confirming BG Framework Implementation",
+      "clause_refs": [
+        "92.4"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must obtain a certificate from their statutory auditor confirming implementation of the BG framework provisions (as specified in para 91 of the master circular) and submit this certificate to the relevant stock exchanges and/or clearing corporations by October 16, 2023.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Timely engagement of the statutory auditor to review and certify BG framework compliance",
+        "Internal documentation package prepared for statutory auditor review (BG registers, wind-down evidence, fund segregation records)",
+        "Compliance calendar entry and escalation process to ensure certificate submission to exchanges/clearing corporations by October 16, 2023",
+        "Records of submitted certificates and acknowledgement of receipt from exchanges/clearing corporations"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-BGCF-006",
+      "title": "Compliance with Exchange/Clearing Corporation Inspections on BG Framework",
+      "clause_refs": [
+        "92.5"
+      ],
+      "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must maintain adequate records and be prepared to demonstrate compliance with the BG framework provisions during periodic inspections and reporting conducted by stock exchanges and clearing corporations.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Maintenance of comprehensive and up-to-date records of all BG transactions and wind-down activities",
+        "Readiness procedures for regulatory inspections, including designated personnel and document retrieval processes",
+        "Internal periodic self-assessment against BG framework requirements ahead of scheduled inspections"
+      ],
+      "_approved": false
+    }
+  ],
+  "relations": [
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/061",
+      "relation_type": "consolidated_by",
+      "source_note": "chapter 92 footnote: dated April 25, 2023"
+    }
+  ]
+}

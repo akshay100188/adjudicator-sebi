@@ -18,3 +18,18 @@
 {"id": "Q18", "query": "what are the rules on running account settlement frequency and the settlement calendar?", "expected": ["SB-RUNACCT-001", "SB-RUNACCT-002"], "type": "multi"}
 {"id": "Q19", "query": "rule against using one client's post-settlement funds to settle another client", "expected": ["SB-RUNACCT-003"], "type": "paraphrase"}
 {"id": "Q20", "query": "225% of total margin liability retention cap", "expected": ["SB-RUNACCT-005"], "type": "exact_term"}
+{"id": "Q21", "query": "how quickly must pay-out securities reach the client's demat account?", "expected": ["SB-CLTSEC-001"], "type": "paraphrase"}
+{"id": "Q22", "query": "what do we do with securities a client has not paid for in full?", "expected": ["SB-CLTSEC-002"], "type": "paraphrase"}
+{"id": "Q23", "query": "if a pledge on unpaid securities is not invoked, when is it auto-released?", "expected": ["SB-CLTSEC-009"], "type": "paraphrase"}
+{"id": "Q24", "query": "client did not pay within five days, can we sell the unpaid securities and must we warn them first?", "expected": ["SB-CLTSEC-005"], "type": "paraphrase"}
+{"id": "Q25", "query": "can we pledge unpaid client securities to a bank or NBFC to raise funds?", "expected": ["SB-CLTSEC-011"], "type": "paraphrase"}
+{"id": "Q26", "query": "can unpaid pledged securities count towards a client's margin obligation?", "expected": ["SB-CLTSEC-010"], "type": "paraphrase"}
+{"id": "Q27", "query": "what happens if pay-in instruction identifier details do not match?", "expected": ["SB-PAYINVAL-004"], "type": "paraphrase"}
+{"id": "Q28", "query": "do depositories validate pay-in instructions against clearing corporation obligations?", "expected": ["SB-PAYINVAL-001"], "type": "paraphrase"}
+{"id": "Q29", "query": "are custodian-settled clients exempt from the pay-in validation process?", "expected": ["SB-PAYINVAL-007"], "type": "paraphrase"}
+{"id": "Q30", "query": "can we create new bank guarantees out of client funds?", "expected": ["SB-BGCF-001"], "type": "paraphrase"}
+{"id": "Q31", "query": "do we need a statutory auditor certificate for the bank guarantee framework?", "expected": ["SB-BGCF-005"], "type": "exact_term"}
+{"id": "Q32", "query": "what must we do with clients' clear credit balances at end of day?", "expected": ["SB-UPSTREAM-001"], "type": "paraphrase"}
+{"id": "Q33", "query": "which designated bank account is used to receive client funds?", "expected": ["SB-UPSTREAM-002"], "type": "paraphrase"}
+{"id": "Q34", "query": "which mutual fund schemes can client funds be invested in?", "expected": ["SB-UPSTREAM-008"], "type": "paraphrase"}
+{"id": "Q35", "query": "from which account must payments to clients be made?", "expected": ["SB-UPSTREAM-003"], "type": "paraphrase"}

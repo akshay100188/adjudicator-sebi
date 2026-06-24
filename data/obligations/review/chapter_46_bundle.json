@@ -1,0 +1,156 @@
+{
+  "master": {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf"
+  },
+  "prior_master_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+  "chapter": {
+    "chapter_no": 46,
+    "heading": "Validation of Instructions for Pay -In of Securities from Client demat account",
+    "page_span": [
+      119,
+      121
+    ],
+    "source_refs": [
+      {
+        "circular_ref": "SEBI/HO/MIRSD/DoP/P/CIR/2022/119",
+        "dated": "September 19, 2022"
+      }
+    ]
+  },
+  "parent_section": {
+    "section_id": "SB-CH46",
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "heading": "Validation of Instructions for Pay -In of Securities from Client demat account",
+    "full_text": "46. Validation of Instructions for Pay -In of Securities from Client demat account \nto Trading Member (TM) Pool Account against obligations received from t he \nClearing Corporations62 \n \n46.1 Depositories, prior to executing actual transfer of the securities for Pay-In from \nclient demat account to TM Pool account, shall validate the transfer instruction \nreceived through any of the available channels for the purpose of Pay-in, i.e. \neither initiated by clients themselves or by the Power of Attorney (POA) / \nDemat Debit and Pledge Instruction (DDPI) holder against the client -wise net \ndelivery obligation received from CCs. \n \n46.2 For Early Pay -In transactions, the existing faci lity of Block mechanism shall \ncontinue. \n \n46.3 In order to validate the Pay -In Instructions, the following process shall be put \nin place by the Depositories: \n \nValidation of transfer instruction details with CC obligation details \n \n46.3.1 Depositories receive the debit i nstruction for the purpose of Pay -In, \ngiven either by client himself using depository's online system or eDIS \n                                                           \n62 Reference: Circular SEBI/HO/MIRSD/DoP/P/CIR/2022/119 dated September 19, 2022.   \n \n \n121  \n \n \nmandate or through depository participant based on physical DIS / \ndigitally signed DIS given by client or POA / DDPI holder. \n \n46.3.2 CCs shall provide client-wise net delivery obligations on T day to the \ndepositories. \n \n46.3.3 Based on the obligation data provided by CCs, Depositories shall \nvalidate the depository transfer instruction details with CC obligation \ndetails based on UCC, TM ID, CM ID, Exchange ID, IS IN, quantity, \nsettlement details etc. \n \nMatched instruction: \n \n46.3.4 In case of matching of all details like UCC, TM ID, CM ID, ISIN, quantity, \nsettlement details etc. of the transfer instruction with the obligation data, \nthe instruction shall be carried out by the Depositories and such \nsecurities will be debited from client's demat account and credited to \nlinked TM Pool account on or before the settlement day. \n \nUnmatched instruction: \n \n46.3.5 In case of discrepancies in details like UCC, TM ID, CM ID, ISIN etc., \nbetween instruction and obligation, such transfer instructions will be \nrejected by the depositories. \n \n46.3.6 In case of discrepancies in quantity of securities between instruction \nand obligation, the following shall be noted: \n46.3.6.1 If the quantity in instruction is less than the obligation provided by \nCC, then the instruction will be carried out by the depositories. \n \n46.3.6.2 If the quantity in instruction is more than the obligation provided by \nCC, then the instruction will be partially processed by the depositories \n(i.e., upto the matching obligation quantity). \n \nTrades Confirmed by Custodians: \n \n46.3.7 This process shall not be applicable to clients having arrangements with \ncustodians registered with SEBI for clearing and settlement of trades. \n \n \n122"
+  },
+  "obligations": [
+    {
+      "suggested_id": "SB-PAYINVAL-001",
+      "title": "Depository Validation of Pay-In Transfer Instructions Against CC Obligations",
+      "clause_refs": [
+        "46.1",
+        "46.3",
+        "46.3.1",
+        "46.3.2",
+        "46.3.3"
+      ],
+      "obligation_text": "Depositories must validate every transfer instruction received for Pay-In of securities from a client demat account to the Trading Member (TM) Pool account — whether initiated by the client directly or by a POA/DDPI holder — against the client-wise net delivery obligations received from Clearing Corporations (CCs), using parameters such as UCC, TM ID, CM ID, Exchange ID, ISIN, quantity, and settlement details, prior to executing the actual transfer.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "Automated matching engine that compares debit instructions against CC-provided client-wise net delivery obligation data on T day",
+        "Receipt and ingestion of CC obligation data (UCC, TM ID, CM ID, Exchange ID, ISIN, quantity, settlement details) into validation system on T day",
+        "Audit trail recording each Pay-In instruction received and the corresponding validation result"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-002",
+      "title": "CC to Provide Client-Wise Net Delivery Obligations to Depositories on T Day",
+      "clause_refs": [
+        "46.3.2"
+      ],
+      "obligation_text": "Clearing Corporations (CCs) must provide client-wise net delivery obligations to the depositories on T day to enable validation of Pay-In transfer instructions.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "clearing_corporation",
+      "expected_controls": [
+        "Automated system to generate and transmit client-wise net delivery obligation data to depositories on T day",
+        "Reconciliation process to confirm successful delivery of obligation data to depositories",
+        "Timestamped logs of obligation data transmission to depositories"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-003",
+      "title": "Execution of Matched Pay-In Instructions",
+      "clause_refs": [
+        "46.3.4"
+      ],
+      "obligation_text": "Where all details of a Pay-In transfer instruction (UCC, TM ID, CM ID, ISIN, quantity, settlement details, etc.) match the CC obligation data, the depository must carry out the instruction by debiting securities from the client's demat account and crediting them to the linked TM Pool account on or before the settlement day.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "Automated processing workflow to execute matched Pay-In instructions by settlement day",
+        "System controls ensuring debit from client demat account and credit to linked TM Pool account are completed on or before settlement day",
+        "Confirmation notification generated upon successful execution of matched instructions"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-004",
+      "title": "Rejection of Pay-In Instructions with Mismatched Identifier Details",
+      "clause_refs": [
+        "46.3.5"
+      ],
+      "obligation_text": "Where there are discrepancies in key identifier details — such as UCC, TM ID, CM ID, or ISIN — between a Pay-In transfer instruction and the CC obligation data, the depository must reject such transfer instructions.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "Automated rejection workflow triggered upon mismatch of UCC, TM ID, CM ID, or ISIN between instruction and obligation data",
+        "Rejection notice generated and communicated to the relevant party upon rejection",
+        "Audit log of all rejected instructions with reasons for rejection"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-005",
+      "title": "Partial Processing of Pay-In Instructions Where Instruction Quantity Exceeds Obligation",
+      "clause_refs": [
+        "46.3.6",
+        "46.3.6.1",
+        "46.3.6.2"
+      ],
+      "obligation_text": "Where the quantity in a Pay-In transfer instruction differs from the CC obligation quantity: (a) if the instruction quantity is less than the obligation quantity, the depository must carry out the instruction in full; (b) if the instruction quantity is more than the obligation quantity, the depository must partially process the instruction up to the matching obligation quantity only.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "System logic to process Pay-In instructions in full when instruction quantity is less than or equal to obligation quantity",
+        "System logic to cap and partially process Pay-In instructions at the obligation quantity when instruction quantity exceeds obligation",
+        "Notification to relevant party when an instruction is partially processed, specifying the processed and unprocessed quantities",
+        "Audit trail of quantity comparison outcomes and resulting processing actions"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-006",
+      "title": "Early Pay-In Block Mechanism to Continue",
+      "clause_refs": [
+        "46.2"
+      ],
+      "obligation_text": "For Early Pay-In transactions, the existing block mechanism facility must continue to be available and operational.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "Maintenance and availability of the block mechanism for Early Pay-In transactions",
+        "Periodic testing to confirm the block mechanism remains operational"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-PAYINVAL-007",
+      "title": "Exemption of Custodian-Cleared Clients from Pay-In Validation Process",
+      "clause_refs": [
+        "46.3.7"
+      ],
+      "obligation_text": "The Pay-In instruction validation process described in clause 46.3 does not apply to clients who have arrangements with SEBI-registered custodians for the clearing and settlement of their trades.",
+      "category": "securities_settlement_validation",
+      "intermediary_type": "depository",
+      "expected_controls": [
+        "System flag or configuration to identify and exclude clients with SEBI-registered custodian clearing arrangements from the Pay-In validation workflow",
+        "Periodic review to confirm that custodian-cleared client exemptions remain accurate and up to date"
+      ],
+      "_approved": false
+    }
+  ],
+  "relations": [
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/DoP/P/CIR/2022/119",
+      "relation_type": "consolidated_by",
+      "source_note": "chapter 46 footnote: dated September 19, 2022"
+    }
+  ]
+}

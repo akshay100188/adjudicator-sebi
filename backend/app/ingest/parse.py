@@ -84,8 +84,8 @@ def parse_chapter(
     seen: set[str] = set()
     refs = [r for r in refs if not (r.circular_ref in seen or seen.add(r.circular_ref))]
 
-    # Clause split on SEBI clause numbers at line start (47, 47.1, 47.1.1 ...).
-    marker = re.compile(rf"(?m)^\s*({chapter_no}(?:\.\d+)+)\s+")
+    # Clause split on SEBI clause numbers at line start (47.1, 47.1.1, or 93.1. with trailing dot).
+    marker = re.compile(rf"(?m)^\s*({chapter_no}(?:\.\d+)+)\.?\s+")
     hits = list(marker.finditer(body))
     clauses: list[Clause] = []
     for i, hit in enumerate(hits):

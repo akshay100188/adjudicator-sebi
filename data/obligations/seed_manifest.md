@@ -38,8 +38,20 @@ Master Circular 2024-08-09 (SEBI/.../CIR/2024/110)  ← current valid position
 5. Contextual-enrichment hook (`context_blurb`) — on/off decided in Phase 3 (ADR-010).
 6. Embed (`text-embedding-3-small` @512) + index; populate `tsv`. Idempotent.
 
-## Status — INGESTED ✅
-Chapter 47 ingested and human-reviewed → **16 obligations** (SB-RUNACCT-001..016), **6 relation
-edges**, 16 embedded chunks, live in the `adjudicator` schema. Human review: 9 accepted verbatim;
-010/011 split (AP duties), 011 intimation split (012/013), 013 split into the exchange monitoring
-duty (015) + the TM no-excess-retention duty (016). Review bundle: `review/chapter_47_bundle.json`.
+## Status — INGESTED ✅ (54 obligations across 5 chapters)
+
+**Chapter 47 — Settlement of Running Account (fully human-reviewed gold).** 16 obligations
+(SB-RUNACCT-001..016). Review: 9 verbatim; AP duties split (010/011), intimation split (012/013),
+clause 47.10 split into exchange monitoring (015) + TM no-excess-retention (016).
+
+**Client-assets cluster (provisional — auto-extracted, light review; refine in Phase 6 gold pass).**
+| Ch | Topic | Obligations | Source circular |
+|---|---|---|---|
+| 45 | Handling of Client's Securities | 11 (SB-CLTSEC-*) | 2022/153 |
+| 46 | Validation of Pay-In of Securities | 7 (SB-PAYINVAL-*) | 2022/119 |
+| 92 | Bank Guarantees from client funds | 6 (SB-BGCF-*) | 2023/061 |
+| 93 | Upstreaming of clients' funds | 14 (SB-UPSTREAM-*) | 2023/187 |
+
+Cross-reference worth wiring as a `refers_to` edge: SB-RUNACCT-003 ↔ SB-UPSTREAM-002 (both the USCNBA).
+Provisional cleanups for Phase 6: a few titles have truncated dates; ch45 footnote date parsed oddly.
+Bundles: `review/chapter_{45,46,47,92,93}_bundle.json`. Total: 54 obligations, 13 edges, 54 chunks.

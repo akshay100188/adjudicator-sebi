@@ -58,8 +58,9 @@ Tracing: LangSmith / Arize Phoenix. Metric suites: RAGAS / DeepEval / TruLens.
 | 1 | recursive supersession traversal correctness | pass ✅ |
 | 2 | extraction faithfulness vs. human review | **high** ✅ (9/13 accepted verbatim; 4 split/reframed, content faithful) |
 | 2 | idempotent ingest (re-run ≠ duplicates) | **PASS** ✅ (16/9/16 stable on re-run) |
-| 3 | recall@5 on golden query set (20 q) | **1.00** ✅ (hybrid+rerank & dense); MRR 0.97 |
-| 3 | retriever choice | hybrid+rerank (EXP-001); RRF k=60 (EXP-002); pool=10 (EXP-003) |
+| 3 | recall@5 golden set (35 q, 54 obligations) | **1.00** ✅ (hybrid+rerank); MRR **0.97** |
+| 3 | retriever choice | hybrid+rerank (EXP-001), RRF k=60 (EXP-002), pool=10 (EXP-003) |
+| 3 | choices hold at 3× corpus scale | **validated** ✅ (EXP-004): sparse degrades, rerank's lift grows |
 | 4 | trajectory correctness + end-answer recall | TBD |
 | 5 | finding P/R; citation faithfulness; cost/run | TBD |
 | 6 | harness reproduces a phase's numbers on demand | pass/fail |
