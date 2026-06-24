@@ -16,8 +16,10 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
-# Matches SEBI circular references like SEBI/HO/MIRSD/DOP/P/CIR/2022/101
-CIRCULAR_REF = re.compile(r"SEBI/[A-Za-z0-9/_\-]+/CIR/\d{4}/\d+", re.I)
+# Matches both modern (SEBI/HO/MIRSD/.../CIR/2022/101) and older
+# (CIR/HO/MIRSD/DOP/CIR/P/2019/75) SEBI circular reference formats: any whitespace-bounded
+# token that contains "CIR" and ends in /YYYY/NN.
+CIRCULAR_REF = re.compile(r"[A-Za-z][A-Za-z0-9/_\-]*CIR[A-Za-z0-9/_\-]*/\d{4}/\d+", re.I)
 # Footnote definition line: "63 Reference: Circular SEBI/... dated June 16, 2021, Circular ..."
 FOOTNOTE_DATE = re.compile(
     r"dated\s+([A-Z][a-z]+ \d{1,2},?\s*\d{4})", re.I
@@ -77,9 +79,12 @@ def parse_chapter(
     refs: list[SourceRef] = []
     for fm in re.finditer(r"(?m)^\s*\d{1,3}\s+Reference:(.+?)(?=\n\s*\n|\Z)", body, re.S):
         block = fm.group(1)
-        dates = FOOTNOTE_DATE.findall(block)
-        for j, cref in enumerate(CIRCULAR_REF.findall(block)):
-            refs.append(SourceRef(circular_ref=cref, dated=dates[j] if j < len(dates) else None))
+        matches = list(CIRCULAR_REF.finditer(block))
+        for j, m in enumerate(matches):
+            # pair each ref with the date that follows it (up to the next ref)
+            seg = block[m.end(): matches[j + 1].start() if j + 1 < len(matches) else len(block)]
+            dm = FOOTNOTE_DATE.search(seg)
+            refs.append(SourceRef(circular_ref=m.group(0), dated=dm.group(1) if dm else None))
     # De-dup, preserve order.
     seen: set[str] = set()
     refs = [r for r in refs if not (r.circular_ref in seen or seen.add(r.circular_ref))]

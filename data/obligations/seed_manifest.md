@@ -53,5 +53,9 @@ clause 47.10 split into exchange monitoring (015) + TM no-excess-retention (016)
 | 93 | Upstreaming of clients' funds | 14 (SB-UPSTREAM-*) | 2023/187 |
 
 Cross-reference worth wiring as a `refers_to` edge: SB-RUNACCT-003 ↔ SB-UPSTREAM-002 (both the USCNBA).
-Provisional cleanups for Phase 6: a few titles have truncated dates; ch45 footnote date parsed oddly.
-Bundles: `review/chapter_{45,46,47,92,93}_bundle.json`. Total: 54 obligations, 13 edges, 54 chunks.
+
+**Phase 6 light review pass (provisional chapters):** titles verified complete (no truncation);
+parser improved to capture the older `CIR/.../CIR/P/YYYY/NN` circular format and pair each ref with its
+own date — this added ch45's previously-missed source circular `CIR/HO/MIRSD/DOP/CIR/P/2019/75`
+(June 2019) and corrected its date pairing. Citation graph now **15 edges**.
+Bundles: `review/chapter_{45,46,47,92,93}_bundle.json`. Total: 54 obligations, 15 edges, 54 chunks.
