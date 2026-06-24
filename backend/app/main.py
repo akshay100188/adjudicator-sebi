@@ -2,6 +2,8 @@
 
 Not legal advice. Every analysis carries a non-removable disclaimer.
 """
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -9,9 +11,12 @@ from .api import analyze, code_analysis, obligations
 
 app = FastAPI(title="Project Adjudicator (SEBI) — Agentic RAG", version="0.1.0")
 
+# CORS_ORIGINS: comma-separated allowed origins, or "*" (default). Set to the Vercel URL in prod.
+_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
