@@ -1,0 +1,103 @@
+{
+  "master": {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf"
+  },
+  "prior_master_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+  "chapter": {
+    "chapter_no": 48,
+    "heading": "Risk disclosure with respect to trading by individual traders in Equity Futures",
+    "page_span": [
+      123,
+      124
+    ],
+    "source_refs": [
+      {
+        "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/73",
+        "dated": "May 19, 2023"
+      }
+    ]
+  },
+  "parent_section": {
+    "section_id": "SB-CH48",
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "heading": "Risk disclosure with respect to trading by individual traders in Equity Futures",
+    "full_text": "48. Risk disclosure with respect to trading by individual traders in Equity Futures \n& Options Segment64 \n \n48.1 With a view to facilitating informed decision making by the investors trading in \nderivatives segment, it has been decided to introduce ‘Risk disclosures' with \nrespect to trading in equity Futures & Options (F&O) segment. \n \n48.2 Accordingly, all stock brokers shall display the ‘Risk disclosures' given at \nAnnexure-23 on their websites and to all their clients in the manner as specified \nbelow: \n48.2.1 Upon login into their trading accounts with brokers, the clients may be \nprompted to read the ‘Risk disclosures' (which may appear as a pop-up \nwindow upon login) and shall be allowed to proceed ahead only after \nacknowledging the same. \n48.2.2 The ‘Risk disclosures' shall be displayed prominently, covering at  least \n50 percent area of the screen. \n                                                           \n64 Reference: Circular SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/73 dated May 19, 2023 \n \n \n125  \n \n \n48.3 All Qualified Stock Brokers (QSBs) shall maintain the Profit and Loss (P&L) \ndata of their clients on continuous basis as per the format given at Annexure-\n24. The P&L data of the clients shall be retained for at least 5 years."
+  },
+  "obligations": [
+    {
+      "suggested_id": "SB-RISKDISC-001",
+      "title": "Display F&O Risk Disclosures on Website and to All Clients",
+      "clause_refs": [
+        "48.2"
+      ],
+      "obligation_text": "All stock brokers shall display the 'Risk disclosures' (as specified in Annexure-23) on their websites and to all their clients in the manner prescribed in clauses 48.2.1 and 48.2.2.",
+      "category": "risk_disclosure",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Annexure-23 risk disclosure content published and kept current on the broker's public website",
+        "Process to disseminate risk disclosures to all clients through the trading platform",
+        "Periodic review to confirm disclosures remain displayed and up to date"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-RISKDISC-002",
+      "title": "Prompt Client Acknowledgement of F&O Risk Disclosures at Login",
+      "clause_refs": [
+        "48.2.1"
+      ],
+      "obligation_text": "Upon login into their trading accounts, clients must be prompted to read the 'Risk disclosures' (e.g., via a pop-up window at login) and must acknowledge the disclosures before being allowed to proceed further into the trading platform.",
+      "category": "risk_disclosure",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Login workflow configured to display Annexure-23 risk disclosure as a mandatory pop-up or interstitial screen",
+        "System enforces blocking of further platform access until client acknowledgement is recorded",
+        "Audit trail capturing client acknowledgement timestamp and identity for each login event"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-RISKDISC-003",
+      "title": "Risk Disclosures Must Cover at Least 50% of the Screen Area",
+      "clause_refs": [
+        "48.2.2"
+      ],
+      "obligation_text": "When displaying the 'Risk disclosures' to clients, stock brokers must ensure the disclosure is displayed prominently, covering at least 50 percent of the screen area.",
+      "category": "risk_disclosure",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "UI/UX specification documented confirming the risk disclosure display element occupies a minimum of 50% of the screen area",
+        "Periodic UI testing (across device types and screen sizes) to verify the 50% screen coverage requirement is met"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-RISKDISC-004",
+      "title": "QSBs to Maintain Client F&O P&L Data Continuously and Retain for 5 Years",
+      "clause_refs": [
+        "48.3"
+      ],
+      "obligation_text": "All Qualified Stock Brokers (QSBs) must maintain Profit and Loss (P&L) data of their clients on a continuous basis in the format specified in Annexure-24, and must retain such P&L data for a minimum period of 5 years.",
+      "category": "recordkeeping",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Automated system configured to capture and record client-level F&O P&L data continuously in the Annexure-24 prescribed format",
+        "Data retention policy and storage infrastructure ensuring client P&L records are preserved for at least 5 years",
+        "Periodic data integrity checks to confirm completeness and accuracy of retained P&L records",
+        "Access controls and backup procedures protecting archived P&L data from loss or unauthorised modification"
+      ],
+      "_approved": false
+    }
+  ],
+  "relations": [
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/73",
+      "relation_type": "consolidated_by",
+      "source_note": "chapter 48 footnote: dated May 19, 2023"
+    }
+  ]
+}

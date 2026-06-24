@@ -28,9 +28,11 @@ PRIOR_MASTER_REF = "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53"
 
 # chapter_no -> (page_start, page_end). page_end = next chapter's start page (parser cuts at "N+1.").
 CHAPTER_SPECS = {
+    17: (41, 45),     # Early Warning Mechanism to prevent diversion of client securities
     45: (117, 119),   # Handling of Client's Securities
     46: (119, 121),   # Validation of Pay-In of Securities from Client demat
     47: (121, 123),   # Settlement of Running Account (already loaded)
+    48: (123, 124),   # Risk disclosure for individual traders in Equity F&O
     92: (229, 230),   # Bank Guarantees out of clients' funds
     93: (230, 233),   # Upstreaming of clients' funds
 }

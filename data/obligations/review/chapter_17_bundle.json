@@ -1,0 +1,385 @@
+{
+  "master": {
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "issue_date": "2024-08-09",
+    "source_url": "https://www.sebi.gov.in/legal/master-circulars/aug-2024/master-circular-for-stock-brokers_85605.html",
+    "pdf": "data/raw/sb_master_2024-08-09.pdf"
+  },
+  "prior_master_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+  "chapter": {
+    "chapter_no": 17,
+    "heading": "Early Warning Mechanism to prevent diversion of client securities",
+    "page_span": [
+      41,
+      45
+    ],
+    "source_refs": [
+      {
+        "circular_ref": "SEBI/HO/MIRSD/DOP/CIR/P/2018/153",
+        "dated": "December 17,2018"
+      }
+    ]
+  },
+  "parent_section": {
+    "section_id": "SB-CH17",
+    "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+    "heading": "Early Warning Mechanism to prevent diversion of client securities",
+    "full_text": "17. Early Warning Mechanism to prevent diversion of client securities23 \n \n17.1 It has been decided to put in place an Early Warning Mechanism and sharing \nof information between Stock Exchanges, Depositories and Clearing \nCorporations to detect the diversion of client's securities by the stock broker at \nan early stage so as to take appropriate preventive measures. The threshold \nfor such early warning signals shall be decide d by the Stock Exchanges, \nDepositories and Clearing Corporations with mutual consultation. \n \n17.2 Early warning signals, for prevention of diversion of clients' securities, may \ninclude the following: \n \n17.2.1 Deterioration in financial health of the stock broker/ deposi tory \nparticipant based on any of the following parameters: \na) Significant reduction in net worth over previous half-year /year. \nb) Significant losses in the previous half years / years. \nc) Delay in reporting of Annual Report, Balance Sheet, Internal Audit \nReports, Risk Based Supervision (RBS) data and any other data \nrelated to its financial health to the Stock Exchanges /Depositories. \nd) Failure to submit information sought by the Stock Exchange / \nDepositories on its dealing with related parties / promoters. \ne) Significant mark-to-market loss on proprietary account/ related party \naccounts \nf) Repeated instances of pay-in shortages. \ng) Significant trading exposure or amount of loans or advances given to \nand investments made in related parties/ group. \nh) Sudden activation of significant number of dormant client's accounts \nand / or significant activity in the dormant account/s. \ni) Significant number of UCC modifications. \nj) Resignation of Statutory Auditors or Directors. \n \n17.2.2 Early warning signals in relation to securities pledge transactions by the \nstock broker to be identified by the Depositories and shall be shared \nwith Stock Exchanges which may include: \na) Alerts for stock brokers maintaining multiple proprietary demat \naccounts and opening any new demat account in the name of stock \n                                                           \n23 Reference: Circular SEBI/HO/MIRSD/DOP/CIR/P/2018/153 dated December 17,2018  \n \n \n43  \n \n \nbroker for client purpose. \nb) Movement of shares to / from a large number of clients' demat \naccounts or large value shares to stock broker proprietary accounts \nand vice a versa. \nc) Transfer of large value of shares through off -market transfers other \nthan for settlement purposes. \nd) Invocation of pledge of securities by lenders  against stock broker or \nhis clients. \ne) Significant depletion of client's shares in the stock broker client \naccount maintained by the stock broker. \n \n17.2.3 Increase in number of investor complaints against the stock \nbroker/depository participant alleging un -authorized trading / \nunauthorized delivery instructions being processed and non -receipt of \nfunds and securities and non-resolution of the same. \n \n17.2.4 Alerts generated from the monthly / weekly submissions made by stock \nbroker under Risk Based Supervision (RBS) or Enhanced Supervision \nto the Stock Exchanges. \na) Non-recovery of significant dues from debit balance clients over a \nperiod of time. \nb) Significant dues to credit balance clients over a period of time. \nc) Failure by stock broker to upload weekly data regarding monitoring \nof clients' funds as specified in SEBI's circular on Enhanced   \nSupervision, for three consecutive weeks. \nd) Pledging securities in case of clients having credit balance and using \nthe funds so  raised against them for own purposes or for funding \ndebit balance of clients. \ne) Mis-reporting / wrong reporting about the client funds / securities. \nf) Significant increase in RBS score. \n17.2.5 Stock broker's terminal disabled for certain number of days in any \nsegment / Stock Exchange in previous quarter. \n \n17.2.6 Stock Exchanges and Depositories shall frame an internal policy \n/guidelines regarding non-cooperation by stock brokers and depository \nparticipants during inspections which shall lay down the time period, the \ntype of  documents critical for closing the inspections, which if not \nsubmitted, can be treated as non-cooperation. \nI. Failure to submit data sought for inspections especially relating to \nbank/demat accounts. client ledgers etc. despite repeated reminders. \n \n \n44  \n \n \nII. Failure to  provide reasonable access to the records or any office \npremises. \n \n17.3 Stock Exchanges/ Clearing Corporations/ Depositories, shall devise a \nmechanism to detect diversion of clients' securities and to share information \namong themselves in respect of: \n \n17.3.1 Diversion of pay-out of securities to non-client accounts \n \n17.3.2 Mis-matches between gross (client-wise) securities pay-in and pay-out \nfiles of a stock brokers generated by the Clearing Corporation which \nshall be compared with actual transfer of securities to/from the cl ient's \ndepository accounts by the Depository.  The cases of any mismatch \nfound out by the Depository shall be informed to the concerned Stock \nExchange / Clearing Corporation. \n  \n17.3.3 Stock Exchange shall seek clarification from the concerned stock broker \non the mismatches reported by Depository and identify transfer to a non-\nclient/third party, without any trade obligation. \n  \n17.3.4 Such information on wrong / fraudulent / unauthorized transfer shall be \nshared by the Stock Exchange with other Stock Exchanges. \n \n17.4 Any other  alerts as the Stock Exchanges / Clearing Corporations and \nDepositories may deem fit. \n \n17.5 Alerts triggered at one Stock Exchange / Clearing Corporation/ Depository \nthrough early warning mechanism shall be immediately shared with other Stock \nExchanges / Depositories with respect to the stock broker / depository \nparticipant. \n \n17.6 Based on the analysis of the early warning data, if it is established that the stock \nbroker's financial health has deteriorated and/ or he has made unauthorized \ntransfer of funds / se curities of the client, in such cases Stock Exchanges / \nDepositories shall jointly take preventive actions on the stock broker which may \ninclude one or more of, but not limited, to the following: \n \n17.6.1 Actions to be initiated by the Stock Exchanges like: \n17.6.1.1 Blocking of certain percentage of available collaterals \ntowards margin. \n \n \n45  \n \n \n \n17.6.1.2 Check securities register in respect of securities received \nand transferred against pay-in /pay-out against settlement  \n \n17.6.1.3 Check details of funds and securities available with the \nclearing member, Clearing Corporation and the Depository \nof that stock broker. \n \n17.6.1.4 Impose limits on proprietary trading by the stock broker. \n \n17.6.1.5 Prescribe and monitor shorter time duration for settlement \nof Running Account of clients. \n \n17.6.1.6 Conduct meeting with the designated directors of the stock \nbroker to seek appropriate explanation. \n \n17.6.1.7 Uniform action of deactivation of trading terminals by all \nStock Exchanges based on the communication received \nfrom other Stock Exchange.  \n \n17.6.1.8 Initiate inspection of the stock broker / depos itory \nparticipant. \n \n17.6.1.9 Cross check information submitted by stock broker with \nother independent sources like collateral details with the \nClearing Corporation, transactions in Bank and \nDepositories, with statement collected directly etc. \n \n17.6.1.10 Where client money and securities diversion is suspected, \nappointed forensic auditor to trace trails of entire funds and \nsecurities of clients. \n \n17.6.2  Actions to be taken by the Depositories: \n \n17.6.2.1 Imposition of 100% concurrent audit on the depository \nparticipant. \n \n17.6.2.2 Cessation/ restriction on uses of Power of Attorney (POA) \ngiven to stock broker by clients mapped to such brokers \nonly to meet settlement obligation of that client. Clients to \n \n \n46  \n \n \nissue instructions electronically or through Delivery \nInstruction Slip (DIS) for delivery of shares  for off market \ntransfers. \n \n17.6.3 Any other measures that Stock Exchanges/ Clearing Corporations/ \nDepositories may deem fit."
+  },
+  "obligations": [
+    {
+      "suggested_id": "SB-EWMDS-001",
+      "title": "Cooperate with Early Warning Mechanism Inspections – Submit Required Documents",
+      "clause_refs": [
+        "17.2.6",
+        "17.2.6.I",
+        "17.2.6.II"
+      ],
+      "obligation_text": "A stock broker must cooperate during inspections conducted by Stock Exchanges and Depositories. This includes submitting all data sought during inspections (especially relating to bank/demat accounts and client ledgers) without repeated reminders, and providing reasonable access to records and office premises. Non-cooperation, as defined in the internal policy/guidelines framed by Stock Exchanges and Depositories, may trigger early warning actions.",
+      "category": "inspection_cooperation",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Documented inspection response procedure with designated responsible personnel",
+        "Centralised repository of bank/demat account records and client ledgers accessible for regulatory inspection",
+        "Policy for timely submission of inspection documents within prescribed timeframes",
+        "Physical/electronic access control procedures that permit regulator access to office premises and records"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-002",
+      "title": "Timely Reporting of Financial Health Data to Stock Exchanges/Depositories",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.c",
+        "17.2.1.d"
+      ],
+      "obligation_text": "A stock broker must not delay the reporting of its Annual Report, Balance Sheet, Internal Audit Reports, Risk Based Supervision (RBS) data, and any other data related to its financial health to the Stock Exchanges and/or Depositories. The stock broker must also submit, without failure, information sought by Stock Exchanges/Depositories regarding its dealings with related parties and promoters.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Regulatory reporting calendar tracking all submission deadlines (Annual Report, Balance Sheet, Internal Audit, RBS data)",
+        "Escalation process for timely preparation and submission of related-party dealing disclosures",
+        "Internal review checklist to verify completeness of submissions before the due date",
+        "Alert mechanism for impending submission deadlines with accountability assigned to a senior officer"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-003",
+      "title": "Monitor and Manage Net Worth and Financial Losses",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.a",
+        "17.2.1.b"
+      ],
+      "obligation_text": "A stock broker must monitor its financial health, including net worth and profitability, to detect significant reductions in net worth over the previous half-year/year and significant losses in previous half-years/years, as these constitute early warning signal triggers that may prompt regulatory scrutiny and preventive action.",
+      "category": "financial_health_monitoring",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Half-yearly and annual net worth computation and internal review process",
+        "Profit and loss monitoring against thresholds with escalation to senior management",
+        "Internal alert mechanism when net worth deterioration or significant losses are detected",
+        "Documentation of corrective measures taken when deterioration thresholds are breached"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-004",
+      "title": "Monitor and Control Mark-to-Market Losses on Proprietary and Related-Party Accounts",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.e",
+        "17.2.1.g"
+      ],
+      "obligation_text": "A stock broker must monitor significant mark-to-market (MTM) losses on its proprietary account and related-party accounts, and must monitor the extent of trading exposure, loans, advances, and investments made in related parties/group entities, as these are early warning signal parameters that may indicate financial deterioration and trigger regulatory action.",
+      "category": "proprietary_trading_risk",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Daily MTM computation for proprietary and related-party accounts with defined breach thresholds",
+        "Periodic review of loans, advances, and investments in related parties/group entities",
+        "Board/senior management reporting of related-party exposures breaching internal limits",
+        "Documented policy on permissible proprietary and related-party trading exposures"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-005",
+      "title": "Prevent and Monitor Repeated Pay-in Shortages",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.f"
+      ],
+      "obligation_text": "A stock broker must take measures to prevent repeated instances of pay-in shortages, as such occurrences constitute an early warning signal of financial deterioration and may trigger regulatory scrutiny and preventive action by Stock Exchanges.",
+      "category": "settlement_obligations",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Pre-settlement monitoring of client and proprietary positions to ensure adequate securities for pay-in",
+        "Automated alerts for anticipated pay-in shortfalls prior to settlement deadlines",
+        "Root-cause analysis and corrective action process for each pay-in shortage occurrence",
+        "Internal reporting of pay-in shortage trends to compliance/risk management"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-006",
+      "title": "Monitor Dormant Account Activations and UCC Modifications",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.h",
+        "17.2.1.i"
+      ],
+      "obligation_text": "A stock broker must monitor and have controls over the sudden activation of a significant number of dormant client accounts and/or significant activity in dormant accounts, as well as a significant number of Unique Client Code (UCC) modifications, as these are early warning signals that may indicate misuse of client accounts.",
+      "category": "client_account_monitoring",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Automated alerts for sudden reactivation of multiple dormant client accounts within a defined period",
+        "Approval workflow and documentation requirements for UCC modifications",
+        "Threshold-based monitoring and reporting of dormant account activity to compliance",
+        "Periodic reconciliation of UCC modification records with client instructions"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-007",
+      "title": "Report and Respond to Changes in Key Personnel – Resignation of Statutory Auditors or Directors",
+      "clause_refs": [
+        "17.2.1",
+        "17.2.1.j"
+      ],
+      "obligation_text": "A stock broker must report and appropriately respond to the resignation of statutory auditors or directors, as such events constitute early warning signals of potential financial or governance deterioration and may trigger scrutiny from Stock Exchanges and Depositories.",
+      "category": "governance_and_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Documented procedure for immediate regulatory notification upon resignation of statutory auditors or directors",
+        "Board-level review of circumstances leading to auditor/director resignations",
+        "Timely appointment of replacement auditors/directors in accordance with applicable law",
+        "Record-keeping of all communications related to auditor/director resignations"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-008",
+      "title": "Upload Weekly Client Funds Monitoring Data Under Enhanced Supervision",
+      "clause_refs": [
+        "17.2.4",
+        "17.2.4.c"
+      ],
+      "obligation_text": "A stock broker must upload weekly data regarding monitoring of clients' funds as specified in SEBI's circular on Enhanced Supervision, without failure for three or more consecutive weeks, as non-compliance is an early warning signal trigger that may result in regulatory action.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Weekly upload schedule for client funds monitoring data with automated reminders",
+        "Checklist and sign-off process confirming successful data upload each week",
+        "Escalation procedure when upload failures are detected",
+        "Record-keeping of upload confirmations and any exceptions with explanations"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-009",
+      "title": "Ensure Accuracy of Client Funds and Securities Reporting – Avoid Mis-reporting",
+      "clause_refs": [
+        "17.2.4",
+        "17.2.4.e"
+      ],
+      "obligation_text": "A stock broker must ensure that all reporting related to client funds and securities is accurate and must not mis-report or wrongly report data on client funds/securities in submissions made under Risk Based Supervision (RBS) or Enhanced Supervision, as mis-reporting is an early warning signal that may trigger regulatory action.",
+      "category": "regulatory_reporting",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Independent review/checker process for client funds and securities data before submission",
+        "Reconciliation of RBS/Enhanced Supervision data against internal books and records prior to upload",
+        "Written attestation by responsible senior officer confirming accuracy of submissions",
+        "Audit trail and documentation of data sources used for regulatory submissions"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-010",
+      "title": "Prohibit Pledging of Securities of Credit-Balance Clients for Own/Other Purposes",
+      "clause_refs": [
+        "17.2.4",
+        "17.2.4.d"
+      ],
+      "obligation_text": "A stock broker must not pledge securities of clients who have a credit balance and use the funds so raised for the stock broker's own purposes or for funding the debit balance of other clients, as this constitutes an early warning signal and indicator of misuse of client assets.",
+      "category": "client_funds_settlement",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "System-level controls preventing pledge of securities belonging to credit-balance clients",
+        "Regular reconciliation to detect any pledge of credit-balance client securities",
+        "Policy prohibiting use of client pledged funds for proprietary or third-party client purposes",
+        "Periodic internal audit review of pledge transactions against client account balances"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-011",
+      "title": "Recover Dues from Debit-Balance Clients and Settle Dues to Credit-Balance Clients Promptly",
+      "clause_refs": [
+        "17.2.4",
+        "17.2.4.a",
+        "17.2.4.b"
+      ],
+      "obligation_text": "A stock broker must have processes to prevent non-recovery of significant dues from debit-balance clients over a period of time and must not carry significant outstanding dues to credit-balance clients over a period of time, as both conditions are early warning signals under Risk Based Supervision (RBS) monitoring.",
+      "category": "client_funds_settlement",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Ageing analysis of debit-balance client dues with escalation and recovery procedures",
+        "Regular reporting and resolution process for significant credit-balance client dues",
+        "Threshold-based alerts for persistent debit/credit balance positions beyond defined periods",
+        "Internal audit review of client ledger balances at defined intervals"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-012",
+      "title": "Avoid Prolonged Terminal Disablement Across Segments or Exchanges",
+      "clause_refs": [
+        "17.2.5"
+      ],
+      "obligation_text": "A stock broker must ensure that its trading terminals are not disabled for a significant number of days in any segment or Stock Exchange in the previous quarter, as terminal disablement is an early warning signal that may trigger regulatory scrutiny and preventive actions.",
+      "category": "operational_continuity",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Monitoring of trading terminal status across all segments and exchanges with documented uptime records",
+        "Escalation and resolution procedure for terminal disablement incidents",
+        "Root-cause analysis and corrective action for recurring terminal disablements",
+        "Internal compliance review of terminal operational status on a quarterly basis"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-013",
+      "title": "Promptly Address Investor Complaints Relating to Unauthorized Trading and Non-Receipt of Funds/Securities",
+      "clause_refs": [
+        "17.2.3"
+      ],
+      "obligation_text": "A stock broker must resolve investor complaints alleging unauthorized trading, unauthorized delivery instructions, and non-receipt of funds and securities in a timely manner. An increase in the number of unresolved such complaints is an early warning signal that may trigger preventive regulatory action.",
+      "category": "investor_grievance_redressal",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Complaint tracking system with categorisation for unauthorized trading and funds/securities complaints",
+        "Defined turnaround times and escalation path for resolution of investor complaints",
+        "Periodic management review of pending and unresolved investor complaints",
+        "Root-cause analysis for recurring complaint categories with documented corrective action"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-014",
+      "title": "Maintain Accurate Securities Register for Pay-in/Pay-out Against Settlement",
+      "clause_refs": [
+        "17.6.1.2"
+      ],
+      "obligation_text": "A stock broker must maintain an accurate securities register recording all securities received and transferred against pay-in/pay-out related to settlement, enabling Stock Exchanges to verify the same in the event early warning signals are triggered.",
+      "category": "securities_recordkeeping",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Maintenance of a securities register recording all inward/outward movement of securities against settlement obligations",
+        "Daily reconciliation of securities register with depository account statements and clearing corporation records",
+        "Access controls ensuring integrity of securities register data",
+        "Periodic internal audit review of securities register accuracy"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-015",
+      "title": "Comply with Shortened Running Account Settlement Timelines When Prescribed",
+      "clause_refs": [
+        "17.6.1.5"
+      ],
+      "obligation_text": "When Stock Exchanges prescribe and monitor shorter time durations for the settlement of running accounts of clients (as a preventive action following early warning signal analysis), a stock broker must comply with the prescribed shorter settlement timelines for client running accounts.",
+      "category": "client_funds_settlement",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Monitoring system to track running account settlement timelines per client",
+        "Operational process to execute running account settlements within any shortened timelines directed by Stock Exchanges",
+        "Compliance confirmation mechanism for each running account settlement cycle",
+        "Record-keeping of all running account settlements with dates and amounts"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-016",
+      "title": "Cooperate with Stock Exchange Meetings Seeking Explanation on Financial Health",
+      "clause_refs": [
+        "17.6.1.6"
+      ],
+      "obligation_text": "When a Stock Exchange conducts a meeting with the designated directors of a stock broker to seek explanation regarding deteriorating financial health or suspected diversion of client funds/securities, the stock broker's designated directors must cooperate and provide appropriate explanation.",
+      "category": "regulatory_cooperation",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Designation of directors responsible for attending regulatory inquiry meetings",
+        "Internal briefing process to prepare designated directors with accurate and documented responses",
+        "Record-keeping of all communications and minutes from meetings with regulators/exchanges",
+        "Legal/compliance review prior to regulatory meetings involving financial health inquiries"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-017",
+      "title": "Comply with Trading Terminal Deactivation Orders from Stock Exchanges",
+      "clause_refs": [
+        "17.6.1.7"
+      ],
+      "obligation_text": "A stock broker must comply with uniform deactivation of its trading terminals by all Stock Exchanges, where such deactivation is based on communication received from another Stock Exchange as part of preventive action following early warning signal analysis.",
+      "category": "regulatory_compliance_action",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Documented procedure for immediate compliance with trading terminal deactivation orders",
+        "Communication protocol to all relevant internal teams upon receipt of deactivation instruction",
+        "Confirmation process to the issuing Stock Exchange that terminals have been deactivated",
+        "Record-keeping of all deactivation orders received and corresponding compliance actions"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-018",
+      "title": "Cooperate with Forensic Audit When Client Money and Securities Diversion is Suspected",
+      "clause_refs": [
+        "17.6.1.10"
+      ],
+      "obligation_text": "Where diversion of client money and securities is suspected, a stock broker must cooperate with a forensic auditor appointed by the Stock Exchange to trace the entire trail of client funds and securities, providing access to all relevant records and information.",
+      "category": "inspection_cooperation",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "Policy requiring full cooperation with forensic auditors including provision of bank, demat, and client records",
+        "Centralised, auditable records of all client fund and securities movements",
+        "Designated internal coordinator for managing forensic audit information requests",
+        "Legal/compliance review process for forensic audit cooperation procedures"
+      ],
+      "_approved": false
+    },
+    {
+      "suggested_id": "SB-EWMDS-019",
+      "title": "Comply with Restrictions on Use of Client Power of Attorney to Settlement Obligations Only",
+      "clause_refs": [
+        "17.6.2.2"
+      ],
+      "obligation_text": "When directed by a Depository as a preventive action, a stock broker must restrict the use of Power of Attorney (POA) granted by clients to the stock broker solely to meet the settlement obligation of the respective client. Off-market transfers must be executed only through client-issued electronic instructions or Delivery Instruction Slips (DIS), not through POA.",
+      "category": "client_securities_safeguarding",
+      "intermediary_type": "trading_member",
+      "expected_controls": [
+        "System controls limiting POA usage to settlement obligations only when directed by Depository",
+        "Process to obtain client-issued electronic instructions or DIS for all off-market transfers",
+        "Audit trail of all POA invocations with mapping to specific settlement obligations",
+        "Training for operations staff on restricted POA usage requirements"
+      ],
+      "_approved": false
+    }
+  ],
+  "relations": [
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/DOP/CIR/P/2018/153",
+      "relation_type": "consolidated_by",
+      "source_note": "chapter 17 footnote: dated December 17,2018"
+    },
+    {
+      "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+      "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+      "relation_type": "supersedes",
+      "source_note": "successor master circular for stock brokers"
+    }
+  ]
+}

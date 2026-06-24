@@ -44,13 +44,20 @@ Master Circular 2024-08-09 (SEBI/.../CIR/2024/110)  ← current valid position
 (SB-RUNACCT-001..016). Review: 9 verbatim; AP duties split (010/011), intimation split (012/013),
 clause 47.10 split into exchange monitoring (015) + TM no-excess-retention (016).
 
-**Client-assets cluster (provisional — auto-extracted, light review; refine in Phase 6 gold pass).**
+**Provisional chapters (auto-extracted, light review; refine in Phase 6 gold pass).**
 | Ch | Topic | Obligations | Source circular |
 |---|---|---|---|
-| 45 | Handling of Client's Securities | 11 (SB-CLTSEC-*) | 2022/153 |
+| 17 | Early Warning Mechanism (client-securities diversion) | 19 (SB-EWMDS-*) | — |
+| 45 | Handling of Client's Securities | 11 (SB-CLTSEC-*) | 2019/75 + 2022/153 |
 | 46 | Validation of Pay-In of Securities | 7 (SB-PAYINVAL-*) | 2022/119 |
+| 48 | Risk disclosure for F&O traders | 4 (SB-RISKDISC-*) | 2023/73 |
 | 92 | Bank Guarantees from client funds | 6 (SB-BGCF-*) | 2023/061 |
 | 93 | Upstreaming of clients' funds | 14 (SB-UPSTREAM-*) | 2023/187 |
+
+**Curated `refers_to` cross-edges (7):** obligation-level cross-references grounded in shared defined
+terms — USCNBA (RUNACCT-003, UPSTREAM-013 → UPSTREAM-002), the client unpaid securities pledgee account
+(CLTSEC-007/010/011 → CLTSEC-002), and MFOS (UPSTREAM-009/010 → UPSTREAM-008). Surfaced in
+`expand_to_parent`, the obligation-detail API, and the UI. `scripts/seed_cross_refs.py`.
 
 Cross-reference worth wiring as a `refers_to` edge: SB-RUNACCT-003 ↔ SB-UPSTREAM-002 (both the USCNBA).
 

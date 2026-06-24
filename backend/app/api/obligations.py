@@ -6,7 +6,7 @@ from datetime import date
 from fastapi import APIRouter
 
 from ..db import get_cursor
-from ..tools.retrieval import graph_lookup, temporal_filter
+from ..tools.retrieval import graph_lookup, related_obligations, temporal_filter
 
 router = APIRouter(prefix="/obligations", tags=["obligations"])
 
@@ -45,4 +45,4 @@ def get_obligation(obligation_id: str):
     if not row:
         return {"error": "not found"}
     edges = graph_lookup(row["source_circular_ref"])
-    return {**dict(row), "citation_graph": edges}
+    return {**dict(row), "citation_graph": edges, "related_obligations": related_obligations(obligation_id)}

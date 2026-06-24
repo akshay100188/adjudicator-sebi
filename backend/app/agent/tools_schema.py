@@ -52,9 +52,10 @@ TOOL_SCHEMAS = [
     },
     {
         "name": "expand_to_parent",
-        "description": "Get the full obligation text, its source circular reference, clause refs, and parent "
-                       "section context for one obligation_id. Use before citing, and to get the circular_ref "
-                       "needed for graph_lookup.",
+        "description": "Get the full obligation text, its source circular reference, clause refs, parent "
+                       "section, and any RELATED obligations it cross-references (shared defined terms like "
+                       "USCNBA). Use before citing, to get the circular_ref for graph_lookup, and to follow "
+                       "cross-references to related obligations in other chapters.",
         "input_schema": {
             "type": "object",
             "properties": {"obligation_id": {"type": "string"}},
@@ -105,7 +106,12 @@ def dispatch(name: str, args: dict) -> tuple[dict, list[str]]:
                 (oid,),
             )
             row = cur.fetchone()
-        return (dict(row) if row else {"error": "not found"}), ([oid] if row else [])
+        if not row:
+            return {"error": "not found"}, []
+        related = R.related_obligations(oid)
+        out = {**dict(row), "related_obligations": related}
+        surfaced = [oid] + [r["obligation_id"] for r in related]  # related obligations are grounded too
+        return out, surfaced
 
     if name == "graph_lookup":
         edges = R.graph_lookup(args["circular_ref"])

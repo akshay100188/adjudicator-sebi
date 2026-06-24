@@ -103,6 +103,19 @@ export default function ObligationsPage() {
                         ))}
                       </ul>
                     </div>
+                    {detail.related_obligations.length > 0 && (
+                      <div>
+                        <div className="text-slate-500">Related obligations (cross-references)</div>
+                        <ul className="ml-4 mt-1 space-y-0.5 text-slate-400">
+                          {detail.related_obligations.map((r, i) => (
+                            <li key={i}>
+                              <span className="text-slate-600">{r.direction}</span>{" "}
+                              <span className="font-mono text-sky-400">{r.obligation_id}</span> — {r.title}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

@@ -18,11 +18,19 @@ export interface CitationEdge {
   depth: number;
 }
 
+export interface RelatedObligation {
+  obligation_id: string;
+  title: string;
+  direction: "refers_to" | "referenced_by";
+  source_note: string | null;
+}
+
 export interface ObligationDetail extends Obligation {
   obligation_text: string;
   expected_controls: string[] | null;
   parent_text: string | null;
   citation_graph: CitationEdge[];
+  related_obligations: RelatedObligation[];
 }
 
 export interface Finding {

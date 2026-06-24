@@ -54,10 +54,12 @@ def extract_obligations(chapter: ParsedChapter) -> list[dict]:
     client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=4000,
+        max_tokens=8000,  # large chapters (e.g. ch17) produce long JSON; avoid truncation
         system=SYSTEM,
         messages=[{"role": "user", "content": user}],
     )
+    if resp.stop_reason == "max_tokens":
+        raise RuntimeError(f"extraction truncated at max_tokens for chapter {chapter.chapter_no}")
     text = resp.content[0].text.strip()
     # Strip markdown fences if present.
     if text.startswith("```"):

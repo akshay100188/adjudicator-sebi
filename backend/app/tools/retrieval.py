@@ -127,6 +127,23 @@ def expand_to_parent(obligation_id: str) -> dict | None:
         return cur.fetchone()
 
 
+# --- obligation-level cross-references (refers_to edges) ---------------------
+def related_obligations(obligation_id: str) -> list[dict]:
+    """Obligations this one refers to, and those that refer to it (shared defined terms)."""
+    with get_cursor() as cur:
+        cur.execute(
+            """select r.to_ref as obligation_id, o.title, 'refers_to' as direction, r.source_note
+                 from adj_obligation_relations r join adj_obligation o on o.obligation_id = r.to_ref
+                 where r.from_ref = %s and r.relation_type = 'refers_to'
+               union
+               select r.from_ref, o.title, 'referenced_by', r.source_note
+                 from adj_obligation_relations r join adj_obligation o on o.obligation_id = r.from_ref
+                 where r.to_ref = %s and r.relation_type = 'refers_to';""",
+            (obligation_id, obligation_id),
+        )
+        return [dict(r) for r in cur.fetchall()]
+
+
 # --- T4: graph_lookup (recursive citation-graph traversal) -------------------
 def graph_lookup(circular_ref: str, rel_types: list[str] | None = None, max_depth: int = 10) -> list[dict]:
     rel = rel_types or ["supersedes", "amends", "consolidated_by", "refers_to"]
