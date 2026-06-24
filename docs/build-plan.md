@@ -39,10 +39,13 @@ footnotes → embed + index (pgvector + tsvector). Idempotent.
   graph closure traverses the full supersession chain; dense search returns relevant obligations.
 - Contextual enrichment (`context_blurb`) left off — A/B'd in Phase 3 (ADR-010).
 
-## Phase 3 — Retrieval substrate (the agent's tools)
+## Phase 3 — Retrieval substrate (the agent's tools)  ◑ tools + experiments done; contextual EXP pending
 T1 temporal_filter · T2 hybrid_search (dense⊕BM25, RRF) · T3 expand_to_parent · T4 graph_lookup ·
-T5 rerank. ADR-dense: hybrid vs pure; pre-filter; BM25 impl (ts_rank vs pg_search); rerank choice.
-- Gate: recall@k hits target; precision/nDCG tracked; every knob change logged.
+T5 rerank — all built in `backend/app/tools/`.
+- Experiments (20-query golden set): EXP-001 retriever comparison, EXP-002 RRF k, EXP-003 pool size.
+- ADRs locked: ADR-011 (hybrid+rerank), ADR-012 (RRF k=60), ADR-013 (native FTS BM25), ADR-014 (Haiku rerank, pool=10→top5).
+- **Gate PASSED:** recall@5 = 1.00, MRR 0.97 (hybrid+rerank) on the golden set; every knob logged.
+- Remaining: EXP for contextual enrichment on/off (ADR-010); embedding-model benchmark (ADR-004).
 
 ## Phase 6 — Eval harness (built early, formalised here)
 Golden dataset (gold queries → expected obligations; gold scenarios → expected findings; gold

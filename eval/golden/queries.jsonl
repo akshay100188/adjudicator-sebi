@@ -1,0 +1,20 @@
+{"id": "Q01", "query": "a client has money sitting idle and hasn't traded in over a month, what must we do?", "expected": ["SB-RUNACCT-007"], "type": "paraphrase"}
+{"id": "Q02", "query": "where must client funds received after settlement be parked?", "expected": ["SB-RUNACCT-003"], "type": "paraphrase"}
+{"id": "Q03", "query": "Up Streaming Client Nodal Bank Account", "expected": ["SB-RUNACCT-003"], "type": "exact_term"}
+{"id": "Q04", "query": "can we settle a running account with a journal entry instead of an actual bank transfer?", "expected": ["SB-RUNACCT-006"], "type": "paraphrase"}
+{"id": "Q05", "query": "how frequently must running accounts be settled, monthly or quarterly?", "expected": ["SB-RUNACCT-001"], "type": "paraphrase"}
+{"id": "Q06", "query": "is there an annual calendar of settlement dates we must follow?", "expected": ["SB-RUNACCT-002"], "type": "paraphrase"}
+{"id": "Q07", "query": "if we pay a client by cheque, which date counts as the settlement date?", "expected": ["SB-RUNACCT-008"], "type": "paraphrase"}
+{"id": "Q08", "query": "can we hold back client funds citing administrative or operational difficulties?", "expected": ["SB-RUNACCT-009"], "type": "paraphrase"}
+{"id": "Q09", "query": "is an authorised person allowed to accept funds or securities from clients?", "expected": ["SB-RUNACCT-010"], "type": "paraphrase"}
+{"id": "Q10", "query": "can an authorised person do proprietary trading using client money?", "expected": ["SB-RUNACCT-011"], "type": "paraphrase"}
+{"id": "Q11", "query": "after settling a client's running account, how must we notify them?", "expected": ["SB-RUNACCT-012"], "type": "paraphrase"}
+{"id": "Q12", "query": "when must the retention statement be sent to the client?", "expected": ["SB-RUNACCT-013"], "type": "paraphrase"}
+{"id": "Q13", "query": "how many working days does a client have to dispute the running account statement?", "expected": ["SB-RUNACCT-014"], "type": "exact_term"}
+{"id": "Q14", "query": "are we allowed to keep excess client funds after settlement?", "expected": ["SB-RUNACCT-016"], "type": "paraphrase"}
+{"id": "Q15", "query": "who is responsible for the online system monitoring timely settlement across exchanges?", "expected": ["SB-RUNACCT-015"], "type": "paraphrase"}
+{"id": "Q16", "query": "for a client with open positions on settlement day, how much pay-in obligation can we retain?", "expected": ["SB-RUNACCT-004"], "type": "paraphrase"}
+{"id": "Q17", "query": "what amounts can a broker retain for a client with outstanding positions at settlement?", "expected": ["SB-RUNACCT-004", "SB-RUNACCT-005"], "type": "multi"}
+{"id": "Q18", "query": "what are the rules on running account settlement frequency and the settlement calendar?", "expected": ["SB-RUNACCT-001", "SB-RUNACCT-002"], "type": "multi"}
+{"id": "Q19", "query": "rule against using one client's post-settlement funds to settle another client", "expected": ["SB-RUNACCT-003"], "type": "paraphrase"}
+{"id": "Q20", "query": "225% of total margin liability retention cap", "expected": ["SB-RUNACCT-005"], "type": "exact_term"}
