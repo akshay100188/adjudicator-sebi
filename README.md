@@ -73,7 +73,7 @@ See [`docs/build-plan.md`](docs/build-plan.md) for the phased plan.
 | 4 | The agent (ReAct; route/key-tool/grounding 4/4) | ✅ |
 | 5 | Gap-detection / grounded synthesis (recall 1.00, precision 0.76) | ✅ |
 | 7 | Interface & showcase (FastAPI + Next.js) | ✅ |
-| 8 | Code-analysis module (stretch) | ⏳ out of v1 |
+| 8 | Code-analysis module (stretch) — signals→agent→cited obligations | ✅ |
 
 See [`docs/showcase.md`](docs/showcase.md) for the results table and run instructions.
 

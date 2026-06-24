@@ -5,7 +5,7 @@ Not legal advice. Every analysis carries a non-removable disclaimer.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api import analyze, obligations
+from .api import analyze, code_analysis, obligations
 
 app = FastAPI(title="Project Adjudicator (SEBI) — Agentic RAG", version="0.1.0")
 
@@ -18,6 +18,7 @@ app.add_middleware(
 
 app.include_router(obligations.router)
 app.include_router(analyze.router)
+app.include_router(code_analysis.router)
 
 
 @app.get("/health")

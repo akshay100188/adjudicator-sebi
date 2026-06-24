@@ -73,6 +73,30 @@ export async function getObligation(id: string): Promise<ObligationDetail> {
   return r.json();
 }
 
+export interface CodeSignal {
+  file: string;
+  line: number;
+  category: string;
+  description: string;
+}
+
+export interface CodeResult extends AnalyzeResult {
+  files_scanned: number;
+  languages: string[];
+  signals: CodeSignal[];
+  derived_description: string;
+}
+
+export async function codeAnalyse(repo_path: string): Promise<CodeResult> {
+  const r = await fetch(`${API}/code-analysis/analyse`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ repo_path }),
+  });
+  if (!r.ok) throw new Error("code analysis failed");
+  return r.json();
+}
+
 export async function analyze(scenario: string): Promise<AnalyzeResult> {
   const r = await fetch(`${API}/analyze`, {
     method: "POST",

@@ -83,6 +83,11 @@ citation attached in code from the obligation's real source. Pipeline: `analyze_
   non-removable disclaimer throughout.
 - **Showcase writeup** (`docs/showcase.md`): why-not-production thesis + results table + run steps.
 
-## Phase 8 — Code-analysis module (stretch)
-Semgrep + AST + tree-sitter → Haiku consolidation (metadata only) → agent maps to obligations.
-Privacy-by-design. Only after agent + eval are solid (ADR-005).
+## Phase 8 — Code-analysis module (stretch)  ✅
+Privacy-safe scanner (regex + Python AST; Semgrep optional) extracts *signals* (file/line/category —
+never the code) → rendered → fed to the SAME agent→synthesis engine → cited SEBI obligation findings.
+- `backend/app/code_scan/` (scanner, analyse), `POST /code-analysis/analyse`, UI `/code` page.
+- ADR-018 (signals-not-code; reuse the engine; honest about coverage).
+- Demo (`data/code_samples/broking_app/`, synthetic non-compliant): 9 signals → 4 cited findings —
+  annual settlement → RUNACCT-001, house-account pooling → UPSTREAM-002 + RUNACCT-003 (cross-ref),
+  missing audit trail (AST) → EWMDS-009. PII/secret signals correctly produced no phantom findings.

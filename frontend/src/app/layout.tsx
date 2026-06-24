@@ -24,6 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/obligations" className="block rounded px-3 py-2 text-slate-300 hover:bg-slate-800">
                 Obligation browser
               </Link>
+              <Link href="/code" className="block rounded px-3 py-2 text-slate-300 hover:bg-slate-800">
+                Code analysis
+              </Link>
             </nav>
             <div className="mt-10 rounded border border-amber-900/50 bg-amber-950/30 p-3 text-[11px] leading-relaxed text-amber-300/80">
               Prototype — <strong>not legal advice</strong>. Identifies potential gaps for expert review;
