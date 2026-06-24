@@ -66,10 +66,14 @@ query reformulation, multi-hop (hybrid→expand→graph_lookup→temporal_filter
   correction flag didn't fire on T03 — right answer, honest nuance), avg 3.8 steps. TRAJ logs in
   `docs/trajectories/`.
 
-## Phase 5 — Gap-detection / grounded synthesis
-Sonnet (prompt-cached) → structured findings (gap_summary, evidence, recommended_action,
-obligation_citation, confidence). Grounding contract: may only cite obligations actually passed.
-- Gate: finding P/R; citation faithfulness ≥ threshold; cost/run within budget.
+## Phase 5 — Gap-detection / grounded synthesis  ✅
+Sonnet → structured findings (gap_summary, evidence, recommended_action, citation, confidence);
+citation attached in code from the obligation's real source. Pipeline: `analyze_scenario()`
+(agent → synthesis). ADR-017 (structured output, code-enforced grounding gate, no phantom findings).
+- **Gate PASSED:** finding recall **1.00**, precision **0.65**, citation faithfulness **1.00**,
+  compliant control → **0 findings** (`scripts/run_scenario_eval.py`).
+- EXP-005: contradiction-contract prompt lifted precision 0.34→0.65 and fixed the compliant control
+  (10→0 findings) while holding recall. Remaining FPs are debatable-gold (Phase 6 refinement).
 
 ## Phase 7 — Interface & showcase
 Next.js: obligation browser, scenario runner, findings w/ citations, review queue, **agent-trajectory

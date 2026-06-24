@@ -62,5 +62,6 @@ Tracing: LangSmith / Arize Phoenix. Metric suites: RAGAS / DeepEval / TruLens.
 | 3 | retriever choice | hybrid+rerank (EXP-001), RRF k=60 (EXP-002), pool=10 (EXP-003) |
 | 3 | choices hold at 3× corpus scale | **validated** ✅ (EXP-004): sparse degrades, rerank's lift grows |
 | 4 | trajectory: route / key-tool / grounding | **4/4 · 4/4 · 4/4** ✅ (correction 3/4) |
-| 5 | finding P/R; citation faithfulness; cost/run | TBD |
+| 5 | finding recall / precision | **1.00 / 0.65** ✅ (EXP-005) |
+| 5 | citation faithfulness; compliant control → 0 findings | **1.00 ✅ · PASS ✅** |
 | 6 | harness reproduces a phase's numbers on demand | pass/fail |
