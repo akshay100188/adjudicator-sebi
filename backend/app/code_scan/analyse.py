@@ -18,6 +18,9 @@ from ..agent.agent import DISCLAIMER
 from ..synthesis.synthesize import analyze_scenario
 from .scanner import CodeSignal, scan_repo
 
+# Repo root (parent of backend/), so relative demo paths resolve regardless of the server's cwd.
+_ROOT = Path(__file__).resolve().parents[3]
+
 
 def _render(signals: list[CodeSignal]) -> str:
     """Turn signals into a practice description the agent can map to obligations (metadata only)."""
@@ -32,7 +35,11 @@ def _render(signals: list[CodeSignal]) -> str:
 
 
 def analyse_path(path: str | Path) -> dict:
-    signals, meta = scan_repo(path)
+    p = Path(path)
+    if not p.is_absolute() and not p.exists():
+        p = _ROOT / p  # resolve relative demo paths against the repo root
+    signals, meta = scan_repo(p)
+    meta["scanned_path"] = str(p)
     if not signals:
         return {**meta, "signals": [], "findings": [],
                 "note": "No compliance-relevant code signals detected.", "disclaimer": DISCLAIMER}

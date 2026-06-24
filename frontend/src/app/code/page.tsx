@@ -53,6 +53,13 @@ export default function CodePage() {
 
       {result && (
         <div className="mt-8 space-y-6">
+          {result.signals.length === 0 && (
+            <p className="rounded border border-slate-800 bg-slate-900/40 p-3 text-sm text-slate-400">
+              No compliance-relevant code signals detected in {result.files_scanned} scanned file(s).
+            </p>
+          )}
+
+          {result.signals.length > 0 && (
           <section>
             <h2 className="mb-2 text-sm font-semibold text-slate-200">
               Signals ({result.signals.length}) · {result.files_scanned} files ·{" "}
@@ -72,19 +79,24 @@ export default function CodePage() {
               ))}
             </ul>
           </section>
+          )}
 
-          <section>
-            <h2 className="mb-3 text-sm font-semibold text-slate-200">
-              Mapped obligation findings ({result.findings.length})
-            </h2>
-            <div className="space-y-3">
-              {result.findings.map((f) => (
-                <FindingCard key={f.obligation_id} f={f} />
-              ))}
-            </div>
-          </section>
+          {result.route && (
+            <>
+              <section>
+                <h2 className="mb-3 text-sm font-semibold text-slate-200">
+                  Mapped obligation findings ({result.findings.length})
+                </h2>
+                <div className="space-y-3">
+                  {result.findings.map((f) => (
+                    <FindingCard key={f.obligation_id} f={f} />
+                  ))}
+                </div>
+              </section>
 
-          <TrajectoryViewer steps={result.trajectory} route={result.route} reasoning={result.reasoning} />
+              <TrajectoryViewer steps={result.trajectory} route={result.route} reasoning={result.reasoning} />
+            </>
+          )}
 
           <p className="rounded border border-amber-900/50 bg-amber-950/30 p-3 text-[11px] text-amber-300/80">
             {result.disclaimer}

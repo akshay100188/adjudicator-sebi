@@ -13,10 +13,11 @@ export function TrajectoryViewer({
   route,
   reasoning,
 }: {
-  steps: TrajectoryStep[];
+  steps?: TrajectoryStep[] | null;
   route: string;
   reasoning: string;
 }) {
+  const items = steps ?? [];
   return (
     <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-5">
       <div className="mb-3 flex items-center gap-3">
@@ -24,10 +25,10 @@ export function TrajectoryViewer({
         <span className="rounded-full border border-slate-700 bg-slate-800 px-2 py-0.5 text-[11px] text-slate-300">
           route: {route}
         </span>
-        <span className="text-[11px] text-slate-500">{steps.length} tool calls</span>
+        <span className="text-[11px] text-slate-500">{items.length} tool calls</span>
       </div>
       <ol className="space-y-2">
-        {steps.map((s) => (
+        {items.map((s) => (
           <li key={s.step} className="flex gap-3 text-xs">
             <span className="mt-0.5 w-5 shrink-0 text-right text-slate-600">{s.step}</span>
             <span
