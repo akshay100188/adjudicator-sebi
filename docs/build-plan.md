@@ -56,10 +56,15 @@ trajectories → expected tool sequence); automated runner; regression gate.
   recall regression gate). **Gate PASSES** at 54-obligation scale (recall@5 0.99).
 - Finding eval (Phase 5) + trajectory eval (Phase 4) populate when those phases land.
 
-## Phase 4 — The agent
-Hand-rolled ReAct loop; tool schemas; system prompt; loop governance. Behaviours: routing/adaptive,
-decomposition, multi-hop, corrective (CRAG), self-reflection (Self-RAG grounding gate).
-- Gate: trajectory correct on golden set + end-answer recall ≥ target.
+## Phase 4 — The agent  ✅
+Hand-rolled ReAct loop (`backend/app/agent/`): 5 fine tools, system prompt, bounded agency
+(MAX_STEPS=8), trajectory log, code-enforced grounding gate. Behaviours: routing/adaptive,
+query reformulation, multi-hop (hybrid→expand→graph_lookup→temporal_filter), corrective, Self-RAG.
+- ADR-016 (bounded agency, fine tools, grounding gate).
+- **Gate PASSED (§7, `scripts/run_agent_eval.py`):** route 4/4, key-tool 4/4 (graph_lookup fires on
+  supersession), grounding-clean 4/4, correction 3/4 (agent reformulates proactively, so the reactive
+  correction flag didn't fire on T03 — right answer, honest nuance), avg 3.8 steps. TRAJ logs in
+  `docs/trajectories/`.
 
 ## Phase 5 — Gap-detection / grounded synthesis
 Sonnet (prompt-cached) → structured findings (gap_summary, evidence, recommended_action,
