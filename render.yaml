@@ -1,0 +1,29 @@
+# Render Blueprint — backend (FastAPI agent). One-click via Render → New → Blueprint.
+# Frontend stays on Vercel (see docs/deploy.md).
+services:
+  - type: web
+    name: adjudicator-sebi-backend
+    runtime: python
+    rootDir: backend
+    plan: free                       # free spins down when idle (~50s cold start on first hit)
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      - key: DB_SCHEMA
+        value: adjudicator
+      - key: CORS_ORIGINS
+        value: "*"                   # tighten to your Vercel URL after the frontend deploys
+      # Secrets — set these in the Render dashboard (sync:false keeps them out of git):
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
