@@ -32,7 +32,7 @@ export default function AnalyzePage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="text-xl font-semibold text-slate-100">Scenario runner</h1>
+      <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Scenario runner</h1>
       <p className="mt-1 text-sm text-slate-500">
         Describe a product change or policy. The agent retrieves the currently-valid SEBI obligations
         that apply, traces supersession, and surfaces gaps — each cited to a source circular.
@@ -43,14 +43,14 @@ export default function AnalyzePage() {
         onChange={(e) => setScenario(e.target.value)}
         rows={5}
         placeholder="Describe your stock-broker product change or policy…"
-        className="mt-4 w-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 text-sm text-slate-200 outline-none focus:border-slate-600"
+        className="mt-4 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-800 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200 dark:focus:border-slate-600"
       />
       <div className="mt-2 flex flex-wrap gap-2">
         {SAMPLES.map((s, i) => (
           <button
             key={i}
             onClick={() => setScenario(s)}
-            className="rounded border border-slate-800 bg-slate-900/60 px-2 py-1 text-[11px] text-slate-400 hover:bg-slate-800"
+            className="rounded border border-slate-300 bg-white px-2 py-1 text-[11px] text-slate-600 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-400 dark:hover:bg-slate-800"
           >
             sample {i + 1}
           </button>
@@ -64,17 +64,17 @@ export default function AnalyzePage() {
         {loading ? "Analysing… (agent is running, ~30–60s)" : "Analyse"}
       </button>
 
-      {error && <p className="mt-4 text-sm text-rose-400">Error: {error}</p>}
+      {error && <p className="mt-4 text-sm text-rose-600 dark:text-rose-400">Error: {error}</p>}
 
       {result && (
         <div className="mt-8 space-y-6">
           <section>
             <div className="mb-3 flex items-center gap-3">
-              <h2 className="text-sm font-semibold text-slate-200">
+              <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                 Findings ({result.findings.length})
               </h2>
               {result.findings.length === 0 && (
-                <span className="text-xs text-emerald-400">
+                <span className="text-xs text-emerald-600 dark:text-emerald-400">
                   No gaps identified against the considered obligations.
                 </span>
               )}
@@ -84,7 +84,7 @@ export default function AnalyzePage() {
                 <FindingCard key={f.obligation_id} f={f} />
               ))}
             </div>
-            <p className="mt-2 text-[11px] text-slate-600">
+            <p className="mt-2 text-[11px] text-slate-400 dark:text-slate-600">
               {result.obligations_considered.length} obligations considered ·{" "}
               {result.findings.length} flagged
             </p>
@@ -96,7 +96,7 @@ export default function AnalyzePage() {
             reasoning={result.reasoning}
           />
 
-          <p className="rounded border border-amber-900/50 bg-amber-950/30 p-3 text-[11px] text-amber-300/80">
+          <p className="rounded border border-amber-300 bg-amber-50 p-3 text-[11px] text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300/80">
             {result.disclaimer}
           </p>
         </div>

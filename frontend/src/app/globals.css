@@ -3,10 +3,19 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+}
+
+.dark {
   color-scheme: dark;
 }
 
 body {
+  background-color: #f8fafc; /* slate-50 */
+  color: #1e293b; /* slate-800 */
+}
+
+.dark body {
   background-color: #020617; /* slate-950 */
   color: #e2e8f0; /* slate-200 */
 }
