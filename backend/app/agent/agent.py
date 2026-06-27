@@ -86,10 +86,17 @@ def _summarize(obs: dict) -> dict:
 
 def run_agent(query: str, as_of: date | None = None, verbose: bool = False) -> AgentResult:
     client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
-    system = SYSTEM.format(today=(as_of or date.today()).isoformat())
+    # Block form + cache_control so the loop's repeated tools+system prefix is read
+    # at ~0.1x on steps 2..MAX_STEPS instead of reprocessed at full price each round.
+    system = [{
+        "type": "text",
+        "text": SYSTEM.format(today=(as_of or date.today()).isoformat()),
+        "cache_control": {"type": "ephemeral"},
+    }]
     messages: list[dict] = [{"role": "user", "content": query}]
     trajectory: list[Step] = []
     surfaced: set[str] = set()  # obligation ids returned by any tool (grounding universe)
+    prev_breakpoint: dict | None = None  # last tool_result block carrying cache_control
 
     for step in range(MAX_STEPS):
         resp = client.messages.create(
@@ -122,6 +129,14 @@ def run_agent(query: str, as_of: date | None = None, verbose: bool = False) -> A
                 print(f"[step {step}] {tu.name}({json.dumps(tu.input)[:80]}) -> {str(_summarize(obs))[:120]}")
             tool_results.append({"type": "tool_result", "tool_use_id": tu.id,
                                  "content": json.dumps(obs)[:6000]})
+        # Move the conversation breakpoint to the latest turn so the growing
+        # history is cached too (next step reads this round's prefix at ~0.1x).
+        # Move, don't accumulate: the API allows max 4 cache_control breakpoints,
+        # so we clear the prior turn's marker before setting this one.
+        if prev_breakpoint is not None:
+            prev_breakpoint.pop("cache_control", None)
+        tool_results[-1]["cache_control"] = {"type": "ephemeral"}
+        prev_breakpoint = tool_results[-1]
         messages.append({"role": "user", "content": tool_results})
 
     # ran out of budget
