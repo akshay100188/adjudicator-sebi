@@ -49,7 +49,24 @@ Making the eval DB connection persistent (reuse one warm connection vs a fresh T
 to the Supabase pooler per call) cut per-query latency ~6×: dense 1854 → **290 ms**, hybrid 3564 →
 **424 ms**, hybrid+rerank 7859 → **3222 ms** (the rerank residual is the Haiku call, not the DB).
 
+## Addendum — re-measured at 77 obligations (2026-07-05, 35 golden queries)
+The corpus has since grown to **77 obligations** (added chapters + `refers_to` cross-edges). Re-running
+the same configs on the live 77-corpus confirms the pattern holds and gives the numbers the Phase-7
+writeup quotes (so every writeup figure is on one corpus, not a mix):
+
+| config | recall@1/3/5 | MRR | source |
+|---|---|---|---|
+| dense | 0.74 / 0.93 / 1.00 | **0.86** | this addendum · EXP-008 (recall) |
+| naive hybrid RRF(60) | 0.60 / 0.84 / 0.99 | **0.76** | this addendum · regression_gate |
+| **hybrid + Haiku rerank** | **0.91 / 1.00 / 1.00** | **0.97** | EXP-009 (reranker bake-off) |
+
+The dilution effect is now evidenced at **three scales** (16 → 54 → 77): naive-hybrid MRR 0.79 → 0.74
+→ 0.76 stays **below** dense 0.90 → 0.86 → 0.86, and rerank lifts hybrid to MRR **0.97** at every scale.
+The post-rerank recall the agent actually consumes (0.91/1.00/1.00, zero drops) is in
+`eval/reports/rerank_recall_*.md` (ADR-019).
+
 ## Verdict
-**keep all ADR-011..014 values.** Validated at 3× scale: hybrid candidate generation + Haiku rerank,
-RRF k=60, pool=10→top5, native FTS. The core thesis — rerank turns a recall-first pool into precise
-results, and its value grows with corpus size — is now evidenced on a harder corpus.
+**keep all ADR-011..014 values.** Validated now at 16, 54, and 77 obligations: hybrid candidate
+generation + Haiku rerank, RRF k=60, pool=10→top5, native FTS. The core thesis — rerank turns a
+recall-first pool into precise results, and its value grows with corpus size — is evidenced across
+three corpus scales.

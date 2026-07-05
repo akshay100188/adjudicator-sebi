@@ -33,3 +33,17 @@ citations — the three things that matter for both the showcase and the complia
 - Agent eval (`scripts/run_agent_eval.py`, §7): route accuracy, key-tool hit, tool-set overlap,
   correction correctness, grounding-clean rate. TRAJ logs written to `docs/trajectories/`.
 - Watch avg steps / cost; tighten MAX_STEPS or tool descriptions if the agent over-expands.
+
+## Correction-trigger reliability (measured, 2026-07-05)
+A repeated-run probe (`scripts/probe_correction_variance.py`, 3 reps × 4 gold trajectories) isolates the
+one stochastic axis, corrective re-retrieval (CRAG):
+- **Specificity is perfect:** on the 3 queries that should NOT trigger correction (T01/T02/T04), it
+  fired **0/9** — it never over-corrects.
+- **Sensitivity is weak:** on the one query that SHOULD trigger a canonical-terminology reformulation
+  (T03, "client money" → running-account settlement / upstreaming), it fired only **1/3** in the probe
+  (and 0/1 in the initial eval run) — roughly **1 in 4**.
+This is a **real limitation, not run-to-run noise**: the corrective behaviour is correct *when* it
+fires, but its trigger is under-sensitive on lay-phrasing queries. Route/key-tool/grounding are stable
+at 4/4. Fix path (future): strengthen the CRAG trigger in the system prompt (an explicit low-confidence/
+lay-phrasing check) and re-probe — do not claim "correction works reliably" until the sensitivity number
+moves. Reported honestly in the showcase rather than rounded up.

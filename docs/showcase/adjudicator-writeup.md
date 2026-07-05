@@ -110,7 +110,7 @@ pulled from the ADR files, not memory.
 | **008** Corpus acquisition | Curated seed list (master circular 2024/110) | crawler (brittle; a bounded corpus is the point) | ingest idempotent (re-run ≠ duplicates) |
 | **009** Extraction | LLM-assisted + human review (= gold seed) | pure-auto (unverifiable), pure-manual (no pipeline) | extraction accuracy vs hand-reviewed sample |
 | **010** Contextual Retrieval | Build the hook; decide on/off by experiment | assume-on (violates the no-blind-knob rule) | contextual-on vs -off recall@k (keep/revert) |
-| **011** Retrieval architecture | Hybrid candidate generation → Haiku rerank | pure-sparse (ranks poorly), naive hybrid (< dense here) | MRR 0.79 → **0.97** with rerank |
+| **011** Retrieval architecture | Hybrid candidate generation → Haiku rerank | pure-sparse (ranks poorly), naive hybrid (< dense here) | MRR 0.76 → **0.97** with rerank (@77) |
 | **012** RRF constant | k = 60 (literature default) | tuning k (measured **flat** across 10–100) | logged no-op sweep (EXP-002) |
 | **013** BM25 impl | Native Postgres FTS (`ts_rank_cd`) | ParadeDB/`pg_search` (op weight unjustified) | re-open only if exact-token recall is a bottleneck |
 | **014** Reranker & pool | Haiku, pool 10 → top 5 | none/naive (leaves precision), cross-encoder (later) | recall@5 with pool=10; MRR/precision@1 |
@@ -153,13 +153,15 @@ and it is guarded by a periodic eval the CI gate structurally cannot see (that i
 two-tier split, ADR-019).
 
 **The framing that keeps this honest (ADR-011 status note, WI-2):** *rerank did the precision work;
-hybrid is insurance, not a measured current-corpus win.* On this corpus naive hybrid (MRR 0.79 / 0.74
-at 16 / 54 obligations) actually **underperforms** pure-dense (MRR 0.90 / 0.86) — RRF dilutes a strong
-dense signal with noisier sparse ranks on a small, semantically-separable corpus (EXP-001, EXP-004).
-The classic BM25 exact-term win doesn't even apply: chunks are paraphrased and carry no circular-number
-tokens (ADR-013). Hybrid is kept as an insurance bet for corpus growth and exact-term robustness — to
-be re-benchmarked, not claimed as a current win. **Rerank is the component that earns its cost**
-(MRR 0.79 → 0.97, EXP-001/004).
+hybrid is insurance, not a measured current-corpus win.* On the current 77-obligation corpus, naive
+hybrid (MRR **0.76**) actually **underperforms** pure-dense (MRR **0.86**) — RRF dilutes a strong dense
+signal with noisier sparse ranks on a small, semantically-separable corpus. This dilution effect is
+robust across **three scales** (naive-hybrid MRR 0.79 → 0.74 → 0.76 stays below dense 0.90 → 0.86 → 0.86
+at 16 → 54 → 77 obligations; EXP-001, EXP-004 + its 77-obligation addendum). The classic BM25 exact-term
+win doesn't even apply: chunks are paraphrased and carry no circular-number tokens (ADR-013). Hybrid is
+kept as an insurance bet for corpus growth and exact-term robustness — to be re-benchmarked, not claimed
+as a current win. **Rerank is the component that earns its cost** — on the current corpus it lifts hybrid
+MRR **0.76 → 0.97** (EXP-009 reranker bake-off).
 
 **A discipline anecdote (EXP-002).** The RRF constant `k` was swept over {10, 30, 60, 100} and the
 result was **completely flat** — every metric identical. It is logged as a deliberate no-op: a knob
@@ -178,8 +180,14 @@ with a reason — so the precision decision is **auditable, not asserted**.
 
 **The agent's path (§7 trajectory eval, ADR-016, `scripts/run_agent_eval.py`, 4 gold trajectories):**
 route accuracy **4/4**, key-tool accuracy **4/4** (it calls `graph_lookup` on the supersession
-question), grounding-clean **4/4** (zero hallucinated obligation IDs). Corrective re-retrieval is the
-one nondeterministic axis (3–4 of 4 across runs) — reported as such, not rounded up.
+question), grounding-clean **4/4** (zero hallucinated obligation IDs) — all **stable across repeated
+runs**. Corrective re-retrieval (CRAG) is the one weak axis, and a repeated-run probe
+(`scripts/probe_correction_variance.py`, 3 reps × 4 queries) shows it's a **real gap, not just noise**:
+it never *over*-corrects (**0/9** false fires on the three queries that shouldn't trigger it — perfect
+specificity), but on the one query that *should* trigger a canonical-terminology reformulation it fired
+only **~1 in 4** runs (under-sensitive). So the corrective behaviour is correct *when* it fires but its
+trigger is unreliable on lay-phrasing input — a named limitation, not a claimed strength. That's the
+honest read; "correction works" would be false.
 
 ---
 
@@ -238,8 +246,10 @@ defuses licensing; capability demonstration, not a market entrant → no competi
   demo corpus is deliberately bounded so the gold set stays hand-verifiable.
 - **Single source family:** all obligations derive from one master circular; the supersession graph is
   seeded from its appendices plus synthetic fixtures that exercise the multi-hop path.
-- **Nondeterminism:** synthesis precision fluctuates ~±0.05 run-to-run; corrective re-retrieval fires
-  3–4 of 4. Reported honestly rather than cherry-picked.
+- **Nondeterminism / a real weak spot:** synthesis precision fluctuates ~±0.05 run-to-run; corrective
+  re-retrieval is **under-sensitive** — it fires on only ~1 in 4 of the runs where it should (though it
+  never false-fires: 0/9 on the negative queries). A named limitation with a fix path (ADR-016), not a
+  claimed strength.
 
 **Built since the first draft.**
 - **Document upload** as an input adapter (ADR-003 mode 2, `POST /analyze/document`): normalises to the

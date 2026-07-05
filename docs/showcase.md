@@ -42,15 +42,19 @@ The interview-defensible artifact is the ADRs + experiment logs + golden dataset
 
 ## What was actually built (results on record)
 
-A working, measured agentic RAG system over 54 real SEBI Stock-Broker obligations (5 chapters of the
-Aug-2024 Master Circular), on an isolated Postgres schema.
+> **This is the Phase-0 thesis draft.** The canonical, full write-up with the current numbers is
+> [`docs/showcase/adjudicator-writeup.md`](showcase/adjudicator-writeup.md). Numbers below are kept
+> in sync with it.
+
+A working, measured agentic RAG system over 77 real SEBI Stock-Broker obligations (Aug-2024 Master
+Circular), on an isolated Postgres schema.
 
 | Layer | Result | Where |
 |---|---|---|
-| Corpus | 54 obligations, temporal model + 15-edge citation graph | ADR-001/006/007, seed_manifest |
-| Retrieval | recall@5 **1.00**, MRR **0.97**; choices validated at 3× scale | EXP-001–004, ADR-011–014 |
+| Corpus | 77 obligations, temporal model + 24-edge citation graph | ADR-001/006/007, seed_manifest |
+| Retrieval | post-rerank recall@5 **1.00**, MRR **0.97**; choices validated at 16/54/77 scale | EXP-001–004/008/009, ADR-011–014/019 |
 | Agent (§7) | route **4/4**, key-tool **4/4**, grounding-clean **4/4** | ADR-016, TRAJ-T01–04 |
-| Synthesis | finding recall **1.00**, precision **0.76**, faithfulness **1.00**, compliant control → 0 findings | EXP-005, ADR-017 |
+| Synthesis | finding recall **1.00**, precision **0.87** (EXP-006 pass), faithfulness **1.00**, compliant control → 0 findings | EXP-005/006, ADR-017 |
 
 The headline behaviour: on *"is our running-account settlement policy compliant today, and what
 changed?"* the agent routes multi-hop, retrieves, and **traces the citation graph** — master
