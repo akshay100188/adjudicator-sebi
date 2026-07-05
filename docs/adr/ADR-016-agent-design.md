@@ -42,8 +42,27 @@ one stochastic axis, corrective re-retrieval (CRAG):
 - **Sensitivity is weak:** on the one query that SHOULD trigger a canonical-terminology reformulation
   (T03, "client money" → running-account settlement / upstreaming), it fired only **1/3** in the probe
   (and 0/1 in the initial eval run) — roughly **1 in 4**.
-This is a **real limitation, not run-to-run noise**: the corrective behaviour is correct *when* it
-fires, but its trigger is under-sensitive on lay-phrasing queries. Route/key-tool/grounding are stable
-at 4/4. Fix path (future): strengthen the CRAG trigger in the system prompt (an explicit low-confidence/
-lay-phrasing check) and re-probe — do not claim "correction works reliably" until the sensitivity number
-moves. Reported honestly in the showcase rather than rounded up.
+This was a **real limitation, not run-to-run noise**: the corrective behaviour is correct *when* it
+fires, but its trigger was under-sensitive on lay-phrasing queries. Route/key-tool/grounding are stable
+at 4/4.
+
+## Correction-trigger fix (EXP-011, 2026-07-06)
+Diagnosed as a **trigger/decision failure, not a capability failure** — the agent *can* reformulate lay
+phrasing; it failed to *recognise when to*. Two fixes were considered:
+- **Fix A (rejected, measured):** trigger correction off an objective rerank top-1 score below a
+  threshold. WI-3 feasibility probe killed it — correction-expecting queries score 0.80–0.90 (the
+  reranker is confidently wrong), fully overlapping the clean 0.85–1.00 range; **no separating
+  threshold exists**.
+- **Fix B (chosen):** replace the fuzzy "results look weak" self-judgment with a **forced structured
+  self-check** — after the first `hybrid_search` the agent must explicitly state whether the top result
+  directly addresses the specific concept, and a "no"/lay-phrasing **mandates** reformulation.
+  Implemented as `CORRECTION_CLAUSES` / `run_agent(correction_strictness=…)`, kept general (no
+  gold-query-specific mappings, so it isn't tuned to the test).
+
+Swept strictness 0/1/2 on an expanded gold set (**N = 5 correction-expecting + 6 not-expecting**, 3 reps):
+sensitivity 0.00 / 0.53 / 0.87 against specificity 1.00 / 0.81 / 0.72 — a **monotonic trade-off; no level
+holds specificity at 1.00 while raising sensitivity**. **Operating point (PO): Level 1** — sensitivity
+**0.00 → 0.53**, specificity **1.00 → 0.81** (loss entirely on one borderline query, T04). This is a
+**scoped, demonstration-scale** improvement (N small, stated), not population-level reliability. Residual:
+the widest lay↔canonical gaps (e.g. "earn interest on client money" → MFOS) still under-fire even at L2.
+See EXP-011 for the full sweep. `CORRECTION_STRICTNESS = 1` in `agent.py`.

@@ -19,13 +19,39 @@ from .tools_schema import TOOL_SCHEMAS, dispatch
 
 MODEL = "claude-sonnet-4-6"
 MAX_STEPS = 8  # bounded agency (ADR 4.2) — caps tool-call rounds
+CORRECTION_STRICTNESS = 1  # EXP-011: forced structured self-check. Level 1 chosen (PO): sensitivity
+#                            0.00->0.53 with specificity held at 0.81 (loss on one borderline query).
 
 DISCLAIMER = ("This output does not constitute legal advice or a compliance determination. "
               "All findings require review by a qualified compliance professional. "
               "Always verify against the cited source circular.")
 
-SYSTEM = f"""You are a retrieval agent for SEBI stock-broker (Trading Member) compliance. Today is \
-{{today}}. Given a question or a product-change scenario, gather the set of CURRENTLY-VALID SEBI \
+# Correction-trigger clause, swept in EXP-011 (WI-4). Level 0 = the original fuzzy self-assessment
+# (under-sensitive: fired on only ~1 in 4 of the queries that needed it, ADR-016). Levels 1-2 replace
+# it with a FORCED structured self-check. Kept deliberately GENERAL (no test-query-specific mappings)
+# so the fix isn't tuned to the gold set.
+CORRECTION_CLAUSES = {
+    0: ('If the top results look weak or off-topic, CORRECT: reformulate and re-retrieve (do not just '
+        'accept the first hit).'),
+    1: ('MANDATORY SELF-CHECK after your first hybrid_search, before doing anything else: state '
+        'explicitly whether the single best result DIRECTLY addresses the specific subject asked about, '
+        'or is merely in the same broad topic area. If it does not squarely match the specific concept '
+        '— OR the question used lay / colloquial / non-statutory phrasing rather than SEBI\'s defined '
+        'terms — you MUST reformulate the query into canonical SEBI terminology and hybrid_search again '
+        'before proceeding. Do not accept a topically-adjacent first hit. Set correction_fired=true '
+        'whenever you reformulate and re-retrieve.'),
+    2: ('MANDATORY SELF-CHECK after your first hybrid_search, before doing anything else: state '
+        'explicitly whether the single best result DIRECTLY addresses the specific subject asked about, '
+        'or is merely in the same broad topic area. If it does not squarely match the specific concept '
+        '— OR the question used lay / colloquial / non-statutory phrasing rather than SEBI\'s defined '
+        'terms — you MUST reformulate the query into canonical SEBI terminology and hybrid_search again '
+        'before proceeding. When the phrasing is colloquial or non-statutory, DEFAULT to reformulating '
+        'at least once — one extra search is far cheaper than missing the correct obligation. Do not '
+        'accept a topically-adjacent first hit. Set correction_fired=true whenever you reformulate.'),
+}
+
+SYSTEM = """You are a retrieval agent for SEBI stock-broker (Trading Member) compliance. Today is \
+{today}. Given a question or a product-change scenario, gather the set of CURRENTLY-VALID SEBI \
 obligations that apply, using the tools — then stop and report.
 
 Your job is retrieval + applicability, NOT writing the final compliance findings (that is a later step).
@@ -35,8 +61,7 @@ How to work (ReAct):
    'what changed', 'consolidated position as of today')? State your route in your reasoning.
 2. RETRIEVE with hybrid_search. If the user used lay phrasing, also reformulate into canonical SEBI
    terminology (e.g. "client money" -> "running account settlement of client funds" / "upstreaming of
-   client funds") and search again. If the top results look weak or off-topic, CORRECT: reformulate and
-   re-retrieve (do not just accept the first hit).
+   client funds") and search again. {correction_clause}
 3. For multi-hop: expand_to_parent to get an obligation's source circular reference, then graph_lookup
    on that reference to trace amends/supersedes/consolidated_by, and use temporal_filter to confirm
    what is valid as of today.
@@ -44,12 +69,12 @@ How to work (ReAct):
 5. GROUNDING SELF-CHECK before answering: every obligation_id you report MUST have been returned by a
    tool in this session. Do not invent obligation IDs.
 
-Budget: at most {MAX_STEPS} tool-call rounds. Be efficient — simple questions need 1-2 tools.
+Budget: at most {max_steps} tool-call rounds. Be efficient — simple questions need 1-2 tools.
 
 When done, STOP calling tools and output ONLY a JSON object (no prose around it):
-{{{{"route": "simple|multi-hop", "relevant_obligations": ["SB-..."],
+{{"route": "simple|multi-hop", "relevant_obligations": ["SB-..."],
   "reasoning": "<1-3 sentences on why these apply / what the supersession trace showed>",
-  "correction_fired": true|false}}}}"""
+  "correction_fired": true|false}}"""
 
 
 @dataclass
@@ -84,13 +109,18 @@ def _summarize(obs: dict) -> dict:
     return s
 
 
-def run_agent(query: str, as_of: date | None = None, verbose: bool = False) -> AgentResult:
+def run_agent(query: str, as_of: date | None = None, verbose: bool = False,
+              correction_strictness: int = CORRECTION_STRICTNESS) -> AgentResult:
     client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
     # Block form + cache_control so the loop's repeated tools+system prefix is read
     # at ~0.1x on steps 2..MAX_STEPS instead of reprocessed at full price each round.
     system = [{
         "type": "text",
-        "text": SYSTEM.format(today=(as_of or date.today()).isoformat()),
+        "text": SYSTEM.format(
+            today=(as_of or date.today()).isoformat(),
+            max_steps=MAX_STEPS,
+            correction_clause=CORRECTION_CLAUSES[correction_strictness],
+        ),
         "cache_control": {"type": "ephemeral"},
     }]
     messages: list[dict] = [{"role": "user", "content": query}]

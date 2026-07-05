@@ -17,17 +17,18 @@ from app.agent.agent import run_agent            # noqa: E402
 from eval.harness import load_trajectories       # noqa: E402
 
 REPS = int(sys.argv[1]) if len(sys.argv) > 1 else 4
+STRICTNESS = int(sys.argv[2]) if len(sys.argv) > 2 else 0  # correction-clause level (EXP-011 sweep)
 
 
 def main() -> int:
     gold = load_trajectories()
     fired = defaultdict(int)
     match = defaultdict(int)
-    print(f"Correction-trigger variance probe — {REPS} reps/query\n")
+    print(f"Correction-trigger variance probe — {REPS} reps/query, strictness={STRICTNESS}\n")
     for g in gold:
         exp = bool(g.get("correction_expected"))
         for r in range(REPS):
-            res = run_agent(g["query"])
+            res = run_agent(g["query"], correction_strictness=STRICTNESS)
             f = bool(res.correction_fired)
             fired[g["id"]] += int(f)
             match[g["id"]] += int(f == exp)
@@ -37,8 +38,18 @@ def main() -> int:
         exp = bool(g.get("correction_expected"))
         print(f"  {g['id']} (gold correction={exp}): fired {fired[g['id']]}/{REPS}, "
               f"matched gold {match[g['id']]}/{REPS}")
+
+    # Sensitivity = P(fire | should fire); Specificity = P(not fire | should not fire) — averaged over reps.
+    pos = [g for g in gold if bool(g.get("correction_expected"))]
+    neg = [g for g in gold if not bool(g.get("correction_expected"))]
+    sens = sum(fired[g["id"]] for g in pos) / (len(pos) * REPS) if pos else 0.0
+    spec = sum(REPS - fired[g["id"]] for g in neg) / (len(neg) * REPS) if neg else 0.0
+    print(f"\n  SENSITIVITY (correction-expecting fired): {sens:.2f}  "
+          f"(over {len(pos)} queries x {REPS} reps)")
+    print(f"  SPECIFICITY (not-expecting did NOT fire): {spec:.2f}  "
+          f"(over {len(neg)} queries x {REPS} reps)")
     total = sum(match.values()); denom = len(gold) * REPS
-    print(f"\n  correction-trigger accuracy across all runs: {total}/{denom} = {total/denom:.2f}")
+    print(f"  correction-trigger accuracy across all runs: {total}/{denom} = {total/denom:.2f}")
     return 0
 
 

@@ -181,13 +181,19 @@ with a reason — so the precision decision is **auditable, not asserted**.
 **The agent's path (§7 trajectory eval, ADR-016, `scripts/run_agent_eval.py`, 4 gold trajectories):**
 route accuracy **4/4**, key-tool accuracy **4/4** (it calls `graph_lookup` on the supersession
 question), grounding-clean **4/4** (zero hallucinated obligation IDs) — all **stable across repeated
-runs**. Corrective re-retrieval (CRAG) is the one weak axis, and a repeated-run probe
-(`scripts/probe_correction_variance.py`, 3 reps × 4 queries) shows it's a **real gap, not just noise**:
-it never *over*-corrects (**0/9** false fires on the three queries that shouldn't trigger it — perfect
-specificity), but on the one query that *should* trigger a canonical-terminology reformulation it fired
-only **~1 in 4** runs (under-sensitive). So the corrective behaviour is correct *when* it fires but its
-trigger is unreliable on lay-phrasing input — a named limitation, not a claimed strength. That's the
-honest read; "correction works" would be false.
+runs**. Corrective re-retrieval (CRAG) was the one weak axis, and I treated it as a measured problem
+rather than papering over it. A repeated-run probe first showed the original trigger was **broken, not
+noisy**: on an expanded gold set of **5 correction-expecting + 6 not-expecting** queries (3 reps each),
+it fired on **0** of the queries that needed it (sensitivity 0.00) while never over-firing (specificity
+1.00). I diagnosed it as a *trigger* failure, not a capability one — the agent can reformulate lay
+phrasing, it just didn't recognise when to. I measured and **rejected** an objective rerank-score trigger
+(the reranker is confidently wrong, so its score doesn't separate weak from good — EXP-011/WI-3), then
+replaced the fuzzy self-judgment with a **forced structured self-check**. Sweeping its strictness gave a
+clean, honest trade-off (sensitivity 0.00 / 0.53 / 0.87 vs specificity 1.00 / 0.81 / 0.72) with **no
+setting that lifts sensitivity for free**; the chosen operating point raised sensitivity **0.00 → 0.53**
+with specificity held at **0.81** (the loss on a single borderline query). Scoped and demonstration-scale
+(N is small and stated), the widest lay↔canonical gaps still under-fire — but the behaviour is now
+*measured, moved, and bounded*, not asserted.
 
 ---
 
@@ -246,10 +252,12 @@ defuses licensing; capability demonstration, not a market entrant → no competi
   demo corpus is deliberately bounded so the gold set stays hand-verifiable.
 - **Single source family:** all obligations derive from one master circular; the supersession graph is
   seeded from its appendices plus synthetic fixtures that exercise the multi-hop path.
-- **Nondeterminism / a real weak spot:** synthesis precision fluctuates ~±0.05 run-to-run; corrective
-  re-retrieval is **under-sensitive** — it fires on only ~1 in 4 of the runs where it should (though it
-  never false-fires: 0/9 on the negative queries). A named limitation with a fix path (ADR-016), not a
-  claimed strength.
+- **Nondeterminism / a scoped fix:** synthesis precision fluctuates ~±0.05 run-to-run. Corrective
+  re-retrieval was under-sensitive (fired 0/15 on the queries that needed it); a forced structured
+  self-check (EXP-011) raised sensitivity to **0.53** with specificity held at **0.81** on an expanded
+  gold set of N=5+6 — a measured, demonstration-scale improvement, not population-level reliability. The
+  widest lay↔canonical gaps (e.g. "earn interest on client money" → MFOS) still under-fire; stated, not
+  hidden.
 
 **Built since the first draft.**
 - **Document upload** as an input adapter (ADR-003 mode 2, `POST /analyze/document`): normalises to the
