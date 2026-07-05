@@ -31,7 +31,7 @@ def main() -> int:
         tp += s_tp; fp += s_fp; fn += s_fn
 
         # citation faithfulness: every finding's obligation must have been considered by the agent
-        considered = set(res["obligations_considered"])
+        considered = {o["obligation_id"] for o in res["obligations_considered"]}
         for f in res["findings"]:
             grounded_total += 1
             grounded_ok += 1 if f["obligation_id"] in considered else 0

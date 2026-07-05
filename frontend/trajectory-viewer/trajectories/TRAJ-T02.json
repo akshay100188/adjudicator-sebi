@@ -1,0 +1,240 @@
+{
+  "id": "T02",
+  "query": "How often must running accounts be settled?",
+  "route": {
+    "actual": "simple",
+    "gold": "simple"
+  },
+  "correction_fired": {
+    "actual": false,
+    "gold": false
+  },
+  "grounding_dropped": [],
+  "steps_used": 3,
+  "relevant_obligations": [
+    "SB-RUNACCT-001",
+    "SB-RUNACCT-002",
+    "SB-RUNACCT-007",
+    "SB-EWMDS-015"
+  ],
+  "reasoning": "SB-RUNACCT-001 establishes the core rule: Trading Members must settle clients' running accounts on either a quarterly or monthly basis (per each client's choice), on dates stipulated by the Stock Exchanges. SB-RUNACCT-002 requires TMs to follow an annual settlement calendar jointly issued by the Exchanges at the start of each financial year. SB-RUNACCT-007 adds a special case: for inactive clients (no transaction in the past 30 calendar days), any credit balance must be returned within 3 working days regardless of the regular settlement cycle. SB-EWMDS-015 further mandates compliance with any shortened settlement timelines prescribed by Stock Exchanges under early-warning monitoring. All four obligations are currently valid as of 2026-07-04, sourced from SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110.",
+  "gold_tools": [
+    "hybrid_search",
+    "rerank"
+  ],
+  "actual_tools": [
+    "temporal_filter",
+    "hybrid_search",
+    "rerank",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent"
+  ],
+  "key_tool": "hybrid_search",
+  "key_tool_hit": true,
+  "tool_set_overlap": 0.5,
+  "match": "partial",
+  "notes": "simple lookup; no supersession trace needed.",
+  "disclaimer": "This output does not constitute legal advice or a compliance determination. All findings require review by a qualified compliance professional. Always verify against the cited source circular.",
+  "steps": [
+    {
+      "n": 1,
+      "tool": "temporal_filter",
+      "thought": "I'll route this as a **simple obligation lookup**. The user is asking about settlement frequency for running accounts — canonical SEBI term is \"running account settlement of client funds\". Let me search and rerank efficiently.",
+      "args": {
+        "as_of": "2026-07-04"
+      },
+      "observation": {
+        "as_of": "2026-07-04",
+        "valid_count": 77,
+        "valid_obligation_ids": "[77 ids]"
+      }
+    },
+    {
+      "n": 2,
+      "tool": "hybrid_search",
+      "thought": "I'll route this as a **simple obligation lookup**. The user is asking about settlement frequency for running accounts — canonical SEBI term is \"running account settlement of client funds\". Let me search and rerank efficiently.",
+      "args": {
+        "query": "running account settlement of client funds frequency",
+        "top_k": 10
+      },
+      "observation": {
+        "results": [
+          {
+            "obligation_id": "SB-RUNACCT-003",
+            "title": "Ring-Fence Funds Received Post-Settlement in Up Streaming Client Nodal Bank Account"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-006",
+            "title": "Settle Running Account Only via Actual Payment to Client's Bank Account"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-015",
+            "title": "Stock Exchange Online Monitoring System for Running Account Settlement"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-016",
+            "title": "Do Not Retain Excess Client Funds After Settlement"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-012",
+            "title": "Send SMS and Email Settlement Intimation with Transfer Details"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-002",
+            "title": "Maintain Designated USCNBA for Receipt of Client Funds"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-009",
+            "title": "Discontinue Retention of Funds for Administrative/Operational Difficulties for Active Clients"
+          },
+          {
+            "obligation_id": "SB-EWMDS-015",
+            "title": "Comply with Shortened Running Account Settlement Timelines When Prescribed"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-008",
+            "title": "Use Date of Realisation as Settlement Date for Physical Payment Instruments"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-001",
+            "title": "Settle Running Account on Exchange-Stipulated Dates per Client Choice"
+          }
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "tool": "rerank",
+      "thought": "Good hits. Let me now rerank the most relevant candidates and also search specifically for the settlement frequency/calendar obligations.",
+      "args": {
+        "query": "how often must running accounts be settled frequency 30 days 90 days calendar",
+        "candidate_ids": [
+          "SB-RUNACCT-001",
+          "SB-RUNACCT-002",
+          "SB-RUNACCT-003",
+          "SB-RUNACCT-004",
+          "SB-RUNACCT-005",
+          "SB-RUNACCT-006",
+          "SB-RUNACCT-007",
+          "SB-RUNACCT-008",
+          "SB-RUNACCT-009",
+          "SB-RUNACCT-010",
+          "SB-RUNACCT-011",
+          "SB-RUNACCT-012",
+          "SB-RUNACCT-013",
+          "SB-RUNACCT-014",
+          "SB-RUNACCT-015",
+          "SB-RUNACCT-016",
+          "SB-EWMDS-015"
+        ]
+      },
+      "observation": {
+        "reranked": [
+          {
+            "obligation_id": "SB-RUNACCT-001",
+            "title": "",
+            "score": 0.9
+          },
+          {
+            "obligation_id": "SB-RUNACCT-002",
+            "title": "",
+            "score": 0.85
+          },
+          {
+            "obligation_id": "SB-EWMDS-015",
+            "title": "",
+            "score": 0.8
+          },
+          {
+            "obligation_id": "SB-RUNACCT-007",
+            "title": "",
+            "score": 0.7
+          },
+          {
+            "obligation_id": "SB-RUNACCT-015",
+            "title": "",
+            "score": 0.15
+          }
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "tool": "expand_to_parent",
+      "thought": "Strong top results. Let me expand the top-scoring ones to get full obligation text.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-001"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-001",
+        "title": "Settle Running Account on Exchange-Stipulated Dates per Client Choice",
+        "obligation_text": "The Trading Member (TM), after considering the End of the Day (EOD) obligation of funds across all Exchanges, must settle clients' running accounts on either a quarterly or monthly basis (as chosen by each client), on the dates stipulated by the Stock Exchanges.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.1.1"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 5,
+      "tool": "expand_to_parent",
+      "thought": "Strong top results. Let me expand the top-scoring ones to get full obligation text.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-002"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-002",
+        "title": "Adhere to Annual Settlement Calendar Issued by Stock Exchanges",
+        "obligation_text": "Stock Exchanges shall jointly issue, at the beginning of each financial year, an annual calendar specifying all running account settlement dates for both quarterly and monthly cycles. The TM must adhere to this calendar when scheduling settlements.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.1.2"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 6,
+      "tool": "expand_to_parent",
+      "thought": "Strong top results. Let me expand the top-scoring ones to get full obligation text.",
+      "args": {
+        "obligation_id": "SB-EWMDS-015"
+      },
+      "observation": {
+        "obligation_id": "SB-EWMDS-015",
+        "title": "Comply with Shortened Running Account Settlement Timelines When Prescribed",
+        "obligation_text": "When Stock Exchanges prescribe and monitor shorter time durations for the settlement of running accounts of clients (as a preventive action following early warning signal analysis), a stock broker must comply with the prescribed shorter settlement timelines for client running accounts.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "17.6.1.5"
+        ],
+        "parent_heading": "Early Warning Mechanism to prevent diversion of client securities",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 7,
+      "tool": "expand_to_parent",
+      "thought": "Strong top results. Let me expand the top-scoring ones to get full obligation text.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-007"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-007",
+        "title": "Return Credit Balance to Inactive Clients Within Three Working Days",
+        "obligation_text": "For clients who have a credit balance and have not conducted any transaction in the 30 calendar days since their last transaction, the TM must return the credit balance to the client within the next three working days, irrespective of when the running account was previously settled.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.4"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    }
+  ]
+}

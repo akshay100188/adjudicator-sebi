@@ -28,3 +28,11 @@ logged experiment in Phase 3, deciding on the recall number.
 ## Consequences / what we'll measure
 - `VECTOR(512)` columns; HNSW index. Re-embedding to swap models is a one-time, prompt-cacheable cost.
 - Phase 3 EXP: `text-embedding-3-small` vs. ≥1 alternative on golden `recall@k`; keep/revert on number.
+
+## Result (EXP-008, WI-7) — keep the baseline
+Benchmarked `text-embedding-3-small`@512 vs `text-embedding-3-large`@512 and @1024 on golden dense
+recall@k. `-3-large` lifts early-rank dense recall (recall@1 0.74→0.83, recall@3 0.93→1.00) but
+**recall@5 is already 1.00 for the baseline**, and the Haiku reranker already recovers recall@1 to 0.91
+end-to-end — so re-embedding buys **no pipeline-level recall** today. 512→1024 dims adds nothing.
+**Decision: keep `-3-small`@512 for v1.** `-3-large`@512 (same storage) is the documented upgrade path
+if the reranker is removed or dense recall@5 erodes as the corpus grows. See EXP-008.

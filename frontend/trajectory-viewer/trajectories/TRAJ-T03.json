@@ -1,0 +1,507 @@
+{
+  "id": "T03",
+  "query": "What's the position on client money sitting in our account?",
+  "route": {
+    "actual": "multi-hop",
+    "gold": "multi-hop"
+  },
+  "correction_fired": {
+    "actual": false,
+    "gold": true
+  },
+  "grounding_dropped": [],
+  "steps_used": 4,
+  "relevant_obligations": [
+    "SB-RUNACCT-016",
+    "SB-RUNACCT-015",
+    "SB-UPSTREAM-001",
+    "SB-UPSTREAM-002",
+    "SB-RUNACCT-003",
+    "SB-RUNACCT-006",
+    "SB-RUNACCT-009",
+    "SB-RUNACCT-013"
+  ],
+  "reasoning": "Client money sitting in a broker's account is governed by two interlocking frameworks — (1) Running Account Settlement (clauses 47.x): the broker must not retain excess client funds after settlement (SB-RUNACCT-016), settlement is valid only via actual payment to the client's bank account and not by journal entry (SB-RUNACCT-006), administrative/operational difficulties are no longer a valid reason to retain active-client funds (SB-RUNACCT-009), a retention statement must be sent within 5 working days (SB-RUNACCT-013), and Stock Exchanges monitor compliance online (SB-RUNACCT-015); and (2) Upstreaming Framework (clauses 93.x): all clear client credit balances must be upstreamed to Clearing Corporations on an EOD basis in the form of cash/FDR lien/MFOS pledge (SB-UPSTREAM-001), all client funds must be received only in the designated USCNBA (SB-UPSTREAM-002), and post-settlement receipts must be ring-fenced in the USCNBA and not used for other clients (SB-RUNACCT-003). All obligations flow from the current master consolidated circular SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110, which consolidates all prior circulars from 2018 onwards and supersedes 2024/53; confirmed valid as of 2026-07-04.",
+  "gold_tools": [
+    "hybrid_search",
+    "rerank",
+    "hybrid_search"
+  ],
+  "actual_tools": [
+    "hybrid_search",
+    "hybrid_search",
+    "temporal_filter",
+    "rerank",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent",
+    "graph_lookup",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent",
+    "expand_to_parent"
+  ],
+  "key_tool": "rerank",
+  "key_tool_hit": true,
+  "tool_set_overlap": 0.4,
+  "match": "partial",
+  "notes": "lay phrasing 'client money' is ambiguous; CRAG correction should reformulate to canonical SEBI terms (running-account settlement / upstreaming of client funds) and re-retrieve.",
+  "disclaimer": "This output does not constitute legal advice or a compliance determination. All findings require review by a qualified compliance professional. Always verify against the cited source circular.",
+  "steps": [
+    {
+      "n": 1,
+      "tool": "hybrid_search",
+      "thought": "I'll route this as a **multi-hop** question — \"client money sitting in our account\" maps to SEBI obligations on **running account settlement of client funds**, **upstreaming of client funds**, and **retention of client funds by stock-brokers**. I'll search with both lay and canonical SEBI terminology simultaneously, and also apply a temporal filter to scope valid obligations as of today.",
+      "args": {
+        "query": "running account settlement of client funds stock broker",
+        "top_k": 10
+      },
+      "observation": {
+        "results": [
+          {
+            "obligation_id": "SB-RUNACCT-003",
+            "title": "Ring-Fence Funds Received Post-Settlement in Up Streaming Client Nodal Bank Account"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-015",
+            "title": "Stock Exchange Online Monitoring System for Running Account Settlement"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-006",
+            "title": "Settle Running Account Only via Actual Payment to Client's Bank Account"
+          },
+          {
+            "obligation_id": "SB-EWMDS-015",
+            "title": "Comply with Shortened Running Account Settlement Timelines When Prescribed"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-002",
+            "title": "Maintain Designated USCNBA for Receipt of Client Funds"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-016",
+            "title": "Do Not Retain Excess Client Funds After Settlement"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-004",
+            "title": "CMs to Use Designated Proprietary Account for Funds Received from/Paid to SBs"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-009",
+            "title": "Discontinue Retention of Funds for Administrative/Operational Difficulties for Active Clients"
+          },
+          {
+            "obligation_id": "SB-EWMDS-010",
+            "title": "Prohibit Pledging of Securities of Credit-Balance Clients for Own/Other Purposes"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-001",
+            "title": "Upstream All Client Clear Credit Balances to CCs on EOD Basis"
+          }
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "tool": "hybrid_search",
+      "thought": "I'll route this as a **multi-hop** question — \"client money sitting in our account\" maps to SEBI obligations on **running account settlement of client funds**, **upstreaming of client funds**, and **retention of client funds by stock-brokers**. I'll search with both lay and canonical SEBI terminology simultaneously, and also apply a temporal filter to scope valid obligations as of today.",
+      "args": {
+        "query": "client money retention upstreaming broker account obligations",
+        "top_k": 10
+      },
+      "observation": {
+        "results": [
+          {
+            "obligation_id": "SB-UPSTREAM-002",
+            "title": "Maintain Designated USCNBA for Receipt of Client Funds"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-003",
+            "title": "Ring-Fence Funds Received Post-Settlement in Up Streaming Client Nodal Bank Account"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-001",
+            "title": "Upstream All Client Clear Credit Balances to CCs on EOD Basis"
+          },
+          {
+            "obligation_id": "SB-EWMDS-006",
+            "title": "Monitor Dormant Account Activations and UCC Modifications"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-006",
+            "title": "Settle Running Account Only via Actual Payment to Client's Bank Account"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-003",
+            "title": "Maintain Designated DSCNBA for Payment of Funds to Clients"
+          },
+          {
+            "obligation_id": "SB-CLTSEC-002",
+            "title": "Transfer of Unpaid Securities to Client Demat Account with Auto-Pledge Creation"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-014",
+            "title": "Scope Exclusion: Framework Not Applicable to Bank-CMs and Proprietary Funds"
+          },
+          {
+            "obligation_id": "SB-RUNACCT-013",
+            "title": "Send Retention Statement with Running Account Statement Within 5 Working Days"
+          },
+          {
+            "obligation_id": "SB-PAYINVAL-001",
+            "title": "Depository Validation of Pay-In Transfer Instructions Against CC Obligations"
+          }
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "tool": "temporal_filter",
+      "thought": "I'll route this as a **multi-hop** question — \"client money sitting in our account\" maps to SEBI obligations on **running account settlement of client funds**, **upstreaming of client funds**, and **retention of client funds by stock-brokers**. I'll search with both lay and canonical SEBI terminology simultaneously, and also apply a temporal filter to scope valid obligations as of today.",
+      "args": {
+        "as_of": "2026-07-04"
+      },
+      "observation": {
+        "as_of": "2026-07-04",
+        "valid_count": 77,
+        "valid_obligation_ids": "[77 ids]"
+      }
+    },
+    {
+      "n": 4,
+      "tool": "rerank",
+      "thought": "Good — I have a rich candidate set. All retrieved IDs are in the valid set as of 2026-07-04. Now let me expand key obligations for full text and cross-references, and simultaneously rerank the full candidate set for precision.",
+      "args": {
+        "query": "client money retention running account settlement upstreaming stock broker obligations",
+        "candidate_ids": [
+          "SB-RUNACCT-003",
+          "SB-RUNACCT-015",
+          "SB-RUNACCT-006",
+          "SB-EWMDS-015",
+          "SB-UPSTREAM-002",
+          "SB-RUNACCT-016",
+          "SB-UPSTREAM-004",
+          "SB-RUNACCT-009",
+          "SB-EWMDS-010",
+          "SB-UPSTREAM-001",
+          "SB-UPSTREAM-003",
+          "SB-RUNACCT-013",
+          "SB-UPSTREAM-014",
+          "SB-UPSTREAM-005",
+          "SB-UPSTREAM-006",
+          "SB-UPSTREAM-007",
+          "SB-UPSTREAM-008",
+          "SB-UPSTREAM-009",
+          "SB-UPSTREAM-010",
+          "SB-UPSTREAM-011",
+          "SB-UPSTREAM-012",
+          "SB-UPSTREAM-013"
+        ]
+      },
+      "observation": {
+        "reranked": [
+          {
+            "obligation_id": "SB-RUNACCT-016",
+            "title": "",
+            "score": 0.92
+          },
+          {
+            "obligation_id": "SB-RUNACCT-015",
+            "title": "",
+            "score": 0.9
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-002",
+            "title": "",
+            "score": 0.88
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-001",
+            "title": "",
+            "score": 0.87
+          },
+          {
+            "obligation_id": "SB-RUNACCT-003",
+            "title": "",
+            "score": 0.85
+          }
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "tool": "expand_to_parent",
+      "thought": "Good — I have a rich candidate set. All retrieved IDs are in the valid set as of 2026-07-04. Now let me expand key obligations for full text and cross-references, and simultaneously rerank the full candidate set for precision.",
+      "args": {
+        "obligation_id": "SB-UPSTREAM-001"
+      },
+      "observation": {
+        "obligation_id": "SB-UPSTREAM-001",
+        "title": "Upstream All Client Clear Credit Balances to CCs on EOD Basis",
+        "obligation_text": "Stock Brokers (SBs) and Clearing Members (CMs) must upstream all clients' clear credit balances to Clearing Corporations (CCs) on an End of Day (EOD) basis. Such upstreaming shall be done only in the form of: (a) cash, (b) lien on Fixed Deposit Receipts (FDRs) created out of clients' funds, or (c) pledge of units of Mutual Fund Overnight Schemes (MFOS) created out of clients' funds.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "93.1"
+        ],
+        "parent_heading": "Upstreaming of clients' funds by Stock Brokers (SBs) / Clea ring Members",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 6,
+      "tool": "expand_to_parent",
+      "thought": "Good — I have a rich candidate set. All retrieved IDs are in the valid set as of 2026-07-04. Now let me expand key obligations for full text and cross-references, and simultaneously rerank the full candidate set for precision.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-016"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-016",
+        "title": "Do Not Retain Excess Client Funds After Settlement",
+        "obligation_text": "The Trading Member must not retain excess client funds as on the date of settlement of the running account, considering all client obligations across exchanges.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.10"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 7,
+      "tool": "expand_to_parent",
+      "thought": "",
+      "args": {
+        "obligation_id": "SB-RUNACCT-003"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-003",
+        "title": "Ring-Fence Funds Received Post-Settlement in Up Streaming Client Nodal Bank Account",
+        "obligation_text": "After a client's running account has been settled, any funds subsequently received from that client must remain in the 'Up Streaming Client Nodal Bank Account' and must not be used for the settlement of running accounts of other clients.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.1.3"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": [
+          {
+            "obligation_id": "SB-UPSTREAM-002",
+            "title": "Maintain Designated USCNBA for Receipt of Client Funds",
+            "direction": "refers_to",
+            "source_note": "cross-reference: ring-fences funds in the USCNBA, defined here"
+          }
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "tool": "expand_to_parent",
+      "thought": "",
+      "args": {
+        "obligation_id": "SB-UPSTREAM-002"
+      },
+      "observation": {
+        "obligation_id": "SB-UPSTREAM-002",
+        "title": "Maintain Designated USCNBA for Receipt of Client Funds",
+        "obligation_text": "Stock Brokers/CMs must maintain a designated Up Streaming Client Nodal Bank Account (USCNBA) specifically for receiving funds from clients. This account must be named 'Name of the SB/CM – USCNB account'. No client funds shall be received in any account other than the USCNBA.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "93.2"
+        ],
+        "parent_heading": "Upstreaming of clients' funds by Stock Brokers (SBs) / Clea ring Members",
+        "related_obligations": [
+          {
+            "obligation_id": "SB-RUNACCT-003",
+            "title": "Ring-Fence Funds Received Post-Settlement in Up Streaming Client Nodal Bank Account",
+            "direction": "referenced_by",
+            "source_note": "cross-reference: ring-fences funds in the USCNBA, defined here"
+          },
+          {
+            "obligation_id": "SB-UPSTREAM-013",
+            "title": "Retain Unupstreamed Client Balances in USCNBA Until Next-Day Upstreaming",
+            "direction": "referenced_by",
+            "source_note": "cross-reference: retains balances in the USCNBA, defined here"
+          }
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "tool": "graph_lookup",
+      "thought": "",
+      "args": {
+        "circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110"
+      },
+      "observation": {
+        "edges": [
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "CIR/HO/MIRSD/DOP/CIR/P/2019/75",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/DOP/CIR/P/2018/153",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2021/577",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2022/101",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/DoP/P/CIR/2022/119",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2022/153",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/061",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/187",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2023/73",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/53",
+            "relation_type": "supersedes",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+            "to_ref": "SEBI/HO/MIRSD/MIRSD-PoD1/P/CIR/2023/197",
+            "relation_type": "consolidated_by",
+            "depth": 1
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2022/101",
+            "to_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2021/577",
+            "relation_type": "amends",
+            "depth": 2
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2022/153",
+            "to_ref": "CIR/HO/MIRSD/DOP/CIR/P/2019/75",
+            "relation_type": "amends",
+            "depth": 2
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/MIRSD-PoD1/P/CIR/2023/197",
+            "to_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2022/101",
+            "relation_type": "amends",
+            "depth": 2
+          },
+          {
+            "from_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2022/101",
+            "to_ref": "SEBI/HO/MIRSD/DOP/P/CIR/2021/577",
+            "relation_type": "amends",
+            "depth": 3
+          }
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "tool": "expand_to_parent",
+      "thought": "The graph confirms that **SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110** is the **current consolidated master circular** — it consolidates all prior circulars on running account settlement and upstreaming (going back to 2018/2019) and supersedes the 2024/53 circular. All obligations retrieved sit under this master circular and are valid as of 2026-07-04. Let me now expand the remaining top-ranked obligations.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-015"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-015",
+        "title": "Stock Exchange Online Monitoring System for Running Account Settlement",
+        "obligation_text": "Stock Exchanges shall develop an online system for effective monitoring of the timely settlement of clients' running accounts and to verify that excess client funds are not retained by the Trading Member as on the date of settlement. The intent of the system is to discourage Trading Members from retaining excess client funds after settlement, considering all client obligations across exchanges; the responsibility for this monitoring may be shared among Stock Exchanges.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.10"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 11,
+      "tool": "expand_to_parent",
+      "thought": "The graph confirms that **SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110** is the **current consolidated master circular** — it consolidates all prior circulars on running account settlement and upstreaming (going back to 2018/2019) and supersedes the 2024/53 circular. All obligations retrieved sit under this master circular and are valid as of 2026-07-04. Let me now expand the remaining top-ranked obligations.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-009"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-009",
+        "title": "Discontinue Retention of Funds for Administrative/Operational Difficulties for Active Clients",
+        "obligation_text": "The TM must discontinue retaining any client funds on grounds of administrative or operational difficulties in settling the accounts of regular trading (active) clients.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.6"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 12,
+      "tool": "expand_to_parent",
+      "thought": "The graph confirms that **SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110** is the **current consolidated master circular** — it consolidates all prior circulars on running account settlement and upstreaming (going back to 2018/2019) and supersedes the 2024/53 circular. All obligations retrieved sit under this master circular and are valid as of 2026-07-04. Let me now expand the remaining top-ranked obligations.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-006"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-006",
+        "title": "Settle Running Account Only via Actual Payment to Client's Bank Account",
+        "obligation_text": "A client's running account shall be considered settled only when actual payment is made into the client's bank account. Settlement must not be effected by journal entries. Journal entries in a client's account are permitted solely for the levy or reversal of charges in that client's account.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.3"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    },
+    {
+      "n": 13,
+      "tool": "expand_to_parent",
+      "thought": "The graph confirms that **SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110** is the **current consolidated master circular** — it consolidates all prior circulars on running account settlement and upstreaming (going back to 2018/2019) and supersedes the 2024/53 circular. All obligations retrieved sit under this master circular and are valid as of 2026-07-04. Let me now expand the remaining top-ranked obligations.",
+      "args": {
+        "obligation_id": "SB-RUNACCT-013"
+      },
+      "observation": {
+        "obligation_id": "SB-RUNACCT-013",
+        "title": "Send Retention Statement with Running Account Statement Within 5 Working Days",
+        "obligation_text": "The Trading Member must send the retention statement along with the statement of running accounts to the client, as per existing provisions, within 5 working days of settling the running account.",
+        "source_circular_ref": "SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2024/110",
+        "clause_refs": [
+          "47.8"
+        ],
+        "parent_heading": "Settlement of Running Account of Client's Funds lying with Trading Member",
+        "related_obligations": []
+      }
+    }
+  ]
+}

@@ -17,11 +17,15 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "backend"))
 
+import json
+
 from app.agent.agent import run_agent          # noqa: E402
 from eval.harness import (load_trajectories, tool_set_overlap,  # noqa: E402
                           trajectory_order_match, key_tool_hit)
 
 TRAJ_DIR = ROOT / "docs" / "trajectories"
+# WI-4: full, untruncated JSON the static trajectory viewer consumes (frontend/trajectory-viewer).
+VIEWER_DIR = ROOT / "frontend" / "trajectory-viewer" / "trajectories"
 
 
 def write_traj_md(gold: dict, res) -> None:
@@ -47,6 +51,39 @@ def write_traj_md(gold: dict, res) -> None:
     (TRAJ_DIR / f"TRAJ-{gold['id']}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def write_traj_json(gold: dict, res) -> None:
+    """Full trajectory record for the static viewer (WI-4) — untruncated, unlike the .md digest."""
+    actual = res.tool_sequence()
+    order_match = trajectory_order_match(gold["expected_tools"], actual)
+    overlap = tool_set_overlap(gold["expected_tools"], actual)
+    match = "exact" if order_match else ("partial" if overlap > 0 else "miss")
+    doc = {
+        "id": gold["id"],
+        "query": gold["query"],
+        "route": {"actual": res.route, "gold": gold["route"]},
+        "correction_fired": {"actual": res.correction_fired, "gold": bool(gold.get("correction_expected"))},
+        "grounding_dropped": res.grounding_dropped,
+        "steps_used": res.steps_used,
+        "relevant_obligations": res.relevant_obligations,
+        "reasoning": res.reasoning,
+        "gold_tools": gold["expected_tools"],
+        "actual_tools": actual,
+        "key_tool": gold["key_tool"],
+        "key_tool_hit": key_tool_hit(gold["key_tool"], actual),
+        "tool_set_overlap": round(overlap, 2),
+        "match": match,
+        "notes": gold.get("notes", ""),
+        "disclaimer": res.disclaimer,
+        "steps": [
+            {"n": i, "tool": s.tool, "thought": s.thought, "args": s.args, "observation": s.observation}
+            for i, s in enumerate(res.trajectory, 1)
+        ],
+    }
+    VIEWER_DIR.mkdir(parents=True, exist_ok=True)
+    (VIEWER_DIR / f"TRAJ-{gold['id']}.json").write_text(
+        json.dumps(doc, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
 def main() -> int:
     gold = load_trajectories()
     rows = []
@@ -61,6 +98,7 @@ def main() -> int:
             "grounding_clean": not res.grounding_dropped, "steps": res.steps_used,
         })
         write_traj_md(g, res)
+        write_traj_json(g, res)
         print(f"{g['id']}: route={'ok' if rows[-1]['route_match'] else 'X'} "
               f"key_tool={'ok' if rows[-1]['key_tool'] else 'X'} "
               f"overlap={rows[-1]['overlap']:.2f} "

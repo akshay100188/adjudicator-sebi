@@ -33,3 +33,13 @@ faithfulness claim measurable, not aspirational.
 - Phase 5 metric (`scripts/run_scenario_eval.py`): finding precision/recall vs gold, citation
   faithfulness, and the compliant-control (zero findings) check.
 - Every output carries the non-removable disclaimer.
+
+## Update (EXP-006, WI-A) — second-pass adjudication for precision
+Added a strict **second-pass adjudication** (`adjudicate()` in `synthesize.py`, on by default via
+`analyze_scenario(adjudicate_pass=True)`). The first pass is recall-first and over-flags; the second
+re-examines each proposed finding in isolation and drops "merely topically related" false positives
+(the EXP-005 residual). It can only DROP, never add, so it cannot introduce a hallucination, and a
+fail-safe keeps any finding it returns no verdict for (protecting recall). Dropped candidates are
+surfaced as `rejected_findings` (with a reason) so the precision decision is auditable.
+**Measured (EXP-006, current corpus):** finding precision **0.72 → 0.87**, recall **held at 1.00**,
+faithfulness **1.00**, S06 compliant control **0 findings** — all 3 drops correct (no true gap lost).

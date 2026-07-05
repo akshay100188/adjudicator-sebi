@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adjudicator — Agent Trajectory Viewer</title>
+<style>
+  :root {
+    --bg: #0b1020; --panel: #121a30; --panel-2: #0f1728; --border: #24304d;
+    --text: #e6ebf5; --muted: #93a0bd; --faint: #6b7794;
+    --ok: #34d399; --warn: #fbbf24; --bad: #f87171; --key: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  header.top h1 { font-size: 18px; margin: 0; font-weight: 650; letter-spacing: .2px; }
+  header.top .sub { color: var(--muted); font-size: 12px; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 18px 0 22px; }
+  select, .filebtn {
+    background: var(--panel); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+  }
+  .filebtn:hover, select:hover { border-color: #3a4a72; }
+  input[type=file] { display: none; }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 16px;
+  }
+  .query { font-size: 15px; font-weight: 600; margin: 0 0 12px; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    border-radius: 999px; padding: 4px 11px; border: 1px solid var(--border); background: var(--panel-2);
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .badge.route { color: #c4b5fd; border-color: #4c3f7a; }
+  .badge.ok { color: var(--ok); border-color: #1f5a44; }
+  .badge.warn { color: var(--warn); border-color: #5c4a1a; }
+  .badge.bad { color: var(--bad); border-color: #5c2a2a; }
+  .steps { margin: 6px 0 0; padding: 0; list-style: none; }
+  .step {
+    display: grid; grid-template-columns: 26px 130px 1fr; gap: 12px; align-items: start;
+    padding: 12px 12px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--panel-2); margin-bottom: 8px; position: relative;
+  }
+  .step.keyhit { border-color: var(--key); box-shadow: 0 0 0 1px var(--key) inset; }
+  .step .n { color: var(--faint); font-variant-numeric: tabular-nums; text-align: right; padding-top: 2px; }
+  .tool {
+    font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 600;
+    border-radius: 7px; padding: 3px 8px; text-align: center; height: fit-content; white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .tool.temporal_filter { background: #0b2b3a; color: #7dd3fc; border-color: #164e63; }
+  .tool.hybrid_search { background: #241546; color: #c4b5fd; border-color: #4c3f7a; }
+  .tool.rerank { background: #2e1233; color: #f0abfc; border-color: #6b2170; }
+  .tool.expand_to_parent { background: #0e2c22; color: #6ee7b7; border-color: #1f5a44; }
+  .tool.graph_lookup { background: #33260a; color: #fcd34d; border-color: #5c4a1a; }
+  .tool.related_obligations { background: #14243f; color: #93c5fd; border-color: #26436e; }
+  .step .body { min-width: 0; }
+  .step .args {
+    font: 12px/1.5 ui-monospace, Consolas, monospace; color: var(--muted);
+    white-space: pre-wrap; word-break: break-word; margin: 0 0 4px;
+  }
+  .step .obs {
+    font: 12px/1.5 ui-monospace, Consolas, monospace; color: var(--faint);
+    white-space: pre-wrap; word-break: break-word; margin: 0;
+  }
+  .keytag {
+    position: absolute; top: -9px; right: 10px; font-size: 10px; font-weight: 700; letter-spacing: .4px;
+    text-transform: uppercase; color: #1a1205; background: var(--key); padding: 1px 7px; border-radius: 6px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+  @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; } .step { grid-template-columns: 22px 110px 1fr; } }
+  .kv .k { color: var(--faint); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+  .kv .v { font-size: 13px; margin-top: 2px; }
+  code.mono { font: 12px/1.5 ui-monospace, Consolas, monospace; color: var(--muted); word-break: break-word; }
+  .reasoning { color: var(--muted); font-size: 13px; }
+  .disclaimer { color: var(--faint); font-size: 11px; font-style: italic; margin-top: 18px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .oblig { display: inline-block; font: 11px/1.4 ui-monospace, Consolas, monospace; background: var(--panel-2);
+    border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; margin: 0 4px 4px 0; color: #a7f3d0; }
+  h3.sec { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--faint); margin: 0 0 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Adjudicator — Agent Trajectory Viewer</h1>
+    <span class="sub">watch the agent route, retrieve, trace supersession, and self-check grounding</span>
+  </header>
+
+  <div class="controls">
+    <select id="picker" aria-label="Choose a bundled trajectory"></select>
+    <label class="filebtn">Load a TRAJ JSON…<input type="file" id="file" accept="application/json,.json" /></label>
+  </div>
+
+  <div id="view"></div>
+
+  <p class="disclaimer" id="foot-disclaimer"></p>
+</div>
+
+<script src="data.js"></script>
+<script>
+  const esc = (s) => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+  function compact(obj, max) {
+    let s = typeof obj === "string" ? obj : JSON.stringify(obj);
+    if (s.length > max) s = s.slice(0, max) + "…";
+    return s;
+  }
+
+  function badge(cls, label, dotColor) {
+    const dot = dotColor ? `<span class="dot" style="background:${dotColor}"></span>` : "";
+    return `<span class="badge ${cls}">${dot}${esc(label)}</span>`;
+  }
+
+  function render(t) {
+    const routeActual = t.route?.actual ?? t.route ?? "unknown";
+    const corr = t.correction_fired?.actual ?? t.correction_fired ?? false;
+    const dropped = (t.grounding_dropped || []);
+    const grounded = dropped.length === 0;
+    const matchLabel = t.match === "exact" ? "exact match"
+      : t.match === "partial" ? `partial (overlap ${t.tool_set_overlap ?? "?"})`
+      : "miss";
+
+    const badges = [
+      badge("route", `route: ${routeActual}`, "#a78bfa"),
+      corr ? badge("warn", "correction fired", "#fbbf24") : badge("ok", "no correction needed", "#34d399"),
+      grounded ? badge("ok", "grounding clean", "#34d399")
+               : badge("bad", `${dropped.length} dropped`, "#f87171"),
+    ].join("");
+
+    const steps = (t.steps || []).map(s => {
+      const isKey = s.tool === t.key_tool && t.key_tool_hit;
+      return `<li class="step ${isKey ? "keyhit" : ""}">
+        ${isKey ? `<span class="keytag">key tool</span>` : ""}
+        <span class="n">${s.n}</span>
+        <span class="tool ${esc(s.tool)}">${esc(s.tool)}</span>
+        <div class="body">
+          <p class="args">${esc(compact(s.args, 220))}</p>
+          <p class="obs">${esc(compact(s.observation, 260))}</p>
+        </div>
+      </li>`;
+    }).join("");
+
+    const obligs = (t.relevant_obligations || []).map(o => `<span class="oblig">${esc(o)}</span>`).join("") || "<span class='reasoning'>none</span>";
+    const matchCls = t.match === "exact" ? "ok" : t.match === "partial" ? "warn" : "bad";
+
+    document.getElementById("view").innerHTML = `
+      <div class="card">
+        <p class="query">${esc(t.query)}</p>
+        <div class="badges">${badges}</div>
+      </div>
+
+      <div class="card">
+        <h3 class="sec">Reasoning loop — ${(t.steps || []).length} tool calls (${t.steps_used ?? "?"} rounds)</h3>
+        <ol class="steps">${steps}</ol>
+      </div>
+
+      <div class="card">
+        <h3 class="sec">Trajectory vs. gold</h3>
+        <div class="badges" style="margin-bottom:16px">${badge(matchCls, matchLabel, null)}</div>
+        <div class="footer-grid">
+          <div class="kv"><div class="k">gold tools</div><div class="v"><code class="mono">${esc(JSON.stringify(t.gold_tools || []))}</code></div></div>
+          <div class="kv"><div class="k">actual tools</div><div class="v"><code class="mono">${esc(JSON.stringify(t.actual_tools || []))}</code></div></div>
+          <div class="kv"><div class="k">key tool</div><div class="v"><code class="mono">${esc(t.key_tool || "—")}</code> ${t.key_tool_hit ? "✓ hit" : "✗ missed"}</div></div>
+          <div class="kv"><div class="k">obligations returned</div><div class="v">${obligs}</div></div>
+        </div>
+        <div class="kv" style="margin-top:16px"><div class="k">reasoning</div><div class="v reasoning">${esc(t.reasoning || "")}</div></div>
+      </div>`;
+
+    document.getElementById("foot-disclaimer").textContent = t.disclaimer ||
+      "This output does not constitute legal advice. All findings require review by a qualified compliance professional.";
+  }
+
+  // --- bundled trajectories (data.js -> window.TRAJECTORIES) ---
+  const bundled = (typeof window !== "undefined" && window.TRAJECTORIES) ? window.TRAJECTORIES : [];
+  const picker = document.getElementById("picker");
+  if (bundled.length) {
+    bundled.forEach((t, i) => {
+      const opt = document.createElement("option");
+      opt.value = i;
+      const r = t.route?.actual ?? t.route ?? "";
+      opt.textContent = `${t.id} · ${r} · ${t.query.slice(0, 60)}${t.query.length > 60 ? "…" : ""}`;
+      picker.appendChild(opt);
+    });
+    picker.addEventListener("change", () => render(bundled[+picker.value]));
+    render(bundled[0]);
+  } else {
+    picker.innerHTML = "<option>no bundled trajectories — use “Load a TRAJ JSON…”</option>";
+  }
+
+  document.getElementById("file").addEventListener("change", (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try { render(JSON.parse(reader.result)); }
+      catch (err) { alert("Could not parse JSON: " + err.message); }
+    };
+    reader.readAsText(f);
+  });
+</script>
+</body>
+</html>

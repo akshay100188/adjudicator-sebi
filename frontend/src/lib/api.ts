@@ -106,3 +106,17 @@ export async function analyze(scenario: string): Promise<AnalyzeResult> {
   if (!r.ok) throw new Error("analysis failed");
   return r.json();
 }
+
+export interface DocumentAnalyzeResult extends AnalyzeResult {
+  assertions: string[];
+  raw_document_persisted: boolean;
+  document_meta?: { char_count: number; truncated: boolean };
+}
+
+export async function analyzeDocument(file: File): Promise<DocumentAnalyzeResult> {
+  const form = new FormData();
+  form.append("file", file);
+  const r = await fetch(`${API}/analyze/document`, { method: "POST", body: form });
+  if (!r.ok) throw new Error("document analysis failed");
+  return r.json();
+}

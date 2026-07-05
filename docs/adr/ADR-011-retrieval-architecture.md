@@ -31,3 +31,18 @@ result, and the lift is large (MRR 0.79→0.97).
 - Re-benchmark dense-vs-hybrid and the embedding model (ADR-004) once more chapters are ingested —
   hybrid's exact-term value should grow as the corpus does.
 - Cost: rerank adds ~$0.001/query (Haiku) + ~one round-trip latency.
+
+## Status note (Phase 7)
+To keep the interview narrative honest: on the current 54-obligation corpus, **rerank supplies the
+precision lift, not hybrid.** The measured picture (EXP-001, EXP-004) is:
+- **Rerank is the decisive component:** it lifts MRR 0.79 → 0.97 and recall@1 0.60 → 0.91
+  (post-rerank recall eval, WI-1 / ADR-019). That is where the quality comes from.
+- **Hybrid vs. pure-dense is a wash-to-slight-loss pre-rerank:** naive hybrid (MRR 0.79/0.74) actually
+  *underperforms* pure-dense (MRR 0.90/0.86) at 16 and 54 obligations, because RRF dilutes a strong
+  dense signal with noisier sparse ranks on a small, semantically-separable corpus (EXP-001 finding 3,
+  EXP-004 finding 3). The classic BM25 exact-term win does not even apply here: chunks are paraphrased
+  and carry no circular-number tokens to match on (ADR-013).
+- **Hybrid is therefore kept as an *insurance bet*, not a measured current-corpus win** — insurance for
+  (a) corpus growth (sparse exact-term value should appear as dense degrades on a larger, denser corpus)
+  and (b) exact-term robustness. Re-benchmark dense-vs-hybrid per the ADR-011 re-benchmark trigger as
+  chapters are added. Do **not** claim "hybrid helped" on today's numbers — it did not; rerank did.

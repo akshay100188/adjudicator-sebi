@@ -36,3 +36,6 @@ Thumbs.db
 # Eval / run artifacts
 /eval/runs/
 *.log
+
+# local preview/tooling config
+.claude/

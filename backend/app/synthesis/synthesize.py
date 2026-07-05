@@ -104,11 +104,83 @@ def synthesize(scenario: str, obligations: dict[str, dict]) -> list[Finding]:
     return findings
 
 
-def analyze_scenario(scenario: str, as_of: date | None = None) -> dict:
-    """Full pipeline: agent gathers applicable obligations -> synthesis emits cited gap findings."""
+# --- EXP-006: second-pass adjudication (precision pass, ADR-017 §3) --------------------------------
+# The first synthesis pass is recall-first and over-flags: it emits a finding whenever a stated practice
+# looks like a gap. This second pass re-examines EACH proposed finding in isolation and drops the ones
+# that are "merely topically related" rather than a real violation of a binding requirement — the
+# false-positive mode measured in EXP-005 (precision 0.76). It can only DROP findings, never add, so it
+# cannot introduce a hallucination; the hard constraint is that it must not drop a true gap (recall 1.00).
+ADJUDICATE_SYSTEM = """You are a STRICT second reviewer auditing proposed SEBI stock-broker compliance \
+findings for false positives. For each proposed finding you are given the obligation's binding \
+requirement and the evidence sentence the first reviewer quoted from the scenario.
+
+KEEP a finding ONLY IF the quoted evidence is a specific stated practice that DIRECTLY VIOLATES a \
+binding requirement of that obligation — i.e. doing what the scenario says would breach the obligation.
+
+DROP a finding if ANY of these hold:
+  - the obligation is merely TOPICALLY RELATED (same subject area) but the scenario does not actually
+    contradict its requirement;
+  - the violation is INFERRED or ASSUMED rather than stated in the evidence;
+  - the evidence describes a practice that is actually COMPLIANT with, or silent on, the requirement;
+  - the same underlying practice is already captured by a more directly-violated obligation.
+
+Be conservative about KEEPING but do NOT drop a finding that is a genuine, directly-evidenced violation
+— a dropped true gap is the worst error. Return ONLY a JSON object mapping each obligation_id to
+{"keep": true|false, "reason": "<one clause>"}."""
+
+
+def adjudicate(scenario: str, findings: list[Finding], obligations: dict[str, dict]
+               ) -> tuple[list[Finding], list[dict]]:
+    """Re-examine each proposed finding; return (kept, rejected). Rejected entries carry a drop reason."""
+    if len(findings) <= 0:
+        return findings, []
+    block = "\n\n".join(
+        f"[{f.obligation_id}] REQUIREMENT: {obligations[f.obligation_id]['obligation_text']}\n"
+        f"EVIDENCE (from scenario): {f.evidence}\nPROPOSED GAP: {f.gap_summary}"
+        for f in findings if f.obligation_id in obligations
+    )
+    user = (f"SCENARIO:\n{scenario}\n\nPROPOSED FINDINGS TO AUDIT:\n{block}\n\n"
+            "Return the keep/drop JSON object now.")
+    client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+    resp = client.messages.create(
+        model=MODEL, max_tokens=1500,
+        system=[{"type": "text", "text": ADJUDICATE_SYSTEM, "cache_control": {"type": "ephemeral"}}],
+        messages=[{"role": "user", "content": user}],
+    )
+    txt = resp.content[0].text.strip()
+    if "```" in txt:
+        txt = txt.split("```")[1].lstrip("json").strip()
+    s, e = txt.find("{"), txt.rfind("}")
+    try:
+        verdicts = json.loads(txt[s:e + 1]) if s >= 0 and e > s else {}
+    except json.JSONDecodeError:
+        verdicts = {}
+
+    kept: list[Finding] = []
+    rejected: list[dict] = []
+    for f in findings:
+        v = verdicts.get(f.obligation_id)
+        # Fail-safe: if the adjudicator returns no verdict for a finding, KEEP it (protect recall).
+        if v is None or v.get("keep", True):
+            kept.append(f)
+        else:
+            rejected.append({"obligation_id": f.obligation_id, "gap_summary": f.gap_summary,
+                             "reason": v.get("reason", "dropped as merely topically related")})
+    return kept, rejected
+
+
+def analyze_scenario(scenario: str, as_of: date | None = None, adjudicate_pass: bool = True) -> dict:
+    """Full pipeline: agent gathers applicable obligations -> synthesis emits cited gap findings.
+
+    `adjudicate_pass` runs the EXP-006 second-pass precision review that drops merely-topical findings;
+    dropped candidates are returned in `rejected_findings` so the precision decision is auditable.
+    """
     agent = run_agent(scenario, as_of=as_of)
     obligations = _fetch(agent.relevant_obligations)
     findings = synthesize(scenario, obligations)
+    rejected: list[dict] = []
+    if adjudicate_pass:
+        findings, rejected = adjudicate(scenario, findings, obligations)
     return {
         "route": agent.route,
         "reasoning": agent.reasoning,
@@ -116,6 +188,7 @@ def analyze_scenario(scenario: str, as_of: date | None = None) -> dict:
             {"obligation_id": oid, "title": o["title"]} for oid, o in obligations.items()
         ],
         "findings": [asdict(f) for f in findings],
+        "rejected_findings": rejected,
         "trajectory": [
             {"step": i + 1, "tool": s.tool, "args": s.args, "observation": s.observation}
             for i, s in enumerate(agent.trajectory)

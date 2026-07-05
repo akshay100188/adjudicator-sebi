@@ -7,7 +7,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api import analyze, code_analysis, obligations
+from .api import analyze, code_analysis, document_analysis, obligations
 
 app = FastAPI(title="Project Adjudicator (SEBI) — Agentic RAG", version="0.1.0")
 
@@ -23,6 +23,7 @@ app.add_middleware(
 
 app.include_router(obligations.router)
 app.include_router(analyze.router)
+app.include_router(document_analysis.router)
 app.include_router(code_analysis.router)
 
 

@@ -28,3 +28,12 @@ worst failure (a missed obligation) — and the reranker neutralises the extra n
 - Implemented as T5 (`tools/rerank.py`).
 - Benchmark a cross-encoder reranker as a later EXP if precision plateaus.
 - Watch rerank latency (one LLM round-trip); bound it in the agent loop (Phase 4).
+
+## Result (EXP-009, WI-7) — Haiku stays; cross-encoder is a measured latency lever
+Benchmarked Haiku vs a local cross-encoder (`ms-marco-MiniLM-L-6-v2`) on the same pool→top-5. **Identical
+ranking quality** (both MRR 0.97, precision@1 0.94, recall@1/3/5 0.91/1.00/1.00) — no quality reason to
+switch. The cross-encoder is ~26× faster (92 ms vs 2392 ms/query) and has zero API cost, but adds a
+~2 GB PyTorch/sentence-transformers dependency to an otherwise all-API stack, and rerank latency is not
+the bottleneck in a ~30–60 s agent loop. **Decision: keep Haiku for v1.** The cross-encoder is recorded
+as a drop-in **scale/latency lever** (batch analysis, cost/latency pressure) — a one-line switch the day
+it matters. See EXP-009.
