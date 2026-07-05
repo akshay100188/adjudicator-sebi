@@ -12,3 +12,4 @@ pypdf>=4.2
 # Phase 7 — API
 fastapi>=0.110
 uvicorn[standard]>=0.29
+python-multipart>=0.0.9          # required by the document-upload endpoint (Form/File — WI-6)
